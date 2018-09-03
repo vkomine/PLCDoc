@@ -1,0 +1,739 @@
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Обработка ошибок}}
+%--------------------------------------------------------
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{DriveErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение DriveErrors}
+\label{sec:DriveErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение DriveErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки и режим работы сервоусилителя. \killoverfullbefore 
+
+\clearpage
+
+\begin{MyTableThreeColAllCntr}{Объединение DriveErrors}{tbl:DriveErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline
+protocol & \newline \centering{unsigned:1} & \newline Ошибка протокола  \\
+\hhline{~} ampNotReady & \centering{unsigned:1} & Нет готовности \\
+\hhline{~} ampFault & \centering{unsigned:1} & Сервоусилитель в состоянии ошибки \\
+\hhline{~} i2tFault & \centering{unsigned:1} &  Ошибка i2t \\
+\hhline{~} crc & \centering{unsigned:1} & Ошибка контрольной суммы \\
+\hhline{~} igbtFault & \centering{unsigned:1} & Ошибка IGBT модуля \\
+\hhline{~} igbtTempFault & \centering{unsigned:1} & Превышение температуры IGBT модуля \\
+\hhline{~} highDCFault & \centering{unsigned:1} & Повышенное напряжение в ЗПТ \\
+\hhline{~} lowDCFault & \centering{unsigned:1} & Пониженное напряжение в ЗПТ \\
+\hhline{~} linkFault & \centering{unsigned:1} & Ошибка связи \\
+\hhline{~} brakeOnLowFault & \centering{unsigned:1} & Сигнал на открытие тормозного транзистора в состоянии L (не в слежении) \\
+\hhline{~} brakeOnHighFault & \centering{unsigned:1} & Сигнал на открытие тормозного транзистора в состоянии H (не в слежении) \\
+\hhline{~} brakeFault & \centering{unsigned:1} & Недостаточная мощность тормозного резистора \\
+\hhline{~} currentOutFault & \centering{unsigned:1} & Измеренный ток в фазе в отсечке \\
+\hhline{~} adcFault & \centering{unsigned:1} & Ошибка АЦП \\
+\hhline{~} pwmShortFault & \centering{unsigned:1} & Период сигнала ШИМ  меньше 50 мкс \\
+\hhline{~} pwmLongFault & \centering{unsigned:1} & Период сигнала ШИМ больше 400 мкс \\
+\hhline{~} reserved & \centering{unsigned:8} & Резерв \\
+\hhline{~} ampState & \centering{unsigned:2} & Состояние сервоусилителя \\
+\hhline{~} errorCode \} & \centering{unsigned:4} & Текущий код ошибки \\
+\hline errors & \centering{unsigned} & Переменная, содержащая все битовые поля \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+
+Поле \texttt{ampState} является 2-битным и содержит коды состояния сервоусилителя:
+\begin{itemize}
+\item 0 ~-- не подано высокое напряжение; \killoverfullbefore
+\item 1 ~-- подано высокое напряжение; \killoverfullbefore
+\item 2 ~-- сервоусилитель в слежении. \killoverfullbefore \BL
+\end{itemize} 
+
+Поле \texttt{errorCode} является 4-битным и и содержит текущий код ошибки сервоусилителя:
+\begin{itemize}
+\item 0 ~-- нет ошибок; \killoverfullbefore
+\item 1 ~-- ошибка IGBT модуля; \killoverfullbefore
+\item 2 ~-- превышение температуры IGBT модуля; \killoverfullbefore 
+\item 3 ~-- повышенное напряжение в ЗПТ;
+\item 4 ~-- пониженное напряжение в ЗПТ;
+\item 5 ~-- ошибка связи;
+\item 6 ~-- сигнал на открытие тормозного транзистора в состоянии L (не в слежении);
+\item 7 ~-- сигнал на открытие тормозного транзистора в состоянии H (не в слежении);
+\item 8 ~-- недостаточная мощность тормозного резистора;
+\item 9 ~-- измеренный ток в фазе в отсечке;
+\item 10 ~-- ошибка АЦП;
+\item 11 ~-- период сигнала ШИМ меньше 50 мкс;
+\item 12 ~-- Период сигнала ШИМ больше 400 мкс.\BL
+\end{itemize} 
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{EncoderErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение EncoderErrors}
+\label{sec:EncoderErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение EncoderErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки ДОС.
+
+\begin{MyTableThreeColAllCntr}{Объединение EncoderErrors}{tbl:EncoderErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline
+encFault & \newline \centering{unsigned:1} & \newline Комбинированная ошибка датчика  \\
+\hhline{~} decode & \centering{unsigned:1} & Ошибка декодирования \\
+\hhline{~} sumOfSqr & \centering{unsigned:1} & Неверная сумма квадратов каналов синусно-косинусного датчика \\
+\hhline{~} faultN & \centering{unsigned:1} &  Сигнал FAULT\_N \\
+\hhline{~} adc & \centering{unsigned:1} & Ошибка АЦП \\
+\hhline{~} lineA & \centering{unsigned:1} & Ошибка канала A \\
+\hhline{~} lineB & \centering{unsigned:1} & Ошибка канала B \\
+\hhline{~} lineC & \centering{unsigned:1} & Ошибка канала C \\
+\hhline{~} power & \centering{unsigned:1} & Ошибка питания \\
+\hhline{~} serialDataNotReady & \centering{unsigned:1} & Ошибка последовательного ДОС \\
+\hhline{~} warningBiSS & \centering{unsigned:1} & Предупреждение ДОС BiSS \\
+\hhline{~} faultBiSS & \centering{unsigned:1} & Ошибка ДОС BiSS \\
+\hhline{~} statusEnDat \} & \centering{unsigned:1} & Ошибка статуса ДОС с протоколом EnDat \\
+\hline errors & \centering{unsigned} & Переменная, содержащая все битовые поля \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{IOErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение IOErrors}
+\label{sec:IOErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение IOErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки последовательного интерфейса плат входов/выходов.
+
+\begin{MyTableThreeColAllCntr}{Объединение IOErrors}{tbl:IOErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline
+parity & \newline \centering{unsigned:1} & \newline Ошибка четности \\
+\hhline{~} protocol & \centering{unsigned:1} & Ошибка протокола \\
+\hhline{~} crc & \centering{unsigned:1} & Ошибка контрольной суммы \\
+\hhline{~} watchdog \} & \centering{unsigned:1} & Срабатывание сторожевого таймера \\
+\hline errors & \centering{unsigned} & Переменная, содержащая все битовые поля \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MotorErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение MotorErrors}
+\label{sec:MotorErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение MotorErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки приводов.
+
+\begin{MyTableThreeColAllCntr}{Объединение MotorErrors}{tbl:MotorErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline phaseref & \newline \centering{unsigned:1} & \newline Не выполнена фазировка \\
+\hhline{~} home & \centering{unsigned:1} & Не выполнен поиск нулевой точки \\
+\hhline{~} homeError & \centering{unsigned:1} & Произошла ошибка при поиске нулевой точки \\
+\hhline{~} openLoop & \centering{unsigned:1} & Двигатель не в слежении \\
+
+\hhline{~} encoder & \centering{unsigned:1} & Ошибка ДОС \\
+\hhline{~} plusLimit & \centering{unsigned:1} & Срабатывание аппаратного ограничителя в положительном направлении \\
+\hhline{~} minusLimit & \centering{unsigned:1} & Срабатывание аппаратного ограничителя в отрицательном направлении\\
+\hhline{~} swPlusLimit & \centering{unsigned:1} & Срабатывание программного ограничителя в положительном направлении \\
+\hhline{~} swMinusLimit & \centering{unsigned:1} & Срабатывание программного ограничителя в отрицательном направлении \\
+\hhline{~} folError & \centering{unsigned:1} & Критическая ошибка слежения \\
+\hhline{~} folErrorWarning & \centering{unsigned:1} & Предупредительная ошибка слежения \\
+\hhline{~} temperature & \centering{unsigned:1} & Перегрев двигателя \\
+\hhline{~} tempWarning & \centering{unsigned:1} & Предупреждение о перегреве двигателя \\
+\hhline{~} auxFault & \centering{unsigned:1} & Внешняя ошибка \\
+\hhline{~} pos2Error & \centering{unsigned:1} & Ошибка рассогласования датчиков положения и скорости \\
+\hhline{~} pos2Warning & \centering{unsigned:1} & Предупреждение рассогласования датчиков положения и скорости \\
+\hhline{~} phasePosError & \centering{unsigned:1} & Ошибка рассогласования датчиков положения и коммутации \\
+\hhline{~} phasePosWarning \} & \centering{unsigned:1} & Предупреждение рассогласования датчиков положения и коммутации \\
+\hline errors & \centering{unsigned} & Переменная, содержащая все битовые поля \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************\\
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{AxisErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение AxisErrors}
+\label{sec:AxisErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение AxisErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки оси.
+
+\begin{MyTableThreeColAllCntr}{Объединение AxisErrors}{tbl:AxisErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline abortTimeout & \newline \centering{unsigned:1} & \newline Истекло время операции аварийного торможения \\
+\hhline{~} activateTimeout & \centering{unsigned:1} & Истекло время операции включения в слежение \\
+\hhline{~} phaseRefTimeout & \centering{unsigned:1} & Истекло время операции фазировки \\
+\hhline{~} deactivateTimeout \} & \centering{unsigned:1} & Истекло время операции выключения \\
+\hline errors & \centering{unsigned} & Переменная, содержащая все битовые поля \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{SpindleErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение SpindleErrors}
+\label{sec:SpindleErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение SpindleErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки шпинделя.
+
+\begin{MyTableThreeColAllCntr}{Объединение SpindleErrors}{tbl:SpindleErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline  abortTimeout & \newline \centering{unsigned:1} &  \newline Истекло время операции аварийного торможения \\
+\hhline{~} activateTimeout & \centering{unsigned:1} & Истекло время операции включения в слежение \\
+\hhline{~} phaseRefTimeout & \centering{unsigned:1} & Истекло время операции фазировки \\
+\hhline{~} deactivateTimeout & \centering{unsigned:1} & Истекло время операции выключения \\
+\hhline{~} speedTimeout & \centering{unsigned:1} & Истекло время выхода на заданную скорость \\
+\hhline{~} stopTimeout & \centering{unsigned:1} & Истекло время операции останова \\
+\hhline{~} homeTimeout & \centering{unsigned:1} & Истекло время операции поиска нулевой точки  \\
+\hhline{~} positionTimeout \} & \centering{unsigned:1} & Истекло время выхода в заданное положение \\
+\hline errors & \centering{unsigned} & Переменная, содержащая все битовые поля \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ChannelErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение ChannelErrors}
+\label{sec:ChannelErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение ChannelErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки канала управления.
+
+\begin{MyTableThreeColAllCntr}{Объединение ChannelErrors}{tbl:ChannelErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline phaseRefTimeout  & \newline \centering{unsigned:1} &  \newline Истекло время операции фазировки \\
+\hhline{~} driveOnTimeout  & \centering{unsigned:1} & Истекло время ожидания включения сервоусилителя \\
+\hhline{~} driveOffTimeout  & \centering{unsigned:1} & Истекло время ожидания выключения сервоусилителя \\
+\hhline{~} abortTimeout & \centering{unsigned:1} & Истекло время операции аварийного торможения \\
+\hhline{~} stopTimeout & \centering{unsigned:1} & Истекло время операции останова \\
+\hhline{~} homeTimeout & \centering{unsigned:1} & Истекло время операции поиска нулевой точки \\
+\hhline{~} homeError & \centering{unsigned:1} & Ошибка поиска нулевой точки \\
+
+\hhline{~} startWithoutHome & \centering{unsigned:1} & Попытка запуска без определения нулевой точки \\
+\hhline{~} cannotStart & \centering{unsigned:1} & Ошибка запуска программы \\
+
+\hhline{~} progStopOk & \centering{unsigned:1} & УП выполнена \\
+\hhline{~} progStopAbort & \centering{unsigned:1} & УП прервана \\
+\hhline{~} progStopSyncError & \centering{unsigned:1} & Ошибка присвоения в буфере синхронных переменных \\
+\hhline{~} progStopBufferError & \centering{unsigned:1} & Ошибка в буфере программы движения \\
+\hhline{~} progStopCCMove & \centering{unsigned:1} & Неверный кадр в режиме коррекции инструмента \\
+\hhline{~} progStopLinToPvt & \centering{unsigned:1} & Ошибка при преобразовании линейного движения в сплайн или pvt-движение \\
+\hhline{~} progStopCCLeadOut & \centering{unsigned:1} & Неверный кадр при отмене режима коррекции инструмента \\
+\hhline{~} progStopCCLeadIn & \centering{unsigned:1} &  Неверный кадр при активации режима коррекции инструмента \\
+\hhline{~} progStopCCBufSize & \centering{unsigned:1} & Недостаточный размер буфера в режиме коррекции инструмента \\
+\hhline{~} progStopPvt & \centering{unsigned:1} & Ошибка расчёта pvt-движения\\
+\hhline{~} progStopCCFeed & \centering{unsigned:1} & Неверное указание подачи в режиме коррекции инструмента \\
+\hhline{~} progStopCCDir & \centering{unsigned:1} & Смена направления движения в режиме коррекции инструмента \\
+\hhline{~} progStopNoSolve & \centering{unsigned:1} & Невозможно рассчитать движение в режиме коррекции инструмента \\
+\hhline{~} progStopCC3NdotT & \centering{unsigned:1} &  Ошибка расчёта точки резания в режиме трёхмерной коррекции инструмента \\
+\hhline{~} progStopCCDist & \centering{unsigned:1} & Невозможно предотвратить «перерез» в режиме коррекции инструмента \\
+\hhline{~} progStopCCNoIntersect & \centering{unsigned:1} & Невозможно найти пересечение траекторий в режиме коррекции инструмента \\
+\hhline{~} progStopCCNoMoves & \centering{unsigned:1} & Между активацией и отменой  
+режима коррекции инструмента кадры без команд движения \\
+
+\hhline{~} progStopRunTime & \centering{unsigned:1} &  Недостаточное время для расчёта движения \\
+\hhline{~} progStopInPos & \centering{unsigned:1} & Истекло время ожидания состояния «в позиции» \\
+\hhline{~} progStopSoftLimit & \centering{unsigned:1} & Срабатывание программного ограничения \\
+\hhline{~} progStopRadiusX & \centering{unsigned:1} & Срабатывание ограничения величины радиальной ошибки в режиме кругового движения \\
+\hhline{~} progStopRadiusXX & \centering{unsigned:1} & Срабатывание ограничения величины радиальной ошибки в режиме кругового движения в расширенной системе координат \\
+\hhline{~} progPausedM00 & \centering{unsigned:1} & УП временно остановлена по команде М00 или М01 \\
+\hhline{~} cycleInvalidArgs & \centering{unsigned:1} & Неверные аргументы функции постоянного цикла \\
+\hhline{~} seekingBlock & \centering{unsigned:1} & Поиск кадра \\
+\hhline{~} seekBlockFound & \centering{unsigned:1} & Кадр найден \\
+\hhline{~} seekBlockNotFound \} & \centering{unsigned:1} & Кадр не найден \\
+\hline errors & \centering{unsigned} & Переменная, содержащая все битовые поля \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{NCErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение NCErrors}
+\label{sec:NCErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение NCErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет системные ошибки.
+
+\begin{MyTableThreeColAllCntr}{Объединение NCErrors}{tbl:NCErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline  factory & \newline \centering{unsigned:1} &  \newline Ошибка загрузки системных параметров, используются параметры по умолчанию \\
+\hhline{~} userFactory & \centering{unsigned:1} &  Ошибка загрузки параметров пользователя, пользовательские переменные не определены \\
+\hhline{~} swClock & \centering{unsigned:1} & Отсутствует аппаратный источник частоты \\
+\hhline{~} bgWdt & \centering{unsigned:1} & Срабатывание сторожевого таймера фонового режима \\
+\hhline{~} rtWdt & \centering{unsigned:1} &  Срабатывание сторожевого таймера реального времени \\
+\hhline{~} sysPlcFault & \centering{unsigned:1} & Ошибка выполнения системных программ ПЛК \\
+\hhline{~} hmiWatchdog \} & \centering{unsigned:1} & Срабатывание сторожевого таймера связи с пультом оператора \\
+\hline errors & \centering{unsigned} & Переменная, содержащая все битовые поля \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+\begin{comment}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MachineErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Структура MachineErrors}
+\label{sec:MachineErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура MachineErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Структура определяет ошибки станка.
+
+% *******end subsection***************
+\end{comment}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{Errors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Структура Errors}
+\label{sec:Errors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура Errors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Структура содержит данные о системных ошибках, об ошибках станка, каналов управления, осей, шпинделей, приводов, ДОС, сервоусилителей и плат входов/выходов.
+
+\begin{MyTableThreeColAllCntr}{Структура Errors}{tbl:Errors}{|m{0.38\linewidth}|m{0.22\linewidth}|m{0.4\linewidth}|}{Элемент}{Тип}{Описание}
+\hline machine & \centering{\hyperlink{Machine_Errors}{MachineErrors}} & Ошибки станка \\
+\hline nc & \centering{\myreftosec{NCErrors}} & Системные ошибки  \\
+\hline channel [ЧИСЛО\_КАНАЛОВ] & \centering{\myreftosec{ChannelErrors}} & Ошибки каналов управления \\
+\hline axes [ЧИСЛО\_ОСЕЙ] & \centering{\myreftosec{AxisErrors}} & Ошибки осей \\
+\hline spindles [ЧИСЛО\_ШПИНДЕЛЕЙ] & \centering{\myreftosec{SpindleErrors}} & Ошибки шпинделей \\
+\hline motors [ЧИСЛО\_ДВИГАТЕЛЕЙ+1] & \centering{\myreftosec{MotorErrors}} & Ошибки приводов \\
+\hline encoders [ЧИСЛО\_ДОС] & \centering{\myreftosec{EncoderErrors}} & Ошибки ДОС \\
+\hline drive [ЧИСЛО\_ДВИГАТЕЛЕЙ+1] & \centering{\myreftosec{DriveErrors}} & Ошибки сервоусилителей \\
+\hline io [ЧИСЛО\_ПЛАТ\_ВХ/ВЫХ] & \centering{\myreftosec{IOErrors}} & Ошибки плат входов/выходов \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ErrorReaction}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Перечисление ErrorReaction}
+\label{sec:ErrorReaction}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление ErrorReaction}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы типов реакций на ошибки.
+
+\begin{MyTableTwoColAllCntr}{Перечисление ErrorReaction}{tbl:ErrorReaction}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline reactNone &  Нет реакции \\
+% \hline reactLocal &    \\
+\hline reactFollowUp  &  Восстановление после ошибки \\
+\hline reactStopProgram  & Прервано выполнение программы \\
+\hline reactNCNotReady  & Нет готовности системы \\
+\hline reactChannelNotReady  & Нет готовности канала \\
+\hline reactStartDisable  & Запрет запуска программы в канале \\
+\hline reactNeedHome  & Необходим повторный поиск нулевой точки для осей в канале \\
+\hline reactShowAlarm  & Показать сообщение об ошибке \\
+\hline reactStop &  Останов осей \\
+\hline reactStopAtEnd  & Останов осей в конце блока \\
+\hline reactAutoOnly  & Фиксация ошибки только в автоматическом режиме \\
+\hline reactWarning  & Показать предупреждение \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ErrorClear}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Перечисление ErrorClear}
+\label{sec:ErrorClear}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление ErrorClear}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы типов сброса ошибок. 
+
+Самый низкий приоритет  имеет автоматический сброс (\texttt{clearSelf}), самый высокий приоритет ~-- сброс по включению питания (\texttt{clearPowerOn}). \killoverfullbefore
+
+\begin{MyTableTwoColAllCntr}{Перечисление ErrorClear}{tbl:ErrorClear}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline clearSelf &  Автоматический сброс \\
+\hline clearCancel &  Сброс из оболочки, отменой текущего режима работы или перезапуском УП \\
+\hline clearNCStart &  Сброс отменой текущего режима работы или перезапуском УП \\
+\hline clearReset &  Сброс отменой текущего режима работы \\
+\hline clearNCReset &  Сброс перезагрузкой системы \\
+\hline clearPowerOn &  Сброс по включению питания \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{DriveErrorReaction}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Перечисление DriveErrorReaction}
+\label{sec:DriveErrorReaction}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление DriveErrorReaction}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы типов реакции на ошибки сервоусилителя.
+
+\begin{MyTableTwoColAllCntr}{Перечисление DriveErrorReaction}{tbl:DriveErrorReaction}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline dreactNone &  Нет реакции \\
+\hline dreactOFF1 &  Останов и выключение с задержкой в режиме слежения, иначе выключение \\
+\hline dreactOFF1delayed  &  Пауза, останов и выключение в режиме слежения, иначе пауза и выключение \\
+\hline dreactOFF2 &  Выключение \\
+\hline dreactOFF3 &  Аварийное торможение и выключение с задержкой в режиме слежения, иначе выключение \\
+\hline dreactSTOP2 & Аварийное торможение и сохранение режима слежения \\
+\hline dreactIASC\_DCBRK  & Для синхронного - закоротить обмотки, для асинхронного - торможение постоянным током \\
+\hline dreactENC & Настраивается (по умолчанию dreactOFF2) \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+
+\begin{comment}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{DriveErrorAcknowledge}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Перечисление DriveErrorAcknowledge}
+\label{sec:DriveErrorAcknowledge}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление DriveErrorAcknowledge}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы подтверждений ошибок сервоусилителя.
+
+\begin{MyTableTwoColAllCntr}{Перечисление DriveErrorAcknowledge}{tbl:DriveErrorAcknowledge}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline dackPowerOn &    \\
+\hline dackImmediately  &   \\
+\hline dackDisable &    \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+\end{comment}
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ErrorDescription}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Структура ErrorDescription}
+\label{sec:ErrorDescription}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура ErrorDescription}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Структура определяет параметры описания ошибки.
+
+\begin{MyTableThreeColAllCntr}{Структура ErrorDescription}{tbl:ErrorDescription}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline id & \centering{unsigned} & Номер ошибки в категории \\
+\hline reaction & \centering{unsigned} & Тип реакции \\
+\hline clear & \centering{unsigned} & Тип сброса \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ErrorRequests}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Структура ErrorRequests}
+\label{sec:ErrorRequests}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура ErrorRequests}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.cfg} \\
+\end{fHeader}
+
+Структура определяет флаги действий системы, которые вызываются согласно реакциям на ошибки в перечислении \myreftosec{ErrorReaction}.
+
+\begin{MyTableThreeColAllCntr}{Структура ErrorDescription}{tbl:ErrorDescription}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline ncNotReady & \centering{int:1} &  Нет готовности системы \\
+\hline ncStop & \centering{int:1} & Останов осей \\
+\hline ncStopAtEnd & \centering{int:1} & Останов осей в конце блока \\
+\hline ncFollowUp & \centering{int:1} &  Восстановление после ошибки \\
+\hline channelNotReady & \centering{int:1} & Нет готовности канала \\
+\hline startDisable & \centering{int:1} & Запрет запуска программы в канале \\
+\hline needHome & \centering{int:1} & Необходим повторный поиск нулевой точки для осей в канале \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции и макросы}}
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{errorSetScan}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функция errorSetScan}
+\label{sec:errorSetScan}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int errorSetScan (unsigned curInput, unsigned input,}\\
+    & \RightHandText {const ErrorDescription \&desc, ErrorClear request);} \\
+ Аргумент(ы):    & \RightHandText{unsigned curInput ~-- флаг ошибки,} \\ 
+ & \RightHandText{unsigned input ~-- состояние соответствующего входа ошибки,} \\   
+ & \RightHandText {const \myreftosec{ErrorDescription} \&desc ~-- описание ошибки} \\
+    & \RightHandText {\myreftosec{ErrorClear} request ~-- идентификатор запроса на сброс ошибки} \\
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\      
+\end{pHeader}
+
+Функция возвращает 1 (наличие ошибки), если состояние соответствующего входа ошибки отлично от 0. 
+
+Если состояние соответствующего входа равно 0 и уровень сброса ошибки в структуре описания ошибки меньше или равен значению идентификатора запроса на сброс ошибки, то функция возвращает 0 (ошибка сброшена). \killoverfullbefore
+
+Если состояние соответствующего входа равно 0 и уровень сброса ошибки в структуре описания ошибки больше значения идентификатора запроса на сброс ошибки, то функция возвращает текущее значение флага ошибки. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{errorScanSet}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Макрос errorScanSet}
+\label{sec:errorScanSet}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{errorScanSet (error, input, desc, request)}\\
+ Аргумент(ы):    & \RightHandText{error ~-- флаг ошибки,} \\ 
+ & \RightHandText{input ~-- состояние соответствующего входа,} \\   
+ & \RightHandText {desc ~-- описание ошибки (переменная типа \myreftosec{ErrorDescription}),} \\
+    & \RightHandText {request ~-- идентификатор запроса на сброс ошибки (переменная \newline типа \myreftosec{ErrorClear})} \\
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\      
+\end{pHeader}
+
+Макрос \myreftosec{errorScanSet} вызывает функцию \myreftosec{errorSetScan} и присваивает возвращаемое значение аргументу \texttt{error} (флагу ошибки).
+
+Макрос обновляет флаг выбранной ошибки в зависимости от состояния соответствующего входа и заданного идентификатора запроса на сброс ошибки.
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{errorScanRequest}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функция errorScanRequest}
+\label{sec:errorScanRequest}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void errorScanRequest (ErrorClear request);}\\
+    Аргумент(ы):    & \RightHandText{\myreftosec{ErrorClear} request ~-- идентификатор запроса на сброс ошибки} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{pHeader}
+
+Функция выполняет вызовы макроса \myreftosec{errorScanSet} для обновления флагов ошибок станка, УЧПУ, каналов управления, осей, шпинделей, приводов, сервоусилителей, ДОС и последовательного интерфейса плат входов/выходов. \killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{errorScan}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функция errorScan}
+\label{sec:errorScan}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void errorScan();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\      
+\end{pHeader}
+
+Функция выполняет вызов \myreftosec{errorScanRequest} с аргументом \texttt{clearSelf} (см. \myreftosec{ErrorClear}) для обновления флагов ошибок с запросом автоматического сброса ошибок. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{errorReaction}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функция errorReaction}
+\label{sec:errorReaction}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void errorReaction(unsigned input, const ErrorDescription \&desc);}\\
+    Аргумент(ы):    & \RightHandText{unsigned input ~-- флаг ошибки,} \\   
+     & \RightHandText{const \myreftosec{ErrorDescription} \&desc ~-- описание ошибки} \\
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\      
+\end{pHeader}
+
+%Устанавливает флаги действий системы (см. \myreftosec{ErrorRequests}), которые вызываются реакциями на возникшую ошибку.
+
+Устанавливает флаги действий системы (см. \myreftosec{ErrorRequests}) согласно реакциям на возникшую ошибку.
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{errorsMachineScan}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функция errorsMachineScan}
+\label{sec:errorsMachineScan}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void errorsMachineScan (int request);}\\
+  Аргумент(ы):    & \RightHandText{int request ~-- идентификатор запроса на сброс ошибки} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{pHeader}
+
+Функция выполняет вызовы макроса \myreftosec{errorScanSet} для обновления флагов ошибок станка. Вызывается из  \myreftosec{errorScanRequest}. \killoverfullbefore
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{errorsMachineReaction}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функция errorsMachineReaction}
+\label{sec:errorsMachineReaction}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void errorsMachineReaction();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{pHeader}
+
+%Функция обрабатывает ошибки станка.
+Функция выполняет вызовы функции \myreftosec{errorReaction} для ошибок станка.
+
+%Устанавливает ошибочные состояния системы (см. \myreftosec{ErrorRequests}), которые вызываются реакциями на ошибки станка.
+
+Реализуется пользователем. 
+% *******end subsection*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{encoderScanErrors}}
+\index{Программный интерфейс ПЛК!Датчики обратной связи!Функция encoderScanErrors}
+\label{sec:encoderScanErrors}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void encoderScanErrors(ErrorClear request);}\\
+    Аргумент(ы):    & \RightHandText{\myreftosec{ErrorClear} request ~-- идентификатор типа сброса ошибки} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/enc.h} \\       
+\end{pHeader}
+
+Функция выполняет вызовы макроса \myreftosec{errorScanSet} для обновления флагов ошибок ДОС. Вызывается из  \myreftosec{errorScanRequest}. \killoverfullbefore
+
+Является системной.
+% *******end section*****************
+
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{encoderErrorsReaction}}
+\index{Программный интерфейс ПЛК!Датчики обратной связи!Функция encoderErrorsReaction}
+\label{sec:encoderErrorsReaction}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void encoderErrorsReaction();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/enc.h} \\       
+\end{pHeader}
+
+Функция выполняет вызовы функции \myreftosec{errorReaction} для ошибок ДОС.
+
+Является системной.
+% *******end section*****************
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ampScanErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функция ampScanErrors}
+\label{sec:ampScanErrors}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void ampScanErrors(int motor, int servo, int chan, ErrorClear request,}\\
+     & \RightHandText{int isaxis, int id);}\\
+  Аргумент(ы):    & \RightHandText{int motor ~-- номер связанного с осью двигателя,} \\   
+    & \RightHandText {int servo ~-- номер платы управления,}  \\ 
+    & \RightHandText {int chan ~-- номер канала,}  \\ 
+    & \RightHandText{\myreftosec{ErrorClear} request ~-- идентификатор типа сброса ошибки,} \\ 
+    & \RightHandText {int isaxis ~-- флаг оси (1) или шпинделя (0),}  \\ 
+    & \RightHandText {int id ~-- номер оси или шпинделя}  \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/func/amp\_fault.h} \\      
+\end{pHeader}
+
+Функция выполняет вызовы макроса \myreftosec{errorScanSet} для обновления флагов ошибок сервоусилителей. Вызывается из  \myreftosec{errorScanRequest}. \killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ampErrorsReaction}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функция ampErrorsReaction}
+\label{sec:ampErrorsReaction}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void ampErrorsReaction(int motor);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер связанного с осью двигателя} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/func/amp\_fault.h} \\      
+\end{pHeader}
+
+%Функция обрабатывает ошибки сервоусилителей.
+Функция выполняет вызовы функции \myreftosec{errorReaction} для ошибок сервоусилителей.
+
+Является системной.  
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ioScanErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функция ioScanErrors}
+\label{sec:ioScanErrors}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void ioScanErrors(int ioNum, int servo, int io, ErrorClear request)}\\
+    Аргумент(ы):    & \RightHandText{int ioNum ~-- номер платы входов/выходов,} \\ 
+    & \RightHandText {int servo ~-- номер платы управления,} \\
+    & \RightHandText {int io ~-- номер входа/выхода,} \\           
+    & \RightHandText {\myreftosec{ErrorClear} request ~-- идентификатор типа сброса ошибки} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/func/io.h} \\      
+\end{pHeader}
+
+Функция выполняет вызовы макроса \myreftosec{errorScanSet} для обновления флагов ошибок последовательного интерфейса плат входов/выходов. Вызывается из  \myreftosec{errorScanRequest}. \killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ioErrorsReaction}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функция ioErrorsReaction}
+\label{sec:ioErrorsReaction}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void ioErrorsReaction(int ioNum, int io, int servo);}\\
+    Аргумент(ы):    & \RightHandText{int ioNum ~-- номер платы входов/выходов,} \\   
+    & \RightHandText {int io ~-- номер входа/выхода,} \\  
+    & \RightHandText {int servo ~-- номер платы управления} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/func/io.h} \\      
+\end{pHeader}
+
+%Функция обрабатывает ошибки последовательного интерфейса плат входов/выходов.
+Функция выполняет вызовы функции \myreftosec{errorReaction} для ошибок последовательного интерфейса плат входов/выходов.
+
+Является системной.  
+% *******end subsection*****************
+%-------------------------------------------------------------------
+

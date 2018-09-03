@@ -1,0 +1,1473 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {russian}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\etoc@settocdepth \Etoc@chapter@@ 
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\IeC {\CYRS }\IeC {\cyrp }\IeC {\cyri }\IeC {\cyrs }\IeC {\cyro }\IeC {\cyrk } \IeC {\cyrs }\IeC {\cyro }\IeC {\cyrk }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrshch }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyrishrt }}{4}{chapter*.5}
+\defcounter {refsection}{0}\relax 
+\etoc@settocdepth \Etoc@chapter@@ 
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\IeC {\CYRV }\IeC {\cyrv }\IeC {\cyre }\IeC {\cyrd }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre }}{5}{chapter*.7}
+\defcounter {refsection}{0}\relax 
+\etoc@settocdepth \Etoc@section@@ 
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrs }\IeC {\cyro }\IeC {\cyrb }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyri } \IeC {\cyrr }\IeC {\cyre }\IeC {\cyra }\IeC {\cyrl }\IeC {\cyri }\IeC {\cyrz }\IeC {\cyra }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrm }\IeC {\cyrm } \IeC {\CYRP }\IeC {\CYRL }\IeC {\CYRK }}}{6}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}\leavevmode {\color {blue}\IeC {\CYRV }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrishrt } \IeC {\cyrl }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyri }\IeC {\cyrch }\IeC {\cyre }\IeC {\cyrs }\IeC {\cyrk }\IeC {\cyri }\IeC {\cyrishrt } \IeC {\cyrk }\IeC {\cyro }\IeC {\cyrn }\IeC {\cyrt }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrl }\IeC {\cyrl }\IeC {\cyre }\IeC {\cyrr }}}{6}{section.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}\leavevmode {\color {blue}\IeC {\CYRYA }\IeC {\cyrz }\IeC {\cyrery }\IeC {\cyrk } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrm }\IeC {\cyrm } \IeC {\CYRP }\IeC {\CYRL }\IeC {\CYRK }}}{7}{section.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrr }\IeC {\cyrg }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyrz }\IeC {\cyra }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyrya } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrm }\IeC {\cyrm } \IeC {\CYRP }\IeC {\CYRL }\IeC {\CYRK }}}{7}{section.1.3}
+\defcounter {refsection}{0}\relax 
+\etoc@settocdepth \Etoc@subsection@@ 
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}\leavevmode {\color {blue}\IeC {\CYRS }\IeC {\cyro }\IeC {\cyrz }\IeC {\cyrd }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrm }\IeC {\cyrm } \IeC {\CYRP }\IeC {\CYRL }\IeC {\CYRK }}}{8}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrp }\IeC {\cyri }\IeC {\cyrs }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre } \IeC {\cyrya }\IeC {\cyrz }\IeC {\cyrery }\IeC {\cyrk }\IeC {\cyra } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrm }\IeC {\cyrm } \IeC {\CYRP }\IeC {\CYRL }\IeC {\CYRK }}}{8}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.1}\leavevmode {\color {blue}\IeC {\CYRN }\IeC {\cyra }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrr } \IeC {\cyrs }\IeC {\cyri }\IeC {\cyrm }\IeC {\cyrv }\IeC {\cyro }\IeC {\cyrl }\IeC {\cyro }\IeC {\cyrv }}}{8}{subsection.2.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.2}\leavevmode {\color {blue}\IeC {\CYRK }\IeC {\cyrl }\IeC {\cyryu }\IeC {\cyrch }\IeC {\cyre }\IeC {\cyrv }\IeC {\cyrery }\IeC {\cyre } \IeC {\cyrs }\IeC {\cyrl }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyra }}}{9}{subsection.2.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.3}\leavevmode {\color {blue}\IeC {\CYRB }\IeC {\cyra }\IeC {\cyrz }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyrery }\IeC {\cyre } \IeC {\cyrt }\IeC {\cyri }\IeC {\cyrp }\IeC {\cyrery } \IeC {\cyrd }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh }}}{9}{subsection.2.1.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.4}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrb }\IeC {\cyrl }\IeC {\cyra }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyri } \IeC {\cyrz }\IeC {\cyrn }\IeC {\cyra }\IeC {\cyrch }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyrishrt }}}{10}{subsection.2.1.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.5}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrb }\IeC {\cyrhrdsn }\IeC {\cyrya }\IeC {\cyrv }\IeC {\cyrl }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyrya } \IeC {\cyrp }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyre }\IeC {\cyrm }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh }}}{10}{subsection.2.1.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.6}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrp }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri }}}{11}{subsection.2.1.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.7}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrp }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrt }\IeC {\cyro }\IeC {\cyrr }\IeC {\cyrery }}}{13}{subsection.2.1.7}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.8}\leavevmode {\color {blue}\IeC {\CYRF }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri }}}{15}{subsection.2.1.8}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.9}\leavevmode {\color {blue}\IeC {\CYRD }\IeC {\cyri }\IeC {\cyrr }\IeC {\cyre }\IeC {\cyrk }\IeC {\cyrt }\IeC {\cyri }\IeC {\cyrv }\IeC {\cyrery } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyre }\IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrc }\IeC {\cyre }\IeC {\cyrs }\IeC {\cyrs }\IeC {\cyro }\IeC {\cyrr }\IeC {\cyra }}}{15}{subsection.2.1.9}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.10}\leavevmode {\color {blue}\IeC {\CYRM }\IeC {\cyra }\IeC {\cyrt }\IeC {\cyre }\IeC {\cyrm }\IeC {\cyra }\IeC {\cyrt }\IeC {\cyri }\IeC {\cyrch }\IeC {\cyre }\IeC {\cyrs }\IeC {\cyrk }\IeC {\cyri }\IeC {\cyre } \IeC {\cyrf }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri }}}{16}{subsection.2.1.10}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.11}\leavevmode {\color {blue}\IeC {\CYRF }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri } \IeC {\cyrr }\IeC {\cyra }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrt }\IeC {\cyrery } \IeC {\cyrs } \IeC {\cyrp }\IeC {\cyra }\IeC {\cyrm }\IeC {\cyrya }\IeC {\cyrt }\IeC {\cyrsftsn }\IeC {\cyryu }}}{18}{subsection.2.1.11}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}\leavevmode {\color {blue}\IeC {\CYRS }\IeC {\cyrr }\IeC {\cyre }\IeC {\cyrd }\IeC {\cyra } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyre }\IeC {\cyrk }\IeC {\cyrt }\IeC {\cyri }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyrya } \IeC {\cyri } \IeC {\cyrr }\IeC {\cyra }\IeC {\cyrz }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrt }\IeC {\cyrk }\IeC {\cyri }}}{18}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.1}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrt }\IeC {\cyrk }\IeC {\cyrr }\IeC {\cyrery }\IeC {\cyrt }\IeC {\cyri }\IeC {\cyre } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyre }\IeC {\cyrk }\IeC {\cyrt }\IeC {\cyra }}}{19}{subsection.2.2.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.2}\leavevmode {\color {blue}\IeC {\CYRS }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrr }\IeC {\cyrk }\IeC {\cyra } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyre }\IeC {\cyrk }\IeC {\cyrt }\IeC {\cyra }}}{22}{subsection.2.2.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrb }\IeC {\cyrhrdsn }\IeC {\cyrya }\IeC {\cyrv }\IeC {\cyrl }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre } \IeC {\cyri } \IeC {\cyrr }\IeC {\cyre }\IeC {\cyra }\IeC {\cyrl }\IeC {\cyri }\IeC {\cyrz }\IeC {\cyra }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyrya } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrm }\IeC {\cyrm } \IeC {\CYRP }\IeC {\CYRL }\IeC {\CYRK }}}{23}{section.2.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}\leavevmode {\color {blue}\IeC {\CYRZ }\IeC {\cyra }\IeC {\cyrg }\IeC {\cyrr }\IeC {\cyru }\IeC {\cyrz }\IeC {\cyrk }\IeC {\cyra } \IeC {\cyrk }\IeC {\cyro }\IeC {\cyrn }\IeC {\cyrf }\IeC {\cyri }\IeC {\cyrg }\IeC {\cyru }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri } \IeC {\cyrv } \IeC {\CYRU }\IeC {\CYRCH }\IeC {\CYRP }\IeC {\CYRU }}}{28}{section.2.4}
+\defcounter {refsection}{0}\relax 
+\etoc@settocdepth \Etoc@section@@ 
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}\leavevmode {\color {blue}\IeC {\CYRP }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrm }\IeC {\cyrm }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrishrt } \IeC {\cyri }\IeC {\cyrn }\IeC {\cyrt }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyrf }\IeC {\cyre }\IeC {\cyrishrt }\IeC {\cyrs } \IeC {\CYRP }\IeC {\CYRL }\IeC {\CYRK }}}{31}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}\leavevmode {\color {blue}\IeC {\CYRU }\IeC {\cyrp }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrv }\IeC {\cyrl }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre } \IeC {\CYRU }\IeC {\CYRCH }\IeC {\CYRP }\IeC {\CYRU }}}{31}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.1}\leavevmode {\color {blue}\IeC {\CYRT }\IeC {\cyri }\IeC {\cyrp }\IeC {\cyrery } \IeC {\cyrd }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh }}}{31}{subsection.3.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1.1}\leavevmode {\color {blue}CNCMode}}{31}{subsubsection.3.1.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1.2}\leavevmode {\color {blue}ChannelStatus}}{32}{subsubsection.3.1.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1.3}\leavevmode {\color {blue}ModeState}}{32}{subsubsection.3.1.1.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1.4}\leavevmode {\color {blue}ProgramSeekMode}}{32}{subsubsection.3.1.1.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1.5}\leavevmode {\color {blue}ProgramStatus}}{33}{subsubsection.3.1.1.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1.6}\leavevmode {\color {blue}ShutdownState}}{33}{subsubsection.3.1.1.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1.7}\leavevmode {\color {blue}ChannelInfo}}{34}{subsubsection.3.1.1.7}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1.8}\leavevmode {\color {blue}CNCDesc}}{35}{subsubsection.3.1.1.8}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1.9}\leavevmode {\color {blue}CNCSettings}}{37}{subsubsection.3.1.1.9}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.2}\leavevmode {\color {blue}\IeC {\CYRF }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri }}}{37}{subsection.3.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.1}\leavevmode {\color {blue}InitCnc}}{37}{subsubsection.3.1.2.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.2}\leavevmode {\color {blue}mtIsReady}}{38}{subsubsection.3.1.2.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.3}\leavevmode {\color {blue}cncSetMode}}{38}{subsubsection.3.1.2.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.4}\leavevmode {\color {blue}cncRequest}}{38}{subsubsection.3.1.2.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.5}\leavevmode {\color {blue}cncChangeMode}}{38}{subsubsection.3.1.2.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.6}\leavevmode {\color {blue}channelUpdate}}{38}{subsubsection.3.1.2.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.7}\leavevmode {\color {blue}cncModeManual}}{39}{subsubsection.3.1.2.7}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.8}\leavevmode {\color {blue}cncModeHome}}{39}{subsubsection.3.1.2.8}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.9}\leavevmode {\color {blue}cncModeHandwheel}}{39}{subsubsection.3.1.2.9}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.10}\leavevmode {\color {blue}cncModeAuto}}{39}{subsubsection.3.1.2.10}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.11}\leavevmode {\color {blue}cncModeMDI}}{39}{subsubsection.3.1.2.11}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.12}\leavevmode {\color {blue}cncModeRepos}}{40}{subsubsection.3.1.2.12}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.13}\leavevmode {\color {blue}cncManualEnter}}{40}{subsubsection.3.1.2.13}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.14}\leavevmode {\color {blue}cncManualLeave}}{40}{subsubsection.3.1.2.14}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.15}\leavevmode {\color {blue}cncHwlEnter}}{40}{subsubsection.3.1.2.15}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.16}\leavevmode {\color {blue}cncHwlLeave}}{40}{subsubsection.3.1.2.16}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.17}\leavevmode {\color {blue}cncHomeEnter}}{41}{subsubsection.3.1.2.17}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.18}\leavevmode {\color {blue}cncHomeLeave}}{41}{subsubsection.3.1.2.18}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.19}\leavevmode {\color {blue}cncAutoEnter}}{41}{subsubsection.3.1.2.19}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.20}\leavevmode {\color {blue}cncAutoLeave}}{41}{subsubsection.3.1.2.20}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.21}\leavevmode {\color {blue}cncMDIEnter}}{42}{subsubsection.3.1.2.21}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.22}\leavevmode {\color {blue}cncMDILeave}}{42}{subsubsection.3.1.2.22}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.23}\leavevmode {\color {blue}cncReposEnter}}{42}{subsubsection.3.1.2.23}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.24}\leavevmode {\color {blue}cncReposLeave}}{42}{subsubsection.3.1.2.24}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.25}\leavevmode {\color {blue}controlPowerCNC}}{43}{subsubsection.3.1.2.25}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.26}\leavevmode {\color {blue}cncAutoOnProgramExit}}{43}{subsubsection.3.1.2.26}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.27}\leavevmode {\color {blue}cncCustomRequestManual}}{43}{subsubsection.3.1.2.27}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.28}\leavevmode {\color {blue}cncCustomRequestHome}}{43}{subsubsection.3.1.2.28}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.29}\leavevmode {\color {blue}cncCustomRequestAuto}}{44}{subsubsection.3.1.2.29}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.30}\leavevmode {\color {blue}cncCustomRequestMDI}}{44}{subsubsection.3.1.2.30}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.31}\leavevmode {\color {blue}cncCustomRequestHwl}}{44}{subsubsection.3.1.2.31}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.32}\leavevmode {\color {blue}cncCustomRequestRepos}}{44}{subsubsection.3.1.2.32}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2.33}\leavevmode {\color {blue}cncManualCanChangeOverride}}{44}{subsubsection.3.1.2.33}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}\leavevmode {\color {blue}\IeC {\CYRU }\IeC {\cyrp }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrv }\IeC {\cyrl }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre } \IeC {\cyrs }\IeC {\cyrt }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyro }\IeC {\cyrm }}}{45}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}\leavevmode {\color {blue}\IeC {\CYRT }\IeC {\cyri }\IeC {\cyrp }\IeC {\cyrery } \IeC {\cyrd }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh }}}{45}{subsection.3.2.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.2.1.1}\leavevmode {\color {blue}MTState}}{45}{subsubsection.3.2.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.2.1.2}\leavevmode {\color {blue}MTCNCRequests}}{45}{subsubsection.3.2.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.2.1.3}\leavevmode {\color {blue}MTDesc}}{47}{subsubsection.3.2.1.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.2}\leavevmode {\color {blue}\IeC {\CYRF }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri }}}{47}{subsection.3.2.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.2.2.1}\leavevmode {\color {blue}systemPlcActive}}{47}{subsubsection.3.2.2.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.2.2.2}\leavevmode {\color {blue}hasEmergencyStopRequest}}{48}{subsubsection.3.2.2.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.2.2.3}\leavevmode {\color {blue}mtControlRequest}}{48}{subsubsection.3.2.2.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.2.2.4}\leavevmode {\color {blue}mtUpdateCNCIndication}}{48}{subsubsection.3.2.2.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrb }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrt }\IeC {\cyrk }\IeC {\cyra } \IeC {\cyro }\IeC {\cyrsh }\IeC {\cyri }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrk }}}{48}{section.3.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.1}\leavevmode {\color {blue}\IeC {\CYRT }\IeC {\cyri }\IeC {\cyrp }\IeC {\cyrery } \IeC {\cyrd }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh }}}{48}{subsection.3.3.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.1}\leavevmode {\color {blue}DriveErrors}}{48}{subsubsection.3.3.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.2}\leavevmode {\color {blue}EncoderErrors}}{50}{subsubsection.3.3.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.3}\leavevmode {\color {blue}IOErrors}}{50}{subsubsection.3.3.1.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.4}\leavevmode {\color {blue}MotorErrors}}{51}{subsubsection.3.3.1.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.5}\leavevmode {\color {blue}AxisErrors}}{52}{subsubsection.3.3.1.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.6}\leavevmode {\color {blue}SpindleErrors}}{53}{subsubsection.3.3.1.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.7}\leavevmode {\color {blue}ChannelErrors}}{53}{subsubsection.3.3.1.7}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.8}\leavevmode {\color {blue}NCErrors}}{55}{subsubsection.3.3.1.8}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.9}\leavevmode {\color {blue}Errors}}{56}{subsubsection.3.3.1.9}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.10}\leavevmode {\color {blue}ErrorReaction}}{57}{subsubsection.3.3.1.10}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.11}\leavevmode {\color {blue}ErrorClear}}{57}{subsubsection.3.3.1.11}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.12}\leavevmode {\color {blue}DriveErrorReaction}}{58}{subsubsection.3.3.1.12}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.13}\leavevmode {\color {blue}ErrorDescription}}{59}{subsubsection.3.3.1.13}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1.14}\leavevmode {\color {blue}ErrorRequests}}{59}{subsubsection.3.3.1.14}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.2}\leavevmode {\color {blue}\IeC {\CYRF }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri } \IeC {\cyri } \IeC {\cyrm }\IeC {\cyra }\IeC {\cyrk }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrs }\IeC {\cyrery }}}{60}{subsection.3.3.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.1}\leavevmode {\color {blue}errorSetScan}}{60}{subsubsection.3.3.2.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.2}\leavevmode {\color {blue}errorScanSet}}{60}{subsubsection.3.3.2.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.3}\leavevmode {\color {blue}errorScanRequest}}{60}{subsubsection.3.3.2.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.4}\leavevmode {\color {blue}errorScan}}{61}{subsubsection.3.3.2.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.5}\leavevmode {\color {blue}errorReaction}}{61}{subsubsection.3.3.2.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.6}\leavevmode {\color {blue}errorsMachineScan}}{61}{subsubsection.3.3.2.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.7}\leavevmode {\color {blue}errorsMachineReaction}}{61}{subsubsection.3.3.2.7}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.8}\leavevmode {\color {blue}encoderScanErrors}}{61}{subsubsection.3.3.2.8}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.9}\leavevmode {\color {blue}encoderErrorsReaction}}{62}{subsubsection.3.3.2.9}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.10}\leavevmode {\color {blue}ampScanErrors}}{62}{subsubsection.3.3.2.10}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.11}\leavevmode {\color {blue}ampErrorsReaction}}{62}{subsubsection.3.3.2.11}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.12}\leavevmode {\color {blue}ioScanErrors}}{62}{subsubsection.3.3.2.12}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2.13}\leavevmode {\color {blue}ioErrorsReaction}}{63}{subsubsection.3.3.2.13}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}\leavevmode {\color {blue}\IeC {\CYRU }\IeC {\cyrp }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrv }\IeC {\cyrl }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre } \IeC {\cyro }\IeC {\cyrs }\IeC {\cyrya }\IeC {\cyrm }\IeC {\cyri }}}{63}{section.3.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.1}\leavevmode {\color {blue}\IeC {\CYRT }\IeC {\cyri }\IeC {\cyrp }\IeC {\cyrery } \IeC {\cyrd }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh }}}{63}{subsection.3.4.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.1.1}\leavevmode {\color {blue}AxisStates}}{63}{subsubsection.3.4.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.1.2}\leavevmode {\color {blue}AxisCommands}}{64}{subsubsection.3.4.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.1.3}\leavevmode {\color {blue}AxisAbortMode}}{65}{subsubsection.3.4.1.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.1.4}\leavevmode {\color {blue}AxisConfig}}{65}{subsubsection.3.4.1.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.1.5}\leavevmode {\color {blue}Axis}}{68}{subsubsection.3.4.1.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.1.6}\leavevmode {\color {blue}AxesControl}}{69}{subsubsection.3.4.1.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.2}\leavevmode {\color {blue}\IeC {\CYRF }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri }}}{70}{subsection.3.4.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.1}\leavevmode {\color {blue}axesForceKill}}{70}{subsubsection.3.4.2.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.2}\leavevmode {\color {blue}axisForceKill}}{70}{subsubsection.3.4.2.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.3}\leavevmode {\color {blue}axesDeactivate}}{70}{subsubsection.3.4.2.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.4}\leavevmode {\color {blue}axesActivate}}{71}{subsubsection.3.4.2.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.5}\leavevmode {\color {blue}axesInactive}}{71}{subsubsection.3.4.2.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.6}\leavevmode {\color {blue}axesActive}}{71}{subsubsection.3.4.2.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.7}\leavevmode {\color {blue}axesPhaseRefComplete}}{71}{subsubsection.3.4.2.7}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.8}\leavevmode {\color {blue}axesPhaseRef}}{71}{subsubsection.3.4.2.8}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.9}\leavevmode {\color {blue}axesAborted}}{72}{subsubsection.3.4.2.9}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.10}\leavevmode {\color {blue}axisStopped}}{72}{subsubsection.3.4.2.10}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.11}\leavevmode {\color {blue}axesStopped}}{72}{subsubsection.3.4.2.11}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.12}\leavevmode {\color {blue}axesAbortAll}}{72}{subsubsection.3.4.2.12}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.13}\leavevmode {\color {blue}axesStopAll}}{72}{subsubsection.3.4.2.13}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.14}\leavevmode {\color {blue}axesRet}}{73}{subsubsection.3.4.2.14}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.15}\leavevmode {\color {blue}axisIndexInit}}{73}{subsubsection.3.4.2.15}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.16}\leavevmode {\color {blue}axisPosition}}{73}{subsubsection.3.4.2.16}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.17}\leavevmode {\color {blue}axesFollowup}}{73}{subsubsection.3.4.2.17}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.18}\leavevmode {\color {blue}initAxis}}{73}{subsubsection.3.4.2.18}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.19}\leavevmode {\color {blue}initAxes}}{74}{subsubsection.3.4.2.19}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.20}\leavevmode {\color {blue}axisInitPlatform}}{74}{subsubsection.3.4.2.20}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.21}\leavevmode {\color {blue}axesInitPlatform}}{74}{subsubsection.3.4.2.21}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.22}\leavevmode {\color {blue}axesAbsPosRead}}{74}{subsubsection.3.4.2.22}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.23}\leavevmode {\color {blue}axesAbsPosReadComplete}}{74}{subsubsection.3.4.2.23}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.24}\leavevmode {\color {blue}axisRefPosComplete}}{75}{subsubsection.3.4.2.24}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.25}\leavevmode {\color {blue}axesRefPosComplete}}{75}{subsubsection.3.4.2.25}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.26}\leavevmode {\color {blue}axisAtRefPos}}{75}{subsubsection.3.4.2.26}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2.27}\leavevmode {\color {blue}axesAtRefPos}}{75}{subsubsection.3.4.2.27}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}\leavevmode {\color {blue}\IeC {\CYRU }\IeC {\cyrp }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrv }\IeC {\cyrl }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre } \IeC {\cyrsh }\IeC {\cyrp }\IeC {\cyri }\IeC {\cyrn }\IeC {\cyrd }\IeC {\cyre }\IeC {\cyrl }\IeC {\cyrya }\IeC {\cyrm }\IeC {\cyri }}}{75}{section.3.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.1}\leavevmode {\color {blue}\IeC {\CYRT }\IeC {\cyri }\IeC {\cyrp }\IeC {\cyrery } \IeC {\cyrd }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh }}}{75}{subsection.3.5.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.1.1}\leavevmode {\color {blue}SpindleStates}}{75}{subsubsection.3.5.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.1.2}\leavevmode {\color {blue}SpindleCommands}}{76}{subsubsection.3.5.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.1.3}\leavevmode {\color {blue}SpindleStage}}{77}{subsubsection.3.5.1.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.1.4}\leavevmode {\color {blue}SpindleConfig}}{77}{subsubsection.3.5.1.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.1.5}\leavevmode {\color {blue}Spindle}}{79}{subsubsection.3.5.1.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.1.6}\leavevmode {\color {blue}SpindleControl}}{80}{subsubsection.3.5.1.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.2}\leavevmode {\color {blue}\IeC {\CYRF }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri }}}{81}{subsection.3.5.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.1}\leavevmode {\color {blue}spinsForceKill}}{81}{subsubsection.3.5.2.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.2}\leavevmode {\color {blue}spinForceKill}}{81}{subsubsection.3.5.2.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.3}\leavevmode {\color {blue}spinsDeactivate}}{81}{subsubsection.3.5.2.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.4}\leavevmode {\color {blue}spinsActivate}}{81}{subsubsection.3.5.2.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.5}\leavevmode {\color {blue}spinsInactive}}{82}{subsubsection.3.5.2.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.6}\leavevmode {\color {blue}spinsActive}}{82}{subsubsection.3.5.2.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.7}\leavevmode {\color {blue}spinsPhaseRefComplete}}{82}{subsubsection.3.5.2.7}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.8}\leavevmode {\color {blue}spinsPhaseRef}}{82}{subsubsection.3.5.2.8}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.9}\leavevmode {\color {blue}spinAborted}}{82}{subsubsection.3.5.2.9}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.10}\leavevmode {\color {blue}spinsAborted}}{83}{subsubsection.3.5.2.10}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.11}\leavevmode {\color {blue}spinIsStopped}}{83}{subsubsection.3.5.2.11}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.12}\leavevmode {\color {blue}spinsStopped}}{83}{subsubsection.3.5.2.12}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.13}\leavevmode {\color {blue}spinsAbortAll}}{83}{subsubsection.3.5.2.13}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.14}\leavevmode {\color {blue}spinsStopAll}}{83}{subsubsection.3.5.2.14}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.15}\leavevmode {\color {blue}spinAtSpeed}}{84}{subsubsection.3.5.2.15}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.16}\leavevmode {\color {blue}spinPosition}}{84}{subsubsection.3.5.2.16}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.17}\leavevmode {\color {blue}spinSpeedCommand}}{84}{subsubsection.3.5.2.17}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.18}\leavevmode {\color {blue}spinCurStage}}{84}{subsubsection.3.5.2.18}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.19}\leavevmode {\color {blue}spinNeedChangeStage}}{85}{subsubsection.3.5.2.19}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.20}\leavevmode {\color {blue}spinsFollowup}}{85}{subsubsection.3.5.2.20}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.21}\leavevmode {\color {blue}initSpindle}}{85}{subsubsection.3.5.2.21}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.22}\leavevmode {\color {blue}initSpindles}}{85}{subsubsection.3.5.2.22}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.23}\leavevmode {\color {blue}spinInitPlatform}}{85}{subsubsection.3.5.2.23}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.5.2.24}\leavevmode {\color {blue}spinsInitPlatform}}{86}{subsubsection.3.5.2.24}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.6}\leavevmode {\color {blue}\IeC {\CYRD }\IeC {\cyra }\IeC {\cyrt }\IeC {\cyrch }\IeC {\cyri }\IeC {\cyrk }\IeC {\cyri } \IeC {\cyro }\IeC {\cyrb }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrt }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrishrt } \IeC {\cyrs }\IeC {\cyrv }\IeC {\cyrya }\IeC {\cyrz }\IeC {\cyri }}}{86}{section.3.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.1}\leavevmode {\color {blue}\IeC {\CYRT }\IeC {\cyri }\IeC {\cyrp }\IeC {\cyrery } \IeC {\cyrd }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh }}}{86}{subsection.3.6.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.6.1.1}\leavevmode {\color {blue}EncType}}{86}{subsubsection.3.6.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.6.1.2}\leavevmode {\color {blue}EncConfig}}{86}{subsubsection.3.6.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.7}\leavevmode {\color {blue}\IeC {\CYRR }\IeC {\cyre }\IeC {\cyrf }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyri }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre } \IeC {\cyro }\IeC {\cyrs }\IeC {\cyre }\IeC {\cyrishrt }}}{87}{section.3.7}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.1}\leavevmode {\color {blue}\IeC {\CYRT }\IeC {\cyri }\IeC {\cyrp }\IeC {\cyrery } \IeC {\cyrd }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh }}}{87}{subsection.3.7.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.7.1.1}\leavevmode {\color {blue}HomeStates}}{87}{subsubsection.3.7.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.2}\leavevmode {\color {blue}\IeC {\CYRF }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri }}}{87}{subsection.3.7.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.7.2.1}\leavevmode {\color {blue}isHomeComplete}}{87}{subsubsection.3.7.2.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.7.2.2}\leavevmode {\color {blue}isHoming}}{88}{subsubsection.3.7.2.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.7.2.3}\leavevmode {\color {blue}startHoming}}{88}{subsubsection.3.7.2.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.7.2.4}\leavevmode {\color {blue}isHomingError}}{88}{subsubsection.3.7.2.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.7.2.5}\leavevmode {\color {blue}homeCancel}}{88}{subsubsection.3.7.2.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.8}\leavevmode {\color {blue}\IeC {\CYRS }\IeC {\cyro }\IeC {\cyrs }\IeC {\cyrt }\IeC {\cyro }\IeC {\cyrya }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre } \IeC {\cyru }\IeC {\cyrp }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrv }\IeC {\cyrl }\IeC {\cyrya }\IeC {\cyryu }\IeC {\cyrshch }\IeC {\cyre }\IeC {\cyrishrt } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrm }\IeC {\cyrm }\IeC {\cyrery }}}{88}{section.3.8}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.8.1}\leavevmode {\color {blue}\IeC {\CYRF }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri }}}{88}{subsection.3.8.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.8.1.1}\leavevmode {\color {blue}csProgramRunning}}{88}{subsubsection.3.8.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.8.1.2}\leavevmode {\color {blue}csProgramHolding}}{89}{subsubsection.3.8.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.8.1.3}\leavevmode {\color {blue}csProgramStarting}}{89}{subsubsection.3.8.1.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.8.1.4}\leavevmode {\color {blue}csProgramPaused}}{89}{subsubsection.3.8.1.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.8.1.5}\leavevmode {\color {blue}csProgramStopped}}{89}{subsubsection.3.8.1.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.9}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrch }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyre }\IeC {\cyrd }\IeC {\cyrsftsn } \IeC {\cyrk }\IeC {\cyro }\IeC {\cyrm }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrd }}}{90}{section.3.9}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.9.1}\leavevmode {\color {blue}\IeC {\CYRT }\IeC {\cyri }\IeC {\cyrp }\IeC {\cyrery } \IeC {\cyrd }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh }}}{90}{subsection.3.9.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.9.1.1}\leavevmode {\color {blue}CommandRequest}}{90}{subsubsection.3.9.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.9.1.2}\leavevmode {\color {blue}CommandQueue}}{90}{subsubsection.3.9.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.9.2}\leavevmode {\color {blue}\IeC {\CYRF }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri }}}{91}{subsection.3.9.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.9.2.1}\leavevmode {\color {blue}commandsInit}}{91}{subsubsection.3.9.2.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.9.2.2}\leavevmode {\color {blue}commandPush}}{91}{subsubsection.3.9.2.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.9.2.3}\leavevmode {\color {blue}commandPop}}{91}{subsubsection.3.9.2.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.9.2.4}\leavevmode {\color {blue}commandFlush}}{91}{subsubsection.3.9.2.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.10}\leavevmode {\color {blue}\IeC {\CYRV }\IeC {\cyrs }\IeC {\cyrp }\IeC {\cyro }\IeC {\cyrm }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyra }\IeC {\cyrt }\IeC {\cyre }\IeC {\cyrl }\IeC {\cyrsftsn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyre } \IeC {\cyrf }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri }}}{91}{section.3.10}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.1}\leavevmode {\color {blue}detectEdgeRise}}{91}{subsection.3.10.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.2}\leavevmode {\color {blue}detectEdgeFall}}{92}{subsection.3.10.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.3}\leavevmode {\color {blue}initPulsedTimer}}{92}{subsection.3.10.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.4}\leavevmode {\color {blue}timerSc}}{92}{subsection.3.10.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.11}\leavevmode {\color {blue}\IeC {\CYRU }\IeC {\cyrp }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrv }\IeC {\cyrl }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre } \IeC {\cyrd }\IeC {\cyrv }\IeC {\cyri }\IeC {\cyrzh }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre }\IeC {\cyrm }}}{93}{section.3.11}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.11.1}\leavevmode {\color {blue}\IeC {\CYRT }\IeC {\cyri }\IeC {\cyrp }\IeC {\cyrery } \IeC {\cyrd }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh }}}{93}{subsection.3.11.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.1.1}\leavevmode {\color {blue}XYZ}}{93}{subsubsection.3.11.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.1.2}\leavevmode {\color {blue}SpindleTimeBase}}{93}{subsubsection.3.11.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.1.3}\leavevmode {\color {blue}Timer}}{94}{subsubsection.3.11.1.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.1.4}\leavevmode {\color {blue}MotorDefinition}}{94}{subsubsection.3.11.1.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.1.5}\leavevmode {\color {blue}Pos}}{94}{subsubsection.3.11.1.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.1.6}\leavevmode {\color {blue}JogTarget}}{95}{subsubsection.3.11.1.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.1.7}\leavevmode {\color {blue}Vec}}{95}{subsubsection.3.11.1.7}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.11.2}\leavevmode {\color {blue}\IeC {\CYRF }\IeC {\cyru }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyri } \IeC {\cyri } \IeC {\cyrm }\IeC {\cyra }\IeC {\cyrk }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrs }\IeC {\cyrery }}}{96}{subsection.3.11.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.1}\leavevmode {\color {blue}kill}}{96}{subsubsection.3.11.2.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.2}\leavevmode {\color {blue}killMulti}}{96}{subsubsection.3.11.2.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.3}\leavevmode {\color {blue}dkill}}{96}{subsubsection.3.11.2.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.4}\leavevmode {\color {blue}dkillMulti}}{97}{subsubsection.3.11.2.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.5}\leavevmode {\color {blue}abortMotor}}{97}{subsubsection.3.11.2.5}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.6}\leavevmode {\color {blue}abortMotorMulti}}{97}{subsubsection.3.11.2.6}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.7}\leavevmode {\color {blue}adisableMotor}}{98}{subsubsection.3.11.2.7}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.8}\leavevmode {\color {blue}adisableMotorMulti}}{98}{subsubsection.3.11.2.8}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.9}\leavevmode {\color {blue}assignMotor}}{98}{subsubsection.3.11.2.9}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.10}\leavevmode {\color {blue}assignMotorInverse}}{98}{subsubsection.3.11.2.10}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.11}\leavevmode {\color {blue}assignMotorSpindle}}{99}{subsubsection.3.11.2.11}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.12}\leavevmode {\color {blue}unassignMotor}}{99}{subsubsection.3.11.2.12}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.13}\leavevmode {\color {blue}phaseref}}{99}{subsubsection.3.11.2.13}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.14}\leavevmode {\color {blue}phaserefMulti}}{99}{subsubsection.3.11.2.14}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.15}\leavevmode {\color {blue}home}}{100}{subsubsection.3.11.2.15}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.16}\leavevmode {\color {blue}homeMulti}}{100}{subsubsection.3.11.2.16}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.17}\leavevmode {\color {blue}homez}}{100}{subsubsection.3.11.2.17}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.18}\leavevmode {\color {blue}homezMulti}}{100}{subsubsection.3.11.2.18}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.19}\leavevmode {\color {blue}jogPlus}}{101}{subsubsection.3.11.2.19}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.20}\leavevmode {\color {blue}jogMotorsPlus}}{101}{subsubsection.3.11.2.20}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.21}\leavevmode {\color {blue}jogMinus}}{101}{subsubsection.3.11.2.21}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.22}\leavevmode {\color {blue}jogMotorsMinus}}{102}{subsubsection.3.11.2.22}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.23}\leavevmode {\color {blue}jogStop}}{102}{subsubsection.3.11.2.23}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.24}\leavevmode {\color {blue}jogMotorsStop}}{102}{subsubsection.3.11.2.24}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.25}\leavevmode {\color {blue}jogTo}}{102}{subsubsection.3.11.2.25}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.26}\leavevmode {\color {blue}jogMotorsTo}}{103}{subsubsection.3.11.2.26}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.27}\leavevmode {\color {blue}jogRelToCmd}}{103}{subsubsection.3.11.2.27}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.28}\leavevmode {\color {blue}jogMotorsRelToCmd}}{103}{subsubsection.3.11.2.28}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.29}\leavevmode {\color {blue}jogRelToAct}}{104}{subsubsection.3.11.2.29}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.30}\leavevmode {\color {blue}jogMotorsRelToAct}}{104}{subsubsection.3.11.2.30}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.31}\leavevmode {\color {blue}jogRet}}{104}{subsubsection.3.11.2.31}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.32}\leavevmode {\color {blue}jogMotorsRet}}{104}{subsubsection.3.11.2.32}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.33}\leavevmode {\color {blue}jogToSave}}{105}{subsubsection.3.11.2.33}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.34}\leavevmode {\color {blue}jogMotorsToSave}}{105}{subsubsection.3.11.2.34}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.35}\leavevmode {\color {blue}absAxes}}{105}{subsubsection.3.11.2.35}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.36}\leavevmode {\color {blue}incAxes}}{106}{subsubsection.3.11.2.36}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.37}\leavevmode {\color {blue}absVectors}}{106}{subsubsection.3.11.2.37}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.38}\leavevmode {\color {blue}incVectors}}{106}{subsubsection.3.11.2.38}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.39}\leavevmode {\color {blue}frax}}{107}{subsubsection.3.11.2.39}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.40}\leavevmode {\color {blue}frax2}}{107}{subsubsection.3.11.2.40}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.41}\leavevmode {\color {blue}nofrax}}{107}{subsubsection.3.11.2.41}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.42}\leavevmode {\color {blue}nofrax2}}{107}{subsubsection.3.11.2.42}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.43}\leavevmode {\color {blue}delay}}{108}{subsubsection.3.11.2.43}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.44}\leavevmode {\color {blue}dwell}}{108}{subsubsection.3.11.2.44}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.45}\leavevmode {\color {blue}setF}}{108}{subsubsection.3.11.2.45}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.46}\leavevmode {\color {blue}setS}}{109}{subsubsection.3.11.2.46}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.47}\leavevmode {\color {blue}ta}}{109}{subsubsection.3.11.2.47}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.48}\leavevmode {\color {blue}td}}{109}{subsubsection.3.11.2.48}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.49}\leavevmode {\color {blue}tm}}{110}{subsubsection.3.11.2.49}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.50}\leavevmode {\color {blue}ts}}{110}{subsubsection.3.11.2.50}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.51}\leavevmode {\color {blue}abort}}{110}{subsubsection.3.11.2.51}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.52}\leavevmode {\color {blue}abortMulti}}{111}{subsubsection.3.11.2.52}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.53}\leavevmode {\color {blue}adisable}}{111}{subsubsection.3.11.2.53}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.54}\leavevmode {\color {blue}adisableMulti}}{111}{subsubsection.3.11.2.54}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.55}\leavevmode {\color {blue}disable}}{111}{subsubsection.3.11.2.55}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.56}\leavevmode {\color {blue}disableMulti}}{112}{subsubsection.3.11.2.56}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.57}\leavevmode {\color {blue}ddisable}}{112}{subsubsection.3.11.2.57}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.58}\leavevmode {\color {blue}ddisableMulti}}{112}{subsubsection.3.11.2.58}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.59}\leavevmode {\color {blue}enable}}{113}{subsubsection.3.11.2.59}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.60}\leavevmode {\color {blue}enableMulti}}{113}{subsubsection.3.11.2.60}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.61}\leavevmode {\color {blue}hold}}{113}{subsubsection.3.11.2.61}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.62}\leavevmode {\color {blue}holdMulti}}{114}{subsubsection.3.11.2.62}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.63}\leavevmode {\color {blue}pause}}{114}{subsubsection.3.11.2.63}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.64}\leavevmode {\color {blue}pauseMulti}}{114}{subsubsection.3.11.2.64}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.65}\leavevmode {\color {blue}resume}}{114}{subsubsection.3.11.2.65}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.66}\leavevmode {\color {blue}resumeMulti}}{115}{subsubsection.3.11.2.66}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.67}\leavevmode {\color {blue}run}}{115}{subsubsection.3.11.2.67}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.68}\leavevmode {\color {blue}runMulti}}{115}{subsubsection.3.11.2.68}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.69}\leavevmode {\color {blue}begin}}{116}{subsubsection.3.11.2.69}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.70}\leavevmode {\color {blue}beginMulti}}{116}{subsubsection.3.11.2.70}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.71}\leavevmode {\color {blue}start}}{116}{subsubsection.3.11.2.71}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.72}\leavevmode {\color {blue}startMulti}}{117}{subsubsection.3.11.2.72}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.73}\leavevmode {\color {blue}step}}{117}{subsubsection.3.11.2.73}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.74}\leavevmode {\color {blue}stepMulti}}{117}{subsubsection.3.11.2.74}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.75}\leavevmode {\color {blue}stop}}{117}{subsubsection.3.11.2.75}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.76}\leavevmode {\color {blue}stopMulti}}{118}{subsubsection.3.11.2.76}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.77}\leavevmode {\color {blue}suspend}}{118}{subsubsection.3.11.2.77}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.78}\leavevmode {\color {blue}suspendMulti}}{118}{subsubsection.3.11.2.78}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.79}\leavevmode {\color {blue}bstart}}{118}{subsubsection.3.11.2.79}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.80}\leavevmode {\color {blue}bstop}}{119}{subsubsection.3.11.2.80}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.81}\leavevmode {\color {blue}dread}}{119}{subsubsection.3.11.2.81}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.82}\leavevmode {\color {blue}pread}}{119}{subsubsection.3.11.2.82}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.83}\leavevmode {\color {blue}tread}}{120}{subsubsection.3.11.2.83}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.84}\leavevmode {\color {blue}dtogread}}{120}{subsubsection.3.11.2.84}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.85}\leavevmode {\color {blue}fread}}{120}{subsubsection.3.11.2.85}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.86}\leavevmode {\color {blue}vread}}{121}{subsubsection.3.11.2.86}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.87}\leavevmode {\color {blue}pset}}{121}{subsubsection.3.11.2.87}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.88}\leavevmode {\color {blue}pstore}}{122}{subsubsection.3.11.2.88}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.89}\leavevmode {\color {blue}pload}}{122}{subsubsection.3.11.2.89}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.90}\leavevmode {\color {blue}pclear}}{122}{subsubsection.3.11.2.90}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.91}\leavevmode {\color {blue}pmatch}}{122}{subsubsection.3.11.2.91}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.92}\leavevmode {\color {blue}move}}{123}{subsubsection.3.11.2.92}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.93}\leavevmode {\color {blue}rapidmove}}{123}{subsubsection.3.11.2.93}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.94}\leavevmode {\color {blue}rapid}}{123}{subsubsection.3.11.2.94}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.95}\leavevmode {\color {blue}linearmove}}{123}{subsubsection.3.11.2.95}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.96}\leavevmode {\color {blue}linear}}{124}{subsubsection.3.11.2.96}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.97}\leavevmode {\color {blue}cir1move}}{124}{subsubsection.3.11.2.97}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.98}\leavevmode {\color {blue}cir2move}}{124}{subsubsection.3.11.2.98}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.99}\leavevmode {\color {blue}circle1}}{124}{subsubsection.3.11.2.99}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.100}\leavevmode {\color {blue}circle2}}{125}{subsubsection.3.11.2.100}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.101}\leavevmode {\color {blue}circle3}}{125}{subsubsection.3.11.2.101}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.102}\leavevmode {\color {blue}circle4}}{125}{subsubsection.3.11.2.102}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.103}\leavevmode {\color {blue}pvt}}{125}{subsubsection.3.11.2.103}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.104}\leavevmode {\color {blue}spline}}{126}{subsubsection.3.11.2.104}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.105}\leavevmode {\color {blue}ccmode1}}{126}{subsubsection.3.11.2.105}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.106}\leavevmode {\color {blue}ccmode2}}{126}{subsubsection.3.11.2.106}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.107}\leavevmode {\color {blue}ccmode3}}{126}{subsubsection.3.11.2.107}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.108}\leavevmode {\color {blue}ccmode4}}{127}{subsubsection.3.11.2.108}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.109}\leavevmode {\color {blue}ccr}}{127}{subsubsection.3.11.2.109}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.110}\leavevmode {\color {blue}txyz}}{127}{subsubsection.3.11.2.110}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.111}\leavevmode {\color {blue}txyzScale}}{127}{subsubsection.3.11.2.111}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.112}\leavevmode {\color {blue}nxyz}}{128}{subsubsection.3.11.2.112}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.113}\leavevmode {\color {blue}normal}}{128}{subsubsection.3.11.2.113}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.114}\leavevmode {\color {blue}tsel}}{128}{subsubsection.3.11.2.114}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.115}\leavevmode {\color {blue}enablePLC}}{129}{subsubsection.3.11.2.115}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.116}\leavevmode {\color {blue}enablePLCs}}{129}{subsubsection.3.11.2.116}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.117}\leavevmode {\color {blue}pausePLC}}{129}{subsubsection.3.11.2.117}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.118}\leavevmode {\color {blue}pausePLCs}}{129}{subsubsection.3.11.2.118}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.119}\leavevmode {\color {blue}resumePLC}}{130}{subsubsection.3.11.2.119}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.120}\leavevmode {\color {blue}resumePLCs}}{130}{subsubsection.3.11.2.120}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.121}\leavevmode {\color {blue}disablePLC}}{130}{subsubsection.3.11.2.121}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.122}\leavevmode {\color {blue}disablePLCs}}{130}{subsubsection.3.11.2.122}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.123}\leavevmode {\color {blue}stepPLC}}{131}{subsubsection.3.11.2.123}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.124}\leavevmode {\color {blue}stepPLCs}}{131}{subsubsection.3.11.2.124}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.125}\leavevmode {\color {blue}timerStart}}{131}{subsubsection.3.11.2.125}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.126}\leavevmode {\color {blue}timerTimeout}}{132}{subsubsection.3.11.2.126}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.127}\leavevmode {\color {blue}timerLeft}}{132}{subsubsection.3.11.2.127}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.128}\leavevmode {\color {blue}timerPassed}}{132}{subsubsection.3.11.2.128}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.129}\leavevmode {\color {blue}clearGather}}{132}{subsubsection.3.11.2.129}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.130}\leavevmode {\color {blue}clearPhaseGather}}{132}{subsubsection.3.11.2.130}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.131}\leavevmode {\color {blue}shutdown}}{133}{subsubsection.3.11.2.131}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.132}\leavevmode {\color {blue}reset}}{133}{subsubsection.3.11.2.132}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.11.2.133}\leavevmode {\color {blue}reinitialize}}{133}{subsubsection.3.11.2.133}
+\defcounter {refsection}{0}\relax 
+\etoc@settocdepth \Etoc@section@@ 
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}\leavevmode {\color {blue}\IeC {\CYRR }\IeC {\cyre }\IeC {\cyra }\IeC {\cyrl }\IeC {\cyri }\IeC {\cyrz }\IeC {\cyra }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyrya } \IeC {\cyrp }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrm }\IeC {\cyrm } \IeC {\CYRP }\IeC {\CYRL }\IeC {\CYRK }}}{134}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}\leavevmode {\color {blue}\IeC {\CYRT }\IeC {\cyra }\IeC {\cyrishrt }\IeC {\cyrm }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyrery }}}{134}{section.4.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.1}\leavevmode {\color {blue}\IeC {\CYRT }\IeC {\cyra }\IeC {\cyrishrt }\IeC {\cyrm }\IeC {\cyre }\IeC {\cyrr } \IeC {\cyro }\IeC {\cyrd }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrk }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrt }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyro } \IeC {\cyrz }\IeC {\cyra }\IeC {\cyrp }\IeC {\cyru }\IeC {\cyrs }\IeC {\cyrk }\IeC {\cyra }}}{134}{subsection.4.1.1}
+\defcounter {refsection}{0}\relax 
+\addvspace {5\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.2}\leavevmode {\color {blue}\IeC {\CYRP }\IeC {\cyre }\IeC {\cyrr }\IeC {\cyri }\IeC {\cyro }\IeC {\cyrd }\IeC {\cyri }\IeC {\cyrch }\IeC {\cyre }\IeC {\cyrs }\IeC {\cyrk }\IeC {\cyri }\IeC {\cyrishrt } \IeC {\cyrt }\IeC {\cyra }\IeC {\cyrishrt }\IeC {\cyrm }\IeC {\cyre }\IeC {\cyrr }}}{135}{subsection.4.1.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}\leavevmode {\color {blue}\IeC {\CYRV }\IeC {\cyrh }\IeC {\cyro }\IeC {\cyrd }\IeC {\cyrery }/\IeC {\cyrv }\IeC {\cyrery }\IeC {\cyrh }\IeC {\cyro }\IeC {\cyrd }\IeC {\cyrery }}}{136}{section.4.2}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}\leavevmode {\color {blue}\IeC {\CYRP }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrg }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrm }\IeC {\cyrm }\IeC {\cyri }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyre } \IeC {\cyra }\IeC {\cyrl }\IeC {\cyrg }\IeC {\cyro }\IeC {\cyrr }\IeC {\cyri }\IeC {\cyrt }\IeC {\cyrm }\IeC {\cyro }\IeC {\cyrv } \IeC {\cyru }\IeC {\cyrp }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrv }\IeC {\cyrl }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyrya }}}{139}{section.4.3}
+\defcounter {refsection}{0}\relax 
+\addvspace {7\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}\leavevmode {\color {blue}\IeC {\CYRO }\IeC {\cyrb }\IeC {\cyrr }\IeC {\cyra }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrt }\IeC {\cyrk }\IeC {\cyra } \IeC {\cyra }\IeC {\cyrv }\IeC {\cyra }\IeC {\cyrr }\IeC {\cyri }\IeC {\cyrishrt }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrh } \IeC {\cyrs }\IeC {\cyri }\IeC {\cyrt }\IeC {\cyru }\IeC {\cyra }\IeC {\cyrc }\IeC {\cyri }\IeC {\cyrishrt } \IeC {\cyri } \IeC {\cyro }\IeC {\cyrsh }\IeC {\cyri }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrk } \IeC {\cyrerev }\IeC {\cyrl }\IeC {\cyre }\IeC {\cyrk }\IeC {\cyrt }\IeC {\cyrr }\IeC {\cyro }\IeC {\cyro }\IeC {\cyrb }\IeC {\cyro }\IeC {\cyrr }\IeC {\cyru }\IeC {\cyrd }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyrya } \IeC {\cyrs }\IeC {\cyrt }\IeC {\cyra }\IeC {\cyrn }\IeC {\cyrk }\IeC {\cyra }}}{141}{section.4.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\IeC {\CYRP }\IeC {\cyrr }\IeC {\cyre }\IeC {\cyrd }\IeC {\cyrm }\IeC {\cyre }\IeC {\cyrt }\IeC {\cyrn }\IeC {\cyrery }\IeC {\cyrishrt } \IeC {\cyru }\IeC {\cyrk }\IeC {\cyra }\IeC {\cyrz }\IeC {\cyra }\IeC {\cyrt }\IeC {\cyre }\IeC {\cyrl }\IeC {\cyrsftsn }}{147}{section*.30}
+\contentsfinish 

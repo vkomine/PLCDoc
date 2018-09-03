@@ -1,0 +1,83 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Вспомогательные функции}}
+%--------------------------------------------------------
+
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{detectEdgeRise}}
+\index{Программный интерфейс ПЛК!Вспомогательные функции!Функция detectEdgeRise}
+\label{sec:detectEdgeRise}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int detectEdgeRise(int \&detector, int input);}\\
+    Аргумент(ы):    & \RightHandText{int \&detector ~-- предыдущее входное значение} \\    
+    & \RightHandText{int input ~--  входное значение} \\ 
+    Файл объявления:             & \RightHandText{include/func/misc.h} \\       
+\end{pHeader}
+
+Функция служит для детектирования изменения с 0 на 1 (детектирования фронта) входной величины. \killoverfullbefore
+
+Функция возвращает 0, если входное значение не изменилось и осталось равным 0, и 1, если входное значение стало отличным от 0. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{detectEdgeFall}}
+\index{Программный интерфейс ПЛК!Вспомогательные функции!Функция detectEdgeFall}
+\label{sec:detectEdgeFall}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int detectEdgeFall(int \&detector, int input);}\\
+    Аргумент(ы):    & \RightHandText{int \&detector ~-- предыдущее входное значение} \\    
+    & \RightHandText{int input ~--  входное значение} \\ 
+    Файл объявления:             & \RightHandText{include/func/misc.h} \\       
+\end{pHeader}
+
+Функция служит для детектирования изменения с 1 на 0 (детектирования спада) входной величины. \killoverfullbefore
+
+Функция возвращает 0, если входное значение не изменилось и осталось равным 1, и 1, если входное значение стало равным 0. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{initPulsedTimer}}
+\index{Программный интерфейс ПЛК!Вспомогательные функции!Функция initPulsedTimer}
+\label{sec:initPulsedTimer}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void initPulsedTimer();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/misc.h} \\       
+\end{pHeader}
+
+Функция инициализации периодического (импульсного) таймера. \killoverfullbefore
+%который срабатывает (возвращает 1) через заданный интервал. 
+
+Является системной.
+% *******end subsection*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{timerSc}}
+\index{Программный интерфейс ПЛК!Вспомогательные функции!Функция timerSc}
+\label{sec:timerSc}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int timerSc(int period);}\\
+    Аргумент(ы):    & \RightHandText{int period ~-- период таймера} \\  
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/misc.h} \\
+\end{pHeader}
+
+Функция периодического (импульсного) таймера ~-- таймера, выходное значение которого периодически переключается с 0 на 1 и обратно через интервал, равный половине периода таймера. Период таймера задаётся в периодах сервоцикла (1 период сервоцикла равен 400 мс). Так, например, интервал 1 c соответствует значению периода таймера равному 2500. \killoverfullbefore
+%сброса таймера (установки 0)
+
+Функция возвращает 1, если с момента переключения таймера с 1 на 0 истёк интервал, больший или равный половине периода, и 0 в противном случае. \killoverfullbefore 
+
+Является системной.
+% *******end subsection*****************
+%-------------------------------------------------------------------
+% *******end section*****************
+

@@ -1,0 +1,1003 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Управление движением при фрезерной обработке}}
+%--------------------------------------------------------
+
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{Tool}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Структура Tool}
+\label{sec:Tool}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура Tool}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Структура определяет параметры инструмента.
+
+\begin{MyTableThreeColAllCntr}{Структура Tool}{tbl:Tool}{|m{0.3\linewidth}|m{0.25\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline X & \centering{double} &   \\
+\hline Y & \centering{double} &  \\
+\hline L & \centering{double} & Длина \\
+\hline R & \centering{double} & Радиус \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{CSTransform}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Структура CSTransform}
+\label{sec:CSTransform}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура CSTransform}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Структура определяет параметры преобразования системы координат.
+
+\begin{MyTableThreeColAllCntr}{Структура CSTransform}{tbl:CSTransform}{|m{0.41\linewidth}|m{0.24\linewidth}|m{0.35\linewidth}|}{Элемент}{Тип}{Описание}
+\hline ofs & \centering{\myreftosec{XYZ}} & Смещение \\
+\hline scale & \centering{\myreftosec{XYZ}} & Коэффициенты масштабирования \\
+\hline scaleOfs & \centering{\myreftosec{XYZ}} & Координаты центра масштабирования \\
+\hline mirror & \centering{\myreftosec{int}} & Оси для зеркального отображения (MIRROR\_X | MIRROR\_Y | MIRROR\_Z) \\
+\hline mirrorOfs & \centering{\myreftosec{XYZ}} & Координаты центра зеркального отображения \\
+
+\hline rotVec & \centering{\myreftosec{XYZ}} & Компоненты вектора поворота  \\
+\hline rotOfs & \centering{\myreftosec{XYZ}} & Координаты центра поворота \\
+
+\hline rotAngle & \centering{\myreftosec{double}} & Угол поворота \\
+\hline rot[9] & \centering{\myreftosec{double}} &   \\
+\hline local & \centering{\myreftosec{XYZ}} &   \\
+
+\hline Bias[32] & \centering{\myreftosec{double}} &   \\
+\hline rot[9] & \centering{\myreftosec{double}} &   \\
+\hline XYZ[6] & \centering{\myreftosec{double}} &   \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MoveMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Перечисление MoveMode}
+\label{sec:MoveMode}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление MoveMode}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы режимов движения.
+
+\begin{MyTableTwoColAllCntr}{Перечисление MoveMode}{tbl:MoveMode}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline moveRapid &   Быстрые перемещения  \\
+\hline moveLinear  &  Линейная интерполяция \\
+\hline moveCircleCW  &  Круговая интерполяция по часовой стрелке \\
+\hline moveCircleCCW &  Круговая интерполяция против часовой стрелки \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{PositionMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Перечисление PositionMode}
+\label{sec:PositionMode}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление PositionMode}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы режимов позиционирования.
+
+\begin{MyTableTwoColAllCntr}{Перечисление PositionMode}{tbl:PositionMode}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline posAbsolute &  В абсолютных координатах \\
+\hline posIncremental  & В относительных координатах (в приращениях)\\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{FeedMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Перечисление FeedMode}
+\label{sec:FeedMode}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление FeedMode}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы режимов управления подачей.
+
+\begin{MyTableTwoColAllCntr}{Перечисление FeedMode}{tbl:FeedMode}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline feedUnitsMin &  Минутная подача (асинхронная подача) \\
+\hline feedUnitsRev & Оборотная подача (синхронная подача) \\
+\hline feedInverse & Подача с обратно зависимым временем \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{SpindleMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Перечисление SpindleMode}
+\label{sec:SpindleMode}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление SpindleMode}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы режимов управления скоростью шпинделя.
+
+\begin{MyTableTwoColAllCntr}{Перечисление SpindleMode}{tbl:SpindleMode}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline spindleRevMin & Скорость в об/мин \\
+\hline spindleUnitsMin & Постоянная скорость резания \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{FeedOverMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Перечисление FeedOverMode}
+\label{sec:FeedOverMode}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление FeedOverMode}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы режимов коррекции величины подачи.
+
+\begin{MyTableTwoColAllCntr}{Перечисление FeedOverMode}{tbl:FeedOverMode}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline feedPercent & Коррекция величины подачи в процентном отношении \\
+\hline feedFixed100 & Фиксированная величина подачи 100\% \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{SpindleOverMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Перечисление SpindleOverMode}
+\label{sec:SpindleOverMode}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление SpindleOverMode}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы режимов коррекции скорости шпинделя.
+
+\begin{MyTableTwoColAllCntr}{Перечисление SpindleOverMode}{tbl:SpindleOverMode}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline spinPercent & Коррекция величины скорости в процентном отношении  \\
+\hline spinFixed100 & Фиксированная величина скорости 100\% \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{BlendMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Перечисление BlendMode}
+\label{sec:BlendMode}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление BlendMode}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы режимов сопряжения кадров (последовательных программных перемещений).
+
+\begin{MyTableTwoColAllCntr}{Перечисление BlendMode}{tbl:BlendMode}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline blendExactStop & Режим точного останова \\
+\hline blendCornerOverride & Режим угловой коррекции \\
+\hline blendCutting & Режим резания \\
+\hline blendTapping & Режим резьбонарезания \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ProgramState}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Перечисление ProgramState}
+\label{sec:ProgramState}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление ProgramState}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы состояния УП.
+
+\begin{MyTableTwoColAllCntr}{Перечисление ProgramState}{tbl:ProgramState}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline progReset & УП готова к выполнению \\
+\hline progStart & Начало выполнения УП  \\
+\hline progRunning &  УП выполняется \\
+\hline progHold & УП приостановлена \\
+\hline progStop &  УП остановлена \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{SpindleDirection}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Перечисление SpindleDirection}
+\label{sec:SpindleDirection}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление SpindleDirection}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы состояния движения шпинделя.
+
+\begin{MyTableTwoColAllCntr}{Перечисление SpindleDirection}{tbl:SpindleDirection}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline spinStopped & Шпиндель остановлен \\
+\hline spinForward & Шпиндель вращается в прямом направлении \\
+\hline spinReverse & Шпиндель вращается в обратном направлении \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{CycleReturnMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Перечисление CycleReturnMode}
+\label{sec:CycleReturnMode}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление CycleReturnMode}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы типов возврата инструмента при выполнении постоянных циклов.
+
+\begin{MyTableTwoColAllCntr}{Перечисление CycleReturnMode}{tbl:CycleReturnMode}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline cycleReturnInitial & Возврат на исходный уровень \\
+\hline cycleReturnR & Возврат на опорный уровень (уровень точки R) \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ProgramRuntime}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Структура ProgramRuntime}
+\label{sec:ProgramRuntime}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура ProgramRuntime}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Структура определяет параметры и данные канала обработки.
+
+\begin{MyTableThreeColAllCntr}{Структура ProgramRuntime}{tbl:ProgramRuntime}{|m{0.3\linewidth}|m{0.25\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline cs & \centering{int} & Координатная система \\
+\hline spindle & \centering{int} &  \\
+\hline programState & \centering{int} & Идентификатор состояния УП (см. \myreftosec{ProgramState}) \\
+\hline optionalStop & \centering{int} & Опциональный останов \\
+\hline spindleDirection & \centering{int} & Идентификатор состояния движения шпинделя (см. \myreftosec{SpindleDirection}) \\
+
+\hline baseWCS & \centering{\myreftosec{XYZ}} & Координаты центра системы координат заготовки  \\
+\hline baseWCSStore & \centering{\myreftosec{XYZ}} &    \\
+\hline baseWCSSync & \centering{\myreftosec{XYZ}} &    \\
+
+\hline transform & \centering{\myreftosec{CSTransform}} & Параметры преобразования системы координат \\
+\hline transformStore & \centering{\myreftosec{CSTransform}} & Параметры преобразования системы координат \\
+\hline transformSync & \centering{\myreftosec{CSTransform}} & Параметры преобразования системы координат \\
+
+\hline gcodes[ЧИСЛО\_G\_КОДОВ] & \centering{int} & Массив идентификаторов G-кодов \\
+\hline mcodes[ЧИСЛО\_M\_КОДОВ] & \centering{int} & Массив идентификаторов М-кодов \\
+
+\hline moveMode & \centering{int} & Идентификатор типа перемещения (см. \myreftosec{MoveMode}) \\
+\hline posMode & \centering{int} & Идентификатор режима перемещения (см. \myreftosec{PositionMode}\\
+
+\hline scaleUnits & \centering{double} & Единицы измерения перемещений (1.0 ~-- мм)\\
+
+\hline blendMode & \centering{int} & Идентификатор режима сопряжения последовательных программных перемещений (см. \myreftosec{BlendMode}\\
+\hline blendModeStore & \centering{int} &  \\
+
+\hline F & \centering{double} & Величина заданной подачи \\
+\hline Fact & \centering{double} & Величина фактической подачи \\
+\hline feedMode & \centering{int} & Идентификатор режима управления подачей (см. \myreftosec{FeedMode}\\
+\hline feedOverMode & \centering{int} & Идентификатор режима коррекции величины подачи (см. \myreftosec{FeedOverMode}\\
+\hline feedOverride & \centering{double} & Величина коррекции подачи \\
+\hline feedSlewRate & \centering{double} &   \\
+
+\hline S & \centering{double} & Величина заданной скорости шпинделя \\
+\hline Sact & \centering{double} & Величина фактической скорости шпинделя \\
+\hline spinMode & \centering{int} & Идентификатор режима управления шпинделем (см. \myreftosec{SpindleMode}\\
+\hline spinOverMode & \centering{int} & Идентификатор режима коррекции скорости шпинделя (см. \myreftosec{SpindleOverMode}\\
+\hline spinOverride & \centering{double} & Величина коррекции скорости шпинделя \\
+\hline spinSlewRate & \centering{double} &   \\
+\hline Srun & \centering{double} &   \\
+
+\hline T & \centering{int} & Номер инструмента (ячейки) \\
+\hline TatM6 & \centering{int} &  \\
+\hline D & \centering{int} & Номер корректора на радиус инструмента \\
+\hline H & \centering{int} & Корректор корректора на длину инструмента \\
+\hline Dvalue & \centering{double} &   \\
+\hline Dwear & \centering{double} &   \\
+\hline Hvalue & \centering{double} &   \\
+\hline Hwear & \centering{double} &   \\
+
+\hline tool & \centering{\myreftosec{Tool}} &  Параметры инструмента  \\
+\hline toolWear & \centering{\myreftosec{Tool}} &    \\
+\hline prevInterPoint & \centering{\myreftosec{Pos}} &    \\
+
+\hline activeG17 & \centering{int} & Активна рабочая плоскость XY, продольная ось Z \\
+
+\hline cycleReturnMode & \centering{int} & Идентификатор типа возврата инструмента при выполнении постоянных циклов (см. \myreftosec{CycleReturnMode} \\
+
+\hline cycleZ & \centering{double} & Координата основания отверстия \\
+\hline cycleR & \centering{double} & Координата опорного уровня (точки R)\\
+\hline cycleP & \centering{double} & Длительность паузы в миллисекундах у основания отверстия \\
+\hline cycleQ & \centering{double} & Глубина обработки для каждого прохода\\
+\hline cycleI & \centering{double} & Величина сдвига инструмента по оси X \\
+\hline cycleJ & \centering{double} & Величина сдвига инструмента по оси Y  \\
+\hline cycleK & \centering{double} & Величина сдвига инструмента по оси Z  \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{WorkCS}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной  обработке!Структура WorkCS}
+\label{sec:WorkCS}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура WorkCS}\\
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\
+\end{fHeader}
+
+Структура определяет параметры системы координат заготовки (рабочей системы координат).
+
+\begin{MyTableThreeColAllCntr}{Структура WorkCS}{tbl:WorkCS}{|m{0.3\linewidth}|m{0.25\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline offset & \centering{\myreftosec{XYZ}} &   \\
+\hline rot & \centering{\myreftosec{XYZ}} &   \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{initChannel}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция initChannel}
+\label{sec:initChannel}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void initChannel(int chan, int cs, ProgramRuntime \&channel);}\\
+   Аргумент(ы):    & \RightHandText{int chan ~-- номер канала,} \\    
+       & \RightHandText{int cs ~-- номер координатной системы,} \\  
+       & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция инициализирует канал обработки параметрами по умолчанию. 
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{resetChannel}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция resetChannel}
+\label{sec:resetChannel}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void resetChannel(int chan, int cs, ProgramRuntime \&channel);}\\
+   Аргумент(ы):    & \RightHandText{int chan ~-- номер канала,} \\    
+       & \RightHandText{int cs ~-- номер координатной системы,} \\  
+       & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция инициализирует канал обработки.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{reapplyTransform}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция reapplyTransform}
+\label{sec:reapplyTransform}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void reapplyTransform(int chan, int cs, ProgramRuntime \&channel);}\\
+   Аргумент(ы):    & \RightHandText{int chan ~-- номер канала,} \\    
+       & \RightHandText{int cs ~-- номер координатной системы,} \\  
+       & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csApplyTransform}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csApplyTransform}
+\label{sec:csApplyTransform}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csApplyTransform(ProgramRuntime \&channel);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция выполняет пространственные преобразования координатной системы.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csResetTransform}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csResetTransform}
+\label{sec:csResetTransform}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csResetTransform(ProgramRuntime \&channel);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция отменяет пространственные преобразования координатной системы.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csBase}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csBase}
+\label{sec:csBase}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csBase(ProgramRuntime \&channel, const XYZ \&base);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+ & \RightHandText{const \myreftosec{XYZ} \&base ~-- базовое смещение системы координат} \\ 
+  & \RightHandText{заготовки} \\
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт базовое смещение системы координат заготовки (G92).
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csOffset}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csOffset}
+\label{sec:csOffset}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csOffset(ProgramRuntime \&channel, const XYZ \&offset);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{const \myreftosec{XYZ} \&offset ~-- смещение рабочей системы координат} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт смещение рабочей системы координат (G54).
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csScale}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csScale}
+\label{sec:csScale}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csScale(ProgramRuntime \&channel, const XYZ \&center, }\\
+    & \RightHandText{const XYZ \&scale);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{const \myreftosec{XYZ} \&center ~-- координаты центра масштабирования,} \\ 
+   & \RightHandText{const \myreftosec{XYZ} \&scale ~-- масштабы по осям} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт масштабирование рабочей системы координат (G51).
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csScaleReset}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csScaleReset}
+\label{sec:csScaleReset}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csScaleReset(ProgramRuntime \&channel);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция отменяет масштабирование рабочей системы координат.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csMirror}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csMirror}
+\label{sec:csMirror}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csMirror(ProgramRuntime \&channel, const XYZ \&center, int mirror);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{const \myreftosec{XYZ} \&center ~-- координаты центра зеркалирования,} \\ 
+   & \RightHandText{int mirror ~-- оси для зеркалирования } \\ 
+   & \RightHandText{(MIRROR\_X | MIRROR\_Y | MIRROR\_Z)} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт зеркалирование рабочей системы координат (G51.1).
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csMirrorReset}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csMirrorReset}
+\label{sec:csMirrorReset}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csMirrorReset(ProgramRuntime \&channel);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция отменяет зеркалирование рабочей системы координат.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csRotate}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csRotate}
+\label{sec:csRotate}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csRotate(ProgramRuntime \&channel, const XYZ \&center, }\\
+   & \RightHandText{const XYZ \&vector, double angle);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{const \myreftosec{XYZ} \&center ~-- координаты центра поворота,} \\ 
+   & \RightHandText{const \myreftosec{XYZ} \&vector ~-- вектор оси поворота,} \\
+   & \RightHandText{double angle ~-- угол поворота} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт поворот рабочей системы координат (G68).
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csRotateReset}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csRotateReset}
+\label{sec:csRotateReset}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csRotateReset(ProgramRuntime \&channel);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция отменяет поворот рабочей системы координат.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csLocal}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csLocal}
+\label{sec:csLocal}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csLocal(ProgramRuntime \&channel, const XYZ \&offset);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{const \myreftosec{XYZ} \&offset ~-- смещение локалькой системы координат} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт задание локальную систему координат (G52).
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csFeedMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csFeedMode}
+\label{sec:csFeedMode}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csFeedMode(ProgramRuntime \&channel, int mode);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{int mode ~-- идентификатор режима управления подачей} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт режим подачи, принимая в качестве аргумента идентификатор из перечисления \myreftosec{FeedMode}.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csFeedOverride}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csFeedOverride}
+\label{sec:csFeedOverride}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csFeedOverride(ProgramRuntime \&channel, double value);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{double value ~-- величина коррекции подачи} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт корректор подачи, принимая в качестве аргумента величину коррекции подачи (1.0 = 100\%).
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csFeedOverrideMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csFeedOverrideMode}
+\label{sec:csFeedOverrideMode}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csFeedOverrideMode(ProgramRuntime \&channel, int mode);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{int mode ~-- идентификатор режима коррекции величины подачи} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт режим коррекции величины подачи, принимая в качестве аргумента идентификатор из перечисления \myreftosec{FeedOverMode}.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csSpindleMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csSpindleMode}
+\label{sec:csSpindleMode}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csSpindleMode(ProgramRuntime \&channel, int mode);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{int mode ~-- идентификатор режима управления скоростью  } \\ 
+   & \RightHandText{ шпинделя} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт режим подачи, принимая в качестве аргумента идентификатор из перечисления \myreftosec{SpindleMode}.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csSpindleOverride}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csSpindleOverride}
+\label{sec:csSpindleOverride}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csSpindleOverride(ProgramRuntime \&channel, double value);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{double value ~-- величина коррекции скорости шпинделя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт корректор подачи, принимая в качестве аргумента величину коррекции скорости шпинделя (1.0 = 100\%).
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csSpindleOverrideMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csSpindleOverrideMode}
+\label{sec:csSpindleOverrideMode}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csSpindleOverrideMode(ProgramRuntime \&channel, int mode);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{int mode ~-- идентификатор режима коррекции скорости шпинделя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт режим коррекции скорости шпинделя, принимая в качестве аргумента идентификатор из перечисления \myreftosec{SpindleOverMode}.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csBlendMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csBlendMode}
+\label{sec:csBlendMode}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csBlendMode(ProgramRuntime \&channel, int mode);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{int mode ~-- идентификатор режима сопряжения кадров} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт режим сопряжения кадров, принимая в качестве аргумента идентификатор из перечисления \myreftosec{BlendMode}.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csMoveMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csMoveMode}
+\label{sec:csMoveMode}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csMoveMode(ProgramRuntime \&channel, int mode);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{int mode ~-- идентификатор режима движения} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт режим движения, принимая в качестве аргумента идентификатор из перечисления \myreftosec{MoveMode}.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csPosMode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csPosMode}
+\label{sec:csPosMode}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csPosMode(ProgramRuntime \&channel, int mode);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{int mode ~-- идентификатор режима позиционирования} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт режим позиционирования, принимая в качестве аргумента идентификатор из перечисления \myreftosec{PositionMode}.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csSetUnits}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csSetUnits}
+\label{sec:csSetUnits}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csSetUnits(ProgramRuntime \&channel, double units);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{double units ~-- значение единиц измерения в долях мм} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт единицы измерения перемещений, принимая в качестве аргумента значение единиц измерения в долях мм (1.0 = 1.0 мм).
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csToolSelect}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csToolSelect}
+\label{sec:csToolSelect}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csToolSelect(ProgramRuntime \&channel, Tool \&tool);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{\myreftosec{Tool} \&tool ~-- параметры выбранного инструмента} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт инструмент, параметры которого являются аргументом функции.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csToolReset}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csToolReset}
+\label{sec:csToolReset}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csToolReset(ProgramRuntime \&channel);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция отменяет выбор инструмента.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csToolWear}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csToolWear}
+\label{sec:csToolWear}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csToolWear(ProgramRuntime \&channel, Tool \&tool);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала, } \\ 
+   & \RightHandText{\myreftosec{Tool} \&tool ~-- параметры выбранного инструмента} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csToolWearReset}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csToolWearReset}
+\label{sec:csToolWearReset}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csToolWearReset(ProgramRuntime \&channel);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csToolXY}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csToolXY}
+\label{sec:csToolXY}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csToolXY(ProgramRuntime \&channel, double X, double Y);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала,} \\ 
+   & \RightHandText{double X ~--  ,} \\    
+   & \RightHandText{double Y ~--  } \\       
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csToolX}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csToolX}
+\label{sec:csToolX}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csToolX(ProgramRuntime \&channel, double X);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала,} \\ 
+   & \RightHandText{double X ~--  } \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csToolY}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csToolY}
+\label{sec:csToolY}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csToolY(ProgramRuntime \&channel, double Y);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала,} \\ 
+   & \RightHandText{double Y ~--  } \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csToolLength}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csToolLength}
+\label{sec:csToolLength}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csToolLength(ProgramRuntime \&channel, double L);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала,} \\ 
+   & \RightHandText{double L ~--  длина инструмента} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+Функция задаёт длину инструмента, значение которой является аргументом функции.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cycleReset}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция cycleReset}
+\label{sec:cycleReset}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cycleReset(ProgramRuntime \&channel);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{stepBlock}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция stepBlock}
+\label{sec:stepBlock}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void stepBlock(ProgramRuntime \&channel);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csSetGCode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csSetGCode}
+\label{sec:csSetGCode}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csSetGCode(ProgramRuntime \&channel, int group, int value);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала,} \\    длина инструмента
+   & \RightHandText{int group ~--  идентификатор группы,} \\    
+   & \RightHandText{int value ~--  номер G-кода в группе} \\          
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csSetMCode}}
+\index{Программный интерфейс ПЛК!Управление движением при фрезерной обработке!Функция csSetMCode}
+\label{sec:csSetMCode}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void csSetMCode(ProgramRuntime \&channel, int group, int value);}\\
+   Аргумент(ы):   & \RightHandText{\myreftosec{ProgramRuntime} \&channel ~-- параметры и данные канала,} \\    длина инструмента
+   & \RightHandText{int group ~--  идентификатор группы,} \\    
+   & \RightHandText{int value ~--  номер G-кода в группе} \\          
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/motion/mill/motion.h} \\       
+\end{pHeader}
+
+
+Является системной.
+% *******end section*****************
+
+%--------------------------------------------------------
+\index{Программный интерфейс ПЛК|)}
+
+\clearpage

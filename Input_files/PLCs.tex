@@ -1,0 +1,500 @@
+\etocsettocdepth.toc {section}
+
+\definecolor{title_color}{HTML}{CDCDB4} %A98040
+
+\lstset{basicstyle=\footnotesize, keywordstyle=\color{indigo_dye}\bfseries, stringstyle=\ttfamily, language=C, numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt}
+
+\begin{comment}
+\lstset{% general command to set parameter(s)
+basicstyle=\small, % print whole listing small
+keywordstyle=\color{black}\bfseries\underbar,
+% underlined bold black keywords
+identifierstyle=, % nothing happens
+commentstyle=\color{white}, % white comments
+stringstyle=\ttfamily, % typewriter type for strings
+showstringspaces=false} % no special string spaces
+\end{comment}
+
+
+\chapterimage{chapter_head_0} 
+\chapter{\DbgSecSt{\StPart}{Реализация программ ПЛК}}
+\label{sec:PLCs}
+\index{Реализация программ ПЛК|(}
+
+%--------------------------------------------------------
+% *******begin section***************
+
+\section{\DbgSecSt{\StPart}{Таймеры}}
+\index{Реализация программ ПЛК!Таймеры}
+
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Таймер однократного запуска}}
+\index{Реализация программ ПЛК!Таймеры!Таймер однократного запуска}
+
+Таймер однократного запуска (не периодический) ~-- таймер, выходное значение которого становится равным 1 по истечении заданного интервала и не меняется до повторного запуска (таймер, отмеряющий заданный интервал времени с момента запуска). \killoverfullbefore
+
+Для использования таймера однократного запуска необходимо объявить переменную типа \myreftosec{Timer}. 
+
+Запуск таймера осуществляется вызовом макроса \myreftosec{timerStart}, аргументами которого являются переменная типа \myreftosec{Timer} и величина интервала срабатывания в периодах сервоцикла.
+
+Для проверки срабатывания таймера предназначен макрос \myreftosec{timerTimeout}, который возвращает значение, отличное от 0, если истёк заданный интервал срабатывания.
+
+Перезапуск таймера осуществляется повторным вызовом макроса \myreftosec{timerStart}.
+
+Временная диаграмма таймера представлена на рис. ~\ref{fig:Timer_1}.
+
+\DrawPictEpsFromSvg[0.75\textwidth]{./Pictures/svg/Timer_1}{Таймер однократного запуска}{Timer_1}
+
+Листинг ~\ref{lst:automat_mt} иллюстрирует использование таймера однократного запуска.
+
+% *******end subsection***************
+
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Периодический таймер}}
+\index{Реализация программ ПЛК!Таймеры!Периодический таймер}
+
+Периодический (импульсный) таймер ~-- таймер, выходное значение которого периодически переключается с 0 на 1 и обратно через интервал, равный половине заданного периода таймера.
+
+Функция \myreftosec{timerSc} возвращает 1, если с момента переключения таймера с 1 на 0 истёк интервал, больший или равный половине периода таймера, и 0 в противном случае. 
+
+Временная диаграмма таймера представлена на рис. ~\ref{fig:Timer_1}.
+
+\DrawPictEpsFromSvg[0.75\textwidth]{./Pictures/svg/Timer_2}{Периодический таймер}{Timer_2}
+
+Периодический таймер используется для организации равных промежутков времени, например, для мигающей индикации или разного рода фильтров.
+
+Листинг ~\ref{lst:p_timer} показывает применение периодического таймера для индикации пульта оператора.\killoverfullbefore 
+
+Переменная \texttt{homeLed} (строка 5) определяет состояние индикатора реферирования осей. Если не выполнен выезд в 0 или не выполнено позиционирование всех осей при включении станка, то переменной \texttt{homeLed} будет присваиваться периодически 0 или 1. Значение \texttt{homeLed} записывается в \texttt{mt.PultOut.modeHome} (строка 19) и индикатор реферирования осей пульта оператора будет мигать. \killoverfullbefore \BL
+
+\IncludeListing{./listings/p_timer.c}{Применение периодического таймера \newline}{lst:p_timer}
+
+% *******end subsection***************
+
+% *******end section*****************
+%--------------------------------------------------------
+
+% *******begin section***************
+
+\section{\DbgSecSt{\StPart}{Входы/выходы}}
+\index{Реализация программ ПЛК!Входы/выходы}
+
+%\label{MTInputs}
+%\label{MTOutputs}
+%\label{PultInputs}
+%\label{PultOutputs}
+%\label{PortablePultInputs}
+
+Обращение ко входам и выходам осуществляется через 4-х байтовые переменные Servo[i].IO[j].DataIn[k] и Servo[i].IO[j].DataOut[k] соответственно, где i ~-- номер платы управления, j ~-- номер порта платы управления, k ~-- номер регистра выходных/выходных данных.
+
+Переменные Servo[i].IO[j].DataIn[k] представляют собой набор 1-но битных полей, каждое из которых содержит состояние отдельного входа.
+
+Переменные Servo[i].IO[j].DataOut[k] представляют собой набор 1-но битных полей, в каждое из которых записывается состояние отдельного выхода.\killoverfullbefore 
+
+Для работы со входами и выходами пользователем объявляются \hypertarget{IO_union}{объединения}:
+\begin{itemize}
+\item MTInputs ~-- выходные сигналы электрооборудования станка (путь по умолчанию: include\textbackslash platform\textbackslash имя\_проекта\textbackslash stanok.h); \killoverfullbefore
+\item MTOutputs ~-- входные сигналы электрооборудования станка (путь по умолчанию: include\textbackslash platform\textbackslash имя\_проекта\textbackslash stanok.h);\killoverfullbefore
+\item PultInputs ~-- выходные сигналы пульта оператора (путь по умолчанию: include\textbackslash platform\textbackslash имя\_проекта\textbackslash operator\_pult.h);  \killoverfullbefore
+\item PultOutputs ~-- входные сигналы пульта оператора (путь по умолчанию: include\textbackslash platform\textbackslash имя\_проекта\textbackslash operator\_pult.h); \killoverfullbefore
+\item PortablePultInputs ~-- выходные сигналы переносного пульта (путь по умолчанию: include\textbackslash platform\textbackslash имя\_проекта\textbackslash portable\_pult.h). \killoverfullbefore \BL
+\end{itemize} 
+
+Для указания функционального назначения отдельного входа или выхода следует определить имена идентификаторов соответствующего битового поля в объявлении объединений.
+
+Листинг ~\ref{lst:IO_unions} показывает пример определения имён идентификаторов в объявлении объединений \texttt{MTInputs} и \texttt{MTOutputs}. \killoverfullbefore \BL
+
+\IncludeListing{./listings/IO_unions.c}{Пример определения имён идентификаторов \newline}{lst:IO_unions}
+
+\begin{comment}
+\begin{pExample}
+\IncludeLstWithoutBorder{./listings/NullSample.pas}{~}{lst:IO-ex-1}
+              
+\begin{tabular}{l l}
+
+union MTInputs \{ &  \\
+\quad    struct \{ &  \\
+\quad \textcolor{exComm}{// Первая плата входов} &   \\
+\quad unsigned overloadPumpA:1; & \textcolor{exComm}{//Вход 0 - перегрузка насоса СОЖ А} \\
+\quad \vdots &   \\
+\quad unsigned onFanSPND:1; & \textcolor{exComm}{//Вход 4 - вентилятор шпинделя включён}\\
+\quad \vdots &   \\
+\quad unsigned mtOn:1; &  \textcolor{exComm}{//Вход 31 - станок включён}\\
+\quad \textcolor{exComm}{// Вторая плата входов} &   \\
+\quad lubeLevelLow:1; & \textcolor{exComm}{//Вход 0 - низкий уровень масла} \\
+\quad \vdots &   \\
+\quad accessWithKey:1; & \textcolor{exComm}{//Вход 10 - доступ с ключом}\\
+\quad \vdots &   \\
+\quad unsigned unclampingAxisC:1; &  \textcolor{exComm}{//Вход 31 - ось С разжата}\\
+\quad \}; & \\
+\quad int Inputs[2];  & \\
+\}; & \\
+  & \\
+union MTOutputs \{ &  \\
+\quad    struct \{ &  \\
+\quad \textcolor{exComm}{// Первая плата реле} &   \\
+\quad unsigned clearCoolantOn:1; & \textcolor{exComm}{//Выход 0 - включение очистки СОЖ от масла} \\
+\quad \vdots &   \\
+\quad unsigned workpieceBlast:1; & \textcolor{exComm}{//Выход 14 - обдув рабочей зоны}\\
+\quad \vdots &   \\
+\quad operatorDoorOpen:1; &  \textcolor{exComm}{//Выход 23 - открытие двери оператора}\\
+\quad \textcolor{exComm}{// Вторая плата реле} &   \\
+\quad clampingAxisA:1; & \textcolor{exComm}{//Выход 0 - зажим оси А} \\
+\quad \vdots &   \\
+\quad pumpB:1; & \textcolor{exComm}{//Выход 10 - включение насоса B подачи СОЖ}\\
+\quad \vdots &   \\
+\quad unsigned spindleChiller:1; &  \textcolor{exComm}{//Выход 23 - включение охлаждения шпинделя}\\
+\quad \}; & \\
+\quad int Outputs[2];  & \\
+\}; & \\
+
+\end{tabular}
+
+\end{pExample}  
+
+\end{comment}
+
+\BL
+
+Плата входов имеет возможность подключения 32 входных сигналов, плата выходов имеет возможность вывода до 24 выходных сигналов.
+
+Перечисленные выше объединения являются полями структуры \myreftosec{MTDesc}.
+
+Пользователь должен объявить переменную \texttt{mt} типа \myreftosec{MTDesc} для возможности работы со входами и выходами.
+
+% *******begin subsection***************
+%\subsection{\DbgSecSt{\StPart}{Входы}}
+
+Перед чтением состояний входов необходимо проверить корректность полученных данных: 1-й бит переменной \texttt{Servo[i].IO[j].Status} должен быть установлен (равен 1).
+
+Листинг ~\ref{lst:IO} показывает обращение ко входам и выходам. В данном примере пульт оператора подключён к порту №0, плата входов/выходов для управления электроавтоматикой станка ~-- к порту №1. \killoverfullbefore \BL
+
+\IncludeListing{./listings/IO.c}{Обращение ко входам и выходам \newline}{lst:IO}
+
+\begin{comment}
+\begin{pExample}
+\IncludeLstWithoutBorder{./listings/NullSample.pas}{~}{lst:IO-ex-2}
+              
+\begin{tabular}{l l}
+MTDesc mt; &  \\
+
+\vdots &  \\
+
+void readInputs() \{ & \textcolor{exComm}{// Чтение входов} \\
+\quad  if (Servo[0].IO[0].Status \& 1) \{ & \textcolor{exComm}{// Проверка корректности} \\
+\quad   & \textcolor{exComm}{// данных} \\
+\qquad mt.PultIn.PultBtn[0] = Servo[0].IO[0].DataIn[0]; & \textcolor{exComm}{// } \\
+\qquad mt.PultIn.PultBtn[1] = Servo[0].IO[0].DataIn[1]; & \textcolor{exComm}{// }\\
+\qquad mt.PultIn.PultBtn[2] = Servo[0].IO[0].DataIn[2]; &   \\
+\qquad mt.PultIn.PultBtn[3] = Servo[0].IO[0].DataIn[3]; &  \textcolor{exComm}{// }\\
+\qquad countErrorLinkOperatorPult = 0; &  \textcolor{exComm}{// Обнуление числа ошибок} \\
+\qquad  &  \textcolor{exComm}{//соединения с пультом оператора} \\
+\quad \} &   \\
+\quad else \{ &   \\
+\qquad countErrorLinkOperatorPult++; &   \\
+\qquad if (countErrorLinkOperatorPult >= 100) & \textcolor{exComm}{// }\\
+\qquad errorSet(systemErrors.machine.linkOperatorPult); &   \\
+\quad \} & \\
+\quad  if (Servo[0].IO[1].Status \& 1) \{ & \textcolor{exComm}{// Проверка корректности} \\
+\quad  & \textcolor{exComm}{// данных} \\
+\qquad mt.IN.Inputs[0] = Servo[0].IO[1].DataIn[0]; & \textcolor{exComm}{// } \\
+\qquad mt.IN.Inputs[1] = Servo[0].IO[1].DataIn[1]; & \textcolor{exComm}{// }\\
+\qquad countErrorLinkIntIO = 0; & \textcolor{exComm}{// Обнуление числа ошибок}  \\
+\qquad countErrorLinkIntIO = 0; & \textcolor{exComm}{// соединения с платой входов}  \\
+\quad \} &   \\
+\quad else \{ &   \\
+\qquad countErrorLinkIntIO++; &   \\
+\qquad if (countErrorLinkIntIO >= 100) & \textcolor{exComm}{// }\\
+\qquad errorSet(systemErrors.machine.linkIntIO); &   \\
+\quad \} & \\
+\}; & \\
+\vdots &  \\
+
+void writeOutputs() \{ & \textcolor{exComm}{// Запись выходов} \\
+\quad Servo[0].IO[0].DataOut[0] = mt.PultOut.PultLed[0]; & \textcolor{exComm}{// } \\
+\quad Servo[0].IO[0].DataOut[1] = mt.PultOut.PultLed[1]; & \textcolor{exComm}{// } \\
+\quad Servo[0].IO[0].DataOut[2] = mt.PultOut.PultLed[2]; & \textcolor{exComm}{// } \\
+\quad Servo[0].IO[1].DataOut[0] = mt.OUT.Outputs[0]; & \textcolor{exComm}{// } \\
+\} &  \\
+\vdots &  \\
+\end{tabular}
+
+\end{pExample}  
+\end{comment}
+
+
+% *******end subsection***************
+
+% *******begin subsection***************
+%\subsection{\DbgSecSt{\StPart}{Выходы}}
+
+
+
+% *******end subsection***************
+
+% *******end section*****************
+%--------------------------------------------------------
+
+% *******begin section***************
+
+\section{\DbgSecSt{\StPart}{Программирование алгоритмов управления}}
+\index{Реализация программ ПЛК!Программирование алгоритмов управления}
+
+Для программирования алгоритмов управления используются конечные автоматы. 
+
+Конечные автоматы ~-- конструкции, которые описываются ограниченным набором возможных состояний, набором сигналов (событий) и условиями переходов из одного состояния в другое. Последующее состояние автомата определяется текущим состоянием и входными сигналами.
+
+Листинг ~\ref{lst:automat_mt} показывает фрагмент реализации конечного автомата управления станком с помощью оператора множественного выбора \texttt{switch-case}. \killoverfullbefore \BL
+
+
+\IncludeListing{./listings/automat_mt.c}{Фрагмент реализации конечного автомата управления станком \newline}{lst:automat_mt}
+
+
+\begin{comment}
+\begin{pExample}
+\IncludeLstWithoutBorder{./listings/NullSample.pas}{~}{lst:automat-ex-1}
+              
+\begin{tabular}{l l}
+
+\quad switch (mt.State) \{ &  \\
+
+\quad case mtNotReady: \{ & \textcolor{exComm}{// Ожидание включения} \\
+\qquad if (CNC.request == mtcncReset) \{ mtReset(); \} & \textcolor{exComm}{// } \\
+\qquad if (mtIsOn() \&\& !mt.ncNotReadyReq) mt.State=mtStartOn; & \textcolor{exComm}{// }  \\
+\qquad break;&   \\
+\quad \} &   \\
+
+\quad case mtStartOn: \{ & \textcolor{exComm}{// Начало включения} \\
+\qquad if (CNC.request == mtcncReset) \{ mtReset(); \} & \textcolor{exComm}{// } \\
+\qquad if (mt.ncNotReadyReq) \{ mtAbortRequest(); break; \} & \textcolor{exComm}{// } \\
+\qquad mt.State = mtDriveOn;
+\qquad if (!axesPhaseRefComplete() || !spinsPhaseRefComplete()) mt.State = mtPhaseRef;
+\qquad break; &   \\
+\quad \} &   \\
+
+\quad case mtPhaseRef: \{ & \textcolor{exComm}{// Фазировка} \\
+\qquad if (CNC.request == mtcncReset) \{ mtReset(); \} & \textcolor{exComm}{// } \\
+\qquad if (mt.ncNotReadyReq) \{ mtAbortRequest(); break; \} & \textcolor{exComm}{// } \\
+\qquad if (axesPhaseRef() || spinsPhaseRef()) \{ &   \\
+\qquad \quad mt.State = mtWaitPhaseRef; &   \\
+\qquad \quad timerStart(mt.timerState, MT\_TIME\_DRIVE\_PHASE\_REF); &   \\
+\qquad \} else \{ &   \\
+\qquad \quad mt.State = mtDriveOn;
+\qquad \}
+\qquad break;&   \\
+\quad \} &   \\
+
+%\quad \vdots &   \\
+
+\quad case default: \{ &   \\
+\qquad mt.OUT.pumpA = 0; & \textcolor{exComm}{//Насос А выключить}  \\
+\qquad mt.OUT.pumpB = 0; & \textcolor{exComm}{//Насос В выключить}  \\
+\qquad break;&   \\
+\quad \} &   \\
+
+\} & \\
+\end{tabular}
+
+\end{pExample} 
+\end{comment}
+
+\begin{comment}
+\begin{lstlisting}[label=some-code,caption={Это крутой исходный код}]
+ // управление сигналом готовности системы
+    switch (mt.State) {
+    // ждём вход от главного пускателя
+    case mtNotReady: {
+        if (CNC.request == mtcncReset) { mtReset(); }
+        if (mtIsOn() && !mt.ncNotReadyReq) mt.State=mtStartOn;
+        // Обработка нажатия кнопки Reset
+        //if (MT.PultIn.modeReset) resetCNC();
+        break;
+    }
+        // начало включения
+    case mtStartOn: {
+        if (CNC.request == mtcncReset) { mtReset(); }
+        if (mt.ncNotReadyReq) { mtAbortRequest(); break; }
+        mt.State = mtDriveOn;
+        if (!axesPhaseRefComplete() || !spinsPhaseRefComplete()) mt.State = mtPhaseRef;
+        break;
+    }
+        // фазировка
+    case mtPhaseRef: {
+        if (CNC.request == mtcncReset) { mtReset(); }
+        if (mt.ncNotReadyReq) { mtAbortRequest(); break; }
+        if (axesPhaseRef() || spinsPhaseRef()) {
+            mt.State = mtWaitPhaseRef;
+            timerStart(mt.timerState,
+                       MT_TIME_DRIVE_PHASE_REF);
+        } else {
+            // уже выполнено
+            mt.State = mtDriveOn;
+        }
+        break;
+    }
+        // ожидание окончания фазировки
+    case mtWaitPhaseRef: {
+        if (CNC.request == mtcncReset) { mtReset(); }
+        if (mt.ncNotReadyReq) { mtAbortRequest(); break; }
+        if (timerTimeout(mt.timerState)) {
+            errorSet(systemErrors.channel[0].phaseRefTimeout);
+            break;
+        }
+        if (axesPhaseRefComplete() && spinsPhaseRefComplete()) {
+            mt.State=mtDriveOn;
+        }
+        break;
+    }
+        // включение приводов
+    case mtDriveOn: {
+        if (CNC.request == mtcncReset) { mtReset(); }
+        if (mt.ncNotReadyReq) { mtAbortRequest(); break; }
+        axesActivate();
+        //spinsActivate();
+        timerStart(mt.timerState,
+                   MT_TIME_DRIVE_ON);
+        mt.State=mtWaitDriveOn;
+        break;
+    }
+        // ожидание включения приводов
+    case mtWaitDriveOn: {
+        if (CNC.request == mtcncReset) { mtReset(); }
+        if (mt.ncNotReadyReq) { mtAbortRequest(); break; }
+        if (timerTimeout(mt.timerState)) {
+            errorSet(systemErrors.channel[0].driveOnTimeout);
+            break;
+        }
+        if (axesActive()/* && spinsActive()*/) {
+            mt.State=mtOthersMotorOn;
+        }
+        break;
+    }
+\end{lstlisting}
+\end{comment}
+
+\begin{comment}
+\begin{pExample}
+\IncludeLstWithoutBorder{./listings/NullSample.pas}{~}{lst:automat-ex-1}
+              
+\begin{tabular}{l l}
+
+enum CoolantPump \{ & \textcolor{exComm}{//Перечисление ~-- идентификаторы насосов СОЖ}  \\
+\quad    coolNone = 0,  &  \\
+\quad    coolA = 1,   &  \\
+\quad    coolB,  &  \\
+\quad    coolAB &  \\
+\}; &  \\
+
+\quad \vdots &   \\
+
+void coolantOn (int pump) \{ &  \\
+\quad actPump = pump; &  \\
+\quad switch (pump) \{ &  \\
+
+\quad case coolA: \{ & \textcolor{exComm}{//actPump = A;} \\
+\qquad mt.OUT.pumpA = 1; & \textcolor{exComm}{//Насос А включить} \\
+\qquad mt.OUT.pumpB = 0; & \textcolor{exComm}{//Насос В выключить}  \\
+\qquad break;&   \\
+\quad \} &   \\
+
+\quad case coolB: \{ & \textcolor{exComm}{//actPump = B;} \\
+\qquad mt.OUT.pumpA = 0; & \textcolor{exComm}{//Насос А выключить} \\
+\qquad mt.OUT.pumpB = 1; & \textcolor{exComm}{//Насос В включить} \\
+\qquad break;&   \\
+\quad \} &   \\
+
+\quad case coolAB: \{ & \textcolor{exComm}{//actPump = AB;} \\
+\qquad mt.OUT.pumpA = 1; & \textcolor{exComm}{//Насос А включить} \\
+\qquad mt.OUT.pumpB = 1; & \textcolor{exComm}{//Насос В включить} \\
+\qquad break;&   \\
+\quad \} &   \\
+
+%\quad \vdots &   \\
+
+\quad case default: \{ &   \\
+\qquad mt.OUT.pumpA = 0; & \textcolor{exComm}{//Насос А выключить}  \\
+\qquad mt.OUT.pumpB = 0; & \textcolor{exComm}{//Насос В выключить}  \\
+\qquad break;&   \\
+\quad \} &   \\
+
+\} & \\
+\end{tabular}
+
+\end{pExample} 
+\end{comment}
+
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Обработка аварийных ситуаций и ошибок электрооборудования станка}}
+\index{Реализация программ ПЛК!Обработка аварийных ситуаций и ошибок электрооборудования станка}
+
+Обработка аварийных ситуаций и ошибок электрооборудования станка выполняется с помощью следующих программных средств:\killoverfullbefore
+\begin{itemize}
+\item объединение \texttt{MachineErrors} ~--  список аварийных ситуаций и ошибок;
+\item макрос \texttt{errorSet} ~-- установка ошибки (соответствующему битовому полю объединения \texttt{MachineErrors} присваивается 1); \killoverfullbefore
+\item макрос \texttt{DEFINE\_ERROR} ~--  создание и инициализация переменной типа \myreftosec{ErrorDescription}; \killoverfullbefore
+\item пользовательская функция \myreftosec{errorsMachineScan} ~-- набор вызовов макроса \texttt{errorScanSet}; \killoverfullbefore
+\item пользовательская функция \myreftosec{errorsMachineReaction} ~-- набор вызовов функции \myreftosec{errorReaction}. \killoverfullbefore \BL
+\end{itemize}
+
+\hypertarget{Machine_Errors}{В объединении} \texttt{MachineErrors} (путь по умолчанию: include\textbackslash platform\textbackslash имя\_проекта\textbackslash machine\_error.h) пользователем определяются аварийные ситуации и ошибки электрооборудования станка в виде битовых полей. Оно является полем структуры \myreftosec{Errors}. \killoverfullbefore
+
+Листинг ~\ref{lst:machine_errors_union} показывает пример объявления объединения \texttt{MachineErrors}. \killoverfullbefore \BL
+
+\IncludeListing{./listings/machine_errors_union2.c}{Пример объявления объединения \texttt{MachineErrors} \newline}{lst:machine_errors_union}
+
+\BL
+
+Листинг ~\ref{lst:coolant} показывает пример использования макроса \texttt{errorSet} в функции контроля СОЖ. 
+
+Если насос А включен и произошла его перегрузка (проверка соответствующего выхода и входа в строке 7), то выключается подача СОЖ (строка 8) и выставляется соответствующий бит ошибки (строка 9).\killoverfullbefore
+
+Если уровень СОЖ высокий (проверка соответствующего входа в строке 13) и станок включен (строка 14), то выключается подача СОЖ (строка 15) и выставляется соответствующий бит ошибки (строка 17).\killoverfullbefore
+
+Системная переменная \texttt{systemErrors} имеет тип \myreftosec{Errors}. \killoverfullbefore \BL
+
+\IncludeListing{./listings/coolant.c}{Пример использования макроса \texttt{errorSet} \newline}{lst:coolant}
+
+Макрос \texttt{DEFINE\_ERROR(name, code, react, cl)} создаёт переменную типа \myreftosec{ErrorDescription} с именем descError\texttt{\{name\}} и инициализирует её поля аргументами descError\texttt{\{name\}}.id=code, descError\texttt{\{name\}}.reaction=react, descError\texttt{\{name\}}.clear=cl. \killoverfullbefore
+
+Поле descError\texttt{\{name\}}.id ~-- приоритет ошибки. 
+
+Поле descError\texttt{\{name\}}.reaction ~-- идентификаторы перечисления \myreftosec{ErrorReaction}, определяющие реакцию на ошибку. 
+
+Поле descError\texttt{\{name\}}.clear ~-- идентификаторы перечисления \myreftosec{ErrorClear}, определяющие тип сброса ошибки.
+
+Листинг ~\ref{lst:define_error} показывает вызовы макроса \texttt{DEFINE\_ERROR}, которые создают переменные descErrorMachineEmergencyStop и descErrorMachineLubeError. \killoverfullbefore \BL
+
+\IncludeListing{./listings/define_error.c}{Пример вызова макроса \texttt{DEFINE\_ERROR} \newline}{lst:define_error}
+
+Функция \myreftosec{errorsMachineScan} должна быть реализована пользователем. В ней
+вызывается макрос \myreftosec{errorScanSet} для ошибок, 
+%вызывается макрос \texttt{errorScanSet(error, input, desc, request)} для ошибок,
+определенных в объединении \texttt{MachineErrors} и макросом \texttt{DEFINE\_ERROR}. \killoverfullbefore
+
+Агрументы \texttt{errorScanSet}:
+\begin{itemize}
+\item error ~-- битовое поле объединения \texttt{MachineErrors}; \killoverfullbefore
+\item input ~-- значение, которое возвращает функция контроля соответствующего параметра (состояние соответствующего входа); \killoverfullbefore
+\item desc ~-- переменная типа \myreftosec{ErrorDescription}; \killoverfullbefore
+\item request ~-- переменная типа \myreftosec{ErrorClear}. \killoverfullbefore \BL
+\end{itemize}
+
+Функция \myreftosec{errorsMachineReaction} должна быть реализована пользователем. В ней вызывается функция \myreftosec{errorReaction} для ошибок, определенных в объединении \texttt{MachineErrors} и макросом \texttt{DEFINE\_ERROR}. \killoverfullbefore
+
+Листинг ~\ref{lst:machine_errors} показывает пример реализации файла обработки аварийных ситуаций и ошибок электрооборудования станка (путь по умолчанию: include\textbackslash platform\textbackslash имя\_проекта\textbackslash machine\_error.cfg). \killoverfullbefore \BL
+
+\IncludeListing{./listings/machine_errors2.c}{Пример обработки аварийных ситуаций и ошибок электрооборудования станка \newline}{lst:machine_errors}
+
+\BL
+
+Листинг ~\ref{lst:lube} показывает пример реализации функции контроля смазки направляющих \texttt{hasLubeError()}, которая вызывается в строке 21 листинга ~\ref{lst:machine_errors}. \killoverfullbefore \BL
+
+\IncludeListing{./listings/lube.c}{Пример реализации функции контроля смазки направляющих \newline}{lst:lube}
+
+% *******end section*****************
+%--------------------------------------------------------
+\index{Реализация программ ПЛК|)}
+
+\clearpage

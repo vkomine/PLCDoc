@@ -1,0 +1,2237 @@
+\newif\ifShowAllVarI        % Старые переменные (I, Q и пр)
+
+\newif\ifbiblatex            % Библиография
+
+\newif\ifKeyWordUpCase        % Keyword - Upcase/LOcase
+
+\newif\ifTempDescript        % временное комментирование
+
+\newif\ifDebugSectState        % показать состояние готовности пункта
+
+
+%%%******************************************%%%
+%%%***    Настройка условий компиляции    ***%%%
+%%%******************************************%%%
+
+% Старые переменные (I, Q и пр)
+    %\ShowAllVarItrue          % показать все недоделанное
+    \ShowAllVarIfalse        % скрыть все недоделанное
+
+% Библиография
+    %\biblatextrue 
+    \biblatexfalse
+
+% Keyword - Upcase/LOcase
+    %\KeyWordUpCasetrue 
+    \KeyWordUpCasefalse
+
+% временное комментирование
+    \TempDescripttrue
+%    \TempDescriptfalse
+
+% показать состояние готовности пунктов
+    \DebugSectStatetrue
+%\DebugSectStatefalse
+    
+
+
+%%%*** ---------------------------------- ***%%%
+
+% для борьбы с висячими строками
+    \clubpenalty = 10000
+    \widowpenalty = 10000
+
+
+ \setcounter{tocdepth}{3}            % чтобы добавить подпараграфы...
+ \setcounter{secnumdepth}{4}
+ \setcounter{totalnumber}{10}
+ \setcounter{topnumber}{10}
+ \setcounter{bottomnumber}{10}
+ \renewcommand{\topfraction}{1}
+ \renewcommand{\bottomfraction}{1}
+ \renewcommand{\textfraction}{0}
+ 
+ 
+% **********************************************************
+
+
+\graphicspath{{./}{./Pictures/eps/}{./Pictures/svg/}}
+
+
+% **********************************************************
+%                 ЦВЕТА
+% **********************************************************
+% Цвета для кода
+\definecolor{string}{HTML}{B40000}          % цвет строк в коде
+\definecolor{comment}{HTML}{228B22}         % цвет комментариев в коде
+\definecolor{keyword}{HTML}{1A00FF}         % цвет ключевых слов в коде
+
+\definecolor{key_word_color}{HTML}{0000FF}
+
+\definecolor{key_word_1_color}{HTML}{3A2FCD}
+
+%\definecolor{key_word_1_color}{HTML}{0000FF}
+
+\definecolor{key_word_2_color}{HTML}{BF0000}
+
+\definecolor{key_word_3_color}{HTML}{000070}
+
+\definecolor{key_word_4_color}{HTML}{700070}
+
+\definecolor{morecomment}{HTML}{8000FF}     % цвет include и других элементов в коде
+
+%\definecolor{сaptiontext}{HTML}{FFFFFF}     % цвет текста заголовка в коде
+\definecolor{сaptiontext}{HTML}{000000}     % цвет текста заголовка в коде
+
+
+%\definecolor{сaptionbk}{HTML}{999999}       % цвет фона заголовка в коде
+\definecolor{сaptionbk}{rgb}{.9, .9, .9}       % цвет фона заголовка в коде
+
+\definecolor{bk}{HTML}{F8F8FF}              % цвет фона в коде
+
+%\definecolor{frame}{HTML}{999999}           % цвет рамки в коде
+
+\definecolor{frame}{rgb}{.9, .9, .9}           % цвет рамки в коде
+%\definecolor{frame}{RGB}{10,175,15}           % цвет рамки в коде
+ 
+
+\definecolor{brackets}{HTML}{B40000}        % цвет скобок в коде
+
+\definecolor{digits}{HTML}{FF0000}        % цвет скобок в коде
+\definecolor{digits_color}{HTML}{FF0000}        % цвет скобок в коде
+
+
+%\definecolor{shadecolor}{HTML}{999999}
+\definecolor{shadecolor}{rgb}{.9, .9, .9}
+%\definecolor{shadecolor}{RGB}{10,175,15}
+% **********************************************************
+
+
+
+%\begin{comment}
+\makeatletter
+\setlength{\@fptop}{2pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
+%\end{comment}
+
+% **********************************************************
+\begin{comment}
+\makeatletter
+   \def\relativepath{\import@path}
+\makeatother
+\end{comment}
+
+\makeatletter
+\long\def\@makecaption#1#2{%
+  \vskip\abovecaptionskip
+  \hbox to\textwidth{\hfill\parbox{0.9\textwidth}{\begin{center}#1 #2\end{center}}\hfill}
+  \vskip\belowcaptionskip}
+\makeatother
+
+%**************************************************
+
+\IfFileExists{/dev/null}{%
+  \newcommand{\Inkscape}{inkscape}%
+  }{%
+  \newcommand{\Inkscape}{"C:/Program Files (x86)/Inkscape/inkscape.exe"}%
+}
+
+\newcommand{\executeiffilenewer}[3]{%
+ \ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+ {\pdffilemoddate{#2}}>0%
+ {\immediate\write18{#3}}\fi%
+}
+
+\newcommand{\DrawPictEpsFromSvg}[4][0.9\textwidth]{%
+    \executeiffilenewer{#2.svg}{#2.eps}%
+    {inkscape -z --file=#2.svg --export-eps=#2.eps --export-text-to-path}%
+    \begin{figure}[htb]%
+    \noindent\centering\includegraphics[keepaspectratio=true, width=#1]{#2.eps}%
+    \caption{#3}%
+    \label{fig:#4}%
+    \end{figure}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}
+
+\newcommand{\DrawOnlyEpsFromSvg}[2][0.9\textwidth]{%
+    \executeiffilenewer{#2.svg}{#2.eps}%
+    {inkscape -z --file=#2.svg --export-eps=#2.eps --export-text-to-path}%
+    \begin{figure}[htb]%
+    \noindent\centering\includegraphics[width=#1]{#2.eps}%
+    \end{figure}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}
+
+\newcommand{\IncludeEpsFromSvg}[2][\textwidth]{%
+    \executeiffilenewer{#2.svg}{#2.eps}%
+    {inkscape -z --file=#2.svg --export-eps=#2.eps --export-text-to-path}%
+    \includegraphics[width=#1]{#2.eps}%
+}
+    
+\begin{comment}
+\newcommand{\includesvg}[1]{%
+    \executeiffilenewer{#1.svg}{#1.eps}%
+    {inkscape -z --file=#1.svg --export-eps=#1.eps --export-text-to-path}%
+    \includegraphics{#1.eps}
+}
+\end{comment}
+
+
+
+
+\newenvironment{MyItemize}[1]%
+{%
+    %\begin{center}%
+        \begin{longtable}[h]{#1}
+}%
+{%
+        \end{longtable}    \addtocounter{table}{-1}%
+    %\end{center}%
+%    \FloatBarrier%
+%    \afterpage{\FloatBarrier}%
+}    
+
+
+\newcommand*{\TblLeftHeaderCenter}[1]%
+{%
+\multicolumn{1}{c|}{\textbf{#1}}%
+}%
+
+
+\newcommand{\TblLeftHeaderCenterNew}[1]%
+{%
+\multicolumn{1}{c|}{\textbf{#1}}%
+}%
+
+\newcommand{\TBHdr}[1]%
+{%
+\textbf{#1}%
+}%
+
+\newcommand{\TBHdrCntr}[1]%
+{%
+\centering\textbf{#1}%
+}%
+
+\newcommand{\TBRightHdrCntr}[1]%
+{%
+\multicolumn{1}{c|}{\textbf{#1}}%
+}%
+
+\newenvironment{MyTableTwoCol}[5]%
+{%
+    \begin{center}%
+        \begin{longtable}[h]{#3}%
+            \caption{#1}\label{#2}\\
+            \hline                  &                \\
+                    \TBHdrCntr{#4}      & \TBHdr{#5}   \\
+                                     &               \\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline                     &                \\
+                    \TBHdrCntr{#4}      & \TBHdr{#5}       \\
+                                     &                \\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}    
+
+\newenvironment{MyTableTwoColCntr}[5]%
+{%
+    \begin{center}%
+        \begin{longtable}[h]{#3}%
+            \caption{#1}\label{#2}\\
+            \hline                  &                \\
+                    \TBHdrCntr{#4}      & \TBRightHdrCntr{#5}   \\
+                                     &               \\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline                     &                \\
+                    \TBHdrCntr{#4}      & \TBHdr{#5}       \\
+                                     &                \\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+} 
+
+\newenvironment{MyTableTwoColAllCntr}[5]%
+{%
+    \begin{center}%
+        \begin{longtable}[h]{#3}%
+            \caption{#1}\label{#2}\\
+            \hline                  &                \\
+                    \TBHdrCntr{#4}      & \TBRightHdrCntr{#5}   \\
+                                     &               \\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline                     &                \\
+                    \TBHdrCntr{#4}      & \TBRightHdrCntr{#5}       \\
+                                     &                \\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}    
+
+
+
+%\centering\bfseries
+\newenvironment{MyTableThreeCol}[6]%
+{%
+    \begin{center}%
+        \begin{longtable}[h]{#3}%
+            \caption{#1}\label{#2}\\
+            \hline                  &                & \\
+                    \TBHdrCntr{#4}      &  \TBHdrCntr{#5}     & \TBHdr{#6}     \\
+                                     &                & \\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline                     &                & \\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdr{#6}     \\
+                   &                & \\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}    
+
+\newenvironment{MyTableThreeColCntr}[6]%
+{%
+    \begin{center}%
+        \begin{longtable}{#3}%
+            \caption{#1}\label{#2}\\
+            \hline                  &                & \\
+                    \TBHdrCntr{#4}      &  \TBHdrCntr{#5}     & \TBRightHdrCntr{#6}     \\
+                                     &                & \\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline                     &                & \\
+                    \TBHdrCntr{#4}      & \TBHdr{#5}     & \TBHdr{#6}     \\
+                   &                & \\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+} 
+
+%\centering\bfseries
+\newenvironment{MyTableThreeColAllCntr}[6]%
+{%
+    \begin{center}%
+        \begin{longtable}{#3}%
+            \caption{#1}\label{#2}\\
+            \hline                  &                & \\
+                    \TBHdrCntr{#4}      &  \TBHdrCntr{#5}     & \TBRightHdrCntr{#6}     \\
+                                     &                & \\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline                     &                & \\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBRightHdrCntr{#6}     \\
+                   &                & \\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}   
+
+\newenvironment{MyTableFourCol}[7]%
+{%
+    \begin{center}%
+        \begin{longtable}{#3}
+            \caption{#1}\label{#2}\\
+            \hline                  &                &              & \\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBHdr{#7}     \\
+                                    &                &              & \\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline                  &                &              & \\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBHdr{#7}     \\
+                                    &                &              & \\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}
+
+
+\newenvironment{MyTableFourColAllCntr}[7]%
+{%
+    \begin{center}%
+        \begin{longtable}{#3}
+            \caption{#1}\label{#2}\\
+            \hline                  &                &              & \\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBRightHdrCntr{#7}     \\
+                                    &                &              & \\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline                  &                &              & \\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBRightHdrCntr{#7}     \\
+                                    &                &              & \\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}
+
+\newenvironment{MyTableFiveCol}[8]%
+{%
+    \begin{center}%
+        \begin{longtable}{#3}
+            \caption{#1}\label{#2}\\
+            \hline                  &                &              &             &\\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBHdrCntr{#7} & \TBHdr{#8}     \\
+                                    &                &              &             &\\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline  &                &              &             &\\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBHdrCntr{#7} & \TBHdr{#8}     \\
+                    &                &              &             &\\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}    
+
+\newenvironment{MyTableFiveColAllCntr}[8]%
+{%
+    \begin{center}%
+        \begin{longtable}{#3}
+            \caption{#1}\label{#2}\\
+            \hline                  &                &              &             &\\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBHdrCntr{#7} & \TBRightHdrCntr{#8}     \\
+                                    &                &              &             &\\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline  &                &              &             &\\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBHdrCntr{#7} & \TBRightHdrCntr{#8}     \\
+                    &                &              &             &\\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}    
+
+\newenvironment{MyTableSixCol}[9]%
+{%
+    \begin{center}%
+        \begin{longtable}{#3}
+            \caption{#1}\label{#2}\\
+            \hline  &                &              &             &                &\\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBHdrCntr{#7} & \TBHdrCntr{#8} & \TBRightHdrCntr{#9}     \\
+                    &                &              &             &                &\\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline  &                &              &             &                &\\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBHdrCntr{#7} & \TBHdrCntr{#8} & \TBRightHdrCntr{#9}    \\
+                    &                &              &             &                &\\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}    
+
+\newenvironment{MyTableSixColAllCntr}[9]%
+{%
+    \begin{center}%
+        \begin{longtable}{#3}
+            \caption{#1}\label{#2}\\
+            \hline  &                &              &             &                &\\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBHdrCntr{#7} & \TBHdrCntr{#8} & \TBHdr{#9}     \\
+                    &                &              &             &                &\\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline  &                &              &             &                &\\
+                    \TBHdrCntr{#4}      & \TBHdrCntr{#5}     & \TBHdrCntr{#6} & \TBHdrCntr{#7} & \TBHdrCntr{#8} & \TBHdr{#9}    \\
+                    &                &              &             &                &\\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}    
+
+
+
+
+
+
+\begin{comment}
+
+\newenvironment{MyTableSevenCol}[10]%
+{%
+    \begin{center}%
+        \begin{longtable}{#3}
+            \caption{#1}\label{#2}\\
+            \hline  &        &        &         &        &        &\\
+                    \textbf{#4}      & \textbf{#5}     & \textbf{#6} & \textbf{#7} & \textbf{#8} & \textbf{#9} & \textbf{#10}    \\
+                    &        &        &        &         &        &\\
+            \hline
+            \endfirsthead
+            \caption*{Продолжение таблицы \ref{#2}.}\\
+            \hline  &                &              &     &        &                &\\
+                    \textbf{#4}      & \textbf{#5}     & \textbf{#6} & \textbf{#7} & \textbf{#8} & \textbf{#9}    & \textbf{#10} \\
+                    &                &              &     &        &                &\\
+            \hline
+            \endhead
+            \hline 
+            \endfoot
+            \hline
+            \endlastfoot
+}%
+{%
+        \end{longtable}%
+    \end{center}%
+    \FloatBarrier%
+    \afterpage{\FloatBarrier}%
+}    
+
+\end{comment}
+
+%----------------------------------------------------------------------------------------
+%    MINI TABLE OF CONTENTS IN CHAPTER HEADS
+%----------------------------------------------------------------------------------------
+
+% Section text styling
+\titlecontents{lsection}[0em] % Indendating
+%{\footnotesize\sffamily} % Font settings
+{\footnotesize} % Font settings
+{}
+{}
+{}
+
+% Subsection text styling
+\titlecontents{lsubsection}[.5em] % Indentation
+%{\normalfont\footnotesize\sffamily} % Font settings
+{\normalfont\footnotesize} % Font settings
+{}
+{}
+{}
+ 
+%----------------------------------------------------------------------------------------
+%    PAGE HEADERS
+%----------------------------------------------------------------------------------------
+%\newdateformat{specialdate}{\THEYEAR-\twodigit{\THEMONTH}-\twodigit{\THEDAY}}
+
+\newdateformat{monthyeardate}{\monthname[\THEMONTH], \THEYEAR}
+
+% Для печати на одной странице
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\chaptermark}[1]{\markboth{\normalsize\bfseries #1}{}} % Chapter text font settings
+\renewcommand{\sectionmark}[1]{\markright{\normalsize\thesection\hspace{5pt}#1}{}} % Section text font settings
+\fancyhf{} \fancyfoot[CE,CO]{\normalsize\thepage} % Font setting for the page number in the header
+\rhead{\rightmark}
+%\fancyhead[RE,RO]{\rightmark} % Print the nearest section name on the left side of odd pages
+%\fancyhead[LE,LO]{\leftmark} % Print the current chapter name on the right side of even pages
+\renewcommand{\headrulewidth}{0.4pt} % Width of the rule under the header
+\addtolength{\headheight}{12pt} % Increase the spacing around the header slightly
+\setlength{\headsep}{13pt} %
+\renewcommand{\footrulewidth}{0.0pt} % Removes the rule in the footer
+
+\fancypagestyle{plain}{ 
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}}
+
+\begin{comment}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{\normalsize\bfseries #1}{}} % Chapter text font settings
+\renewcommand{\sectionmark}[1]{\markright{\normalsize\thesection\hspace{5pt}#1}{}} % Section text font settings
+\fancyhf{} \fancyhead[LE,RO]{\normalsize\thepage} % Font setting for the page number in the header
+\fancyhead[LO]{\rightmark} % Print the nearest section name on the left side of odd pages
+\fancyhead[RE]{\leftmark} % Print the current chapter name on the right side of even pages
+\renewcommand{\headrulewidth}{0.5pt} % Width of the rule under the header
+\addtolength{\headheight}{12pt} % Increase the spacing around the header slightly
+\setlength{\headsep}{13pt} %
+\renewcommand{\footrulewidth}{0pt} % Removes the rule in the footer
+\fancypagestyle{plain}{\fancyhead{}\renewcommand{\headrulewidth}{0pt}} % Style for when a plain pagestyle is specified
+\fancyfoot[LE]{\copyright INELSY 2017}
+\fancyfoot[RO]{Ревизия 1.0 от \today}
+\fancyfoot[C]{}
+ \end{comment}
+% Removes the header from odd empty pages at the end of chapters
+\makeatletter
+\renewcommand{\cleardoublepage}{
+\afterpage{\clearpage}\ifodd\c@page\else
+\hbox{}
+\vspace*{\fill}
+\thispagestyle{empty}
+\newpage
+\fi}
+
+
+
+%----------------------------------------------------------------------------------------
+%    THEOREM STYLES
+%----------------------------------------------------------------------------------------
+
+\newcommand{\intoo}[2]{\mathopen{]}#1\,;#2\mathclose{[}}
+\newcommand{\ud}{\mathop{\mathrm{{}d}}\mathopen{}}
+\newcommand{\intff}[2]{\mathopen{[}#1\,;#2\mathclose{]}}
+\newtheorem{notation}{Notation}[chapter]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% dedicated to boxed/framed environements %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{ocrenumbox}% % Theorem style name
+{0pt}% Space above
+{0pt}% Space below
+{\normalfont}% % Body font
+{}% Indent amount
+{\small\bf\sffamily\color{ocre}}% % Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily\color{ocre}\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+%\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\thmnote{\nobreakspace\the\thm@notefont\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\renewcommand{\qedsymbol}{$\blacksquare$}% Optional qed square
+
+\newtheoremstyle{blacknumex}% Theorem style name
+{5pt}% Space above
+{5pt}% Space below
+{\normalfont}% Body font
+{} % Indent amount
+%{\small\bf\sffamily}% Theorem head font
+{\small\bf}% Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+%{\small\sffamily{\tiny\ensuremath{\blacksquare}}\nobreakspace\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+{\small{\tiny\ensuremath{\blacksquare}}\nobreakspace\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+%\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries---\nobreakspace#3.}}% Optional theorem note
+\thmnote{\nobreakspace\the\thm@notefont\bfseries---\nobreakspace#3.}}% Optional theorem note
+
+\newtheoremstyle{blacknumbox} % Theorem style name
+{0pt}% Space above
+{0pt}% Space below
+{\normalfont}% Body font
+{}% Indent amount
+{\small\bf}% Theorem head font
+%{\small\bf\sffamily}% Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+%{\small\sffamily\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+{\small\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+%\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries---\nobreakspace#3.}}% Optional theorem note
+\thmnote{\nobreakspace\the\thm@notefont\bfseries---\nobreakspace#3.}}% Optional theorem note
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% dedicated to non-boxed/non-framed environements %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{ocrenum}% % Theorem style name
+{5pt}% Space above
+{5pt}% Space below
+{\normalfont}% % Body font
+{}% Indent amount
+%{\small\bf\sffamily\color{ocre}}% % Theorem head font
+{\small\bf\color{ocre}}% % Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily\color{ocre}\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+%\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\thmnote{\nobreakspace\the\thm@notefont\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\renewcommand{\qedsymbol}{$\blacksquare$}% Optional qed square
+\makeatother
+
+% Defines the theorem text style for each type of theorem to one of the three styles above
+\newcounter{dummy} 
+\numberwithin{dummy}{section}
+\theoremstyle{ocrenumbox}
+\newtheorem{theoremeT}[dummy]{Theorem}
+\newtheorem{problem}{Problem}[chapter]
+\newtheorem{exerciseT}{Exercise}[chapter]
+\theoremstyle{blacknumex}
+\newtheorem{exampleT}{Example}[chapter]
+\theoremstyle{blacknumbox}
+\newtheorem{vocabulary}{Vocabulary}[chapter]
+\newtheorem{definitionT}{Definition}[section]
+\newtheorem{corollaryT}[dummy]{Corollary}
+\theoremstyle{ocrenum}
+\newtheorem{proposition}[dummy]{Proposition}
+
+
+%******************************************************
+%******************************************************
+
+%----------------------------------------------------------------------------------------
+%    DEFINITION OF COLORED BOXES
+%----------------------------------------------------------------------------------------
+
+\RequirePackage[framemethod=default]{mdframed} % Required for creating the theorem, definition, exercise and corollary boxes
+
+% Theorem box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+backgroundcolor=black!5,
+linecolor=ocre,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+innerbottommargin=5pt]{tBox}
+
+% Exercise box      
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+backgroundcolor=ocre!10,
+linecolor=ocre,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+innerbottommargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt]{eBox}    
+
+% Definition box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=ocre,
+backgroundcolor=bk,%
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=0pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=0pt]{dBox}    
+
+% Corollary box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=gray,
+backgroundcolor=black!5,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=5pt]{cBox}                  
+          
+
+% Corollary box
+\newmdenv[skipabove=7pt,%
+skipbelow=7pt,%
+rightline=false,%
+leftline=true,%
+topline=false,%
+bottomline=false,%
+linecolor= orange,% %warning_color,%
+backgroundcolor=bk,%
+innerleftmargin=5pt,%
+innerrightmargin=5pt,%
+innertopmargin=0pt,%
+leftmargin=0cm,%
+rightmargin=0cm,%
+linewidth=4pt,%
+innerbottommargin=0pt]{zBox}                  
+          
+% G box
+\newmdenv[skipabove=7pt,%
+skipbelow=7pt,%
+rightline=false,%
+leftline=true,%
+topline=false,%
+bottomline=false,%
+linecolor=ashgrey,% %warning_color,%
+backgroundcolor=lightgray,%
+innerleftmargin=5pt,%
+innerrightmargin=5pt,%
+innertopmargin=0pt,%
+leftmargin=0cm,%
+rightmargin=0cm,%
+linewidth=8pt,%
+innerbottommargin=0pt]{gBox} 
+
+\newmdenv[skipabove=7pt,%
+skipbelow=7pt,%
+rightline=false,%
+leftline=true,%
+topline=false,%
+bottomline=false,%
+linecolor=title_color,
+backgroundcolor=bk,%
+innerleftmargin=3pt,%
+innerrightmargin=5pt,%
+innertopmargin=0pt,%
+leftmargin=0cm,%
+rightmargin=0cm,%
+linewidth=9pt,%
+innerbottommargin=0pt]{listingBox}
+          
+% Definition box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=linkcolor,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=0pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=0pt]{SeeAlsoBox}    
+
+% Creates an environment for each type of theorem and assigns it a theorem text style from the "Theorem Styles" section above and a colored box from above
+\newenvironment{theorem}{\begin{tBox}\begin{theoremeT}}{\end{theoremeT}\end{tBox}}
+\newenvironment{exercise}{\begin{eBox}\begin{exerciseT}}{\hfill{\color{ocre}\tiny\ensuremath{\blacksquare}}\end{exerciseT}\end{eBox}}        
+        
+\newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}    
+\newenvironment{pHeader}{\begin{dBox}\begin{tabular}[h]{lp{34em}}}{\end{tabular}\end{dBox}}    
+
+\newenvironment{fHeader}{\begin{zBox}\begin{tabular}[h]{lp{28em}}}{\end{tabular}\end{zBox}}  
+
+\newenvironment{cHeader}{\begin{gBox}\begin{tabular}[h]{lp{48em}}}{\end{tabular}\end{gBox}} 
+
+\newenvironment{smallTblBits}{\begin{tabular}[h]{llp{31em}}}{\end{tabular}}  
+%\newenvironment{pHeader}{\begin{dBox}\begin{longtable}[h]{lp{26em}}}{\addtocounter{table}{-1}\end{longtable}\end{dBox}}    
+
+%\newenvironment{pHeader}{\begin{dBox}}{\end{dBox}}    
+\newenvironment{pExample}{\begin{zBox}}{\end{zBox}}
+\newenvironment{listingExample}{\begin{listingBox}}{\end{listingBox}}
+\newenvironment{gExample}{\begin{cBox}}{\end{cBox}}
+\newenvironment{example}{\begin{exampleT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT}}        
+\newenvironment{corollary}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}    
+
+%\newenvironment{MyDescription}{\begin{tabular}[h]{p{18em}p{14em}}}{\end{tabular}}    
+
+%\newenvironment{SeeAlsoList}{\begin{SeeAlsoBox}\begin{tabular}[t]{lp{23em}}}{\end{tabular}\end{SeeAlsoBox}}    
+\newenvironment{SeeAlsoList}{\begin{SeeAlsoBox}\begin{longtable}[h]{lp{23em}}}{\addtocounter{table}{-1}\end{longtable}\end{SeeAlsoBox}}    
+
+\newenvironment{SeeAlsoLstAcc24}{\begin{SeeAlsoBox}\begin{longtable}[h]{m{7em}m{28em}}}{ \addtocounter{table}{-1}\end{longtable}\end{SeeAlsoBox}
+%\newenvironment{SeeAlsoLstAcc24}{\begin{SeeAlsoBox}\begin{tabular}[h]{p{10em}p{35em}}}{\end{tabular}\end{SeeAlsoBox}
+}    
+
+
+% форматирование нумерованных списков
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}.}
+
+
+%----------------------------------------------------------------------------------------
+%    REMARK ENVIRONMENT
+%----------------------------------------------------------------------------------------
+
+\newenvironment{remark}{%
+    \par\vskip10pt\small % Vertical white space above the remark and smaller font size
+    \begin{list}{}{
+        \leftmargin=35pt % Indentation on the left
+        \rightmargin=25pt}\item\ignorespaces % Indentation on the right
+        \makebox[-2.5pt]{%
+            \begin{tikzpicture}[overlay]%
+                \node[draw=remark_color,line width=1pt,circle,%
+                fill=remark_color,font=\bfseries,inner sep=2pt,%
+%                fill=remark_color,font=\sffamily\bfseries,inner sep=2pt,%
+                outer sep=0pt] at (-15pt,0pt){\normalfont\bfseries\large\textcolor{white}{i}};%
+            \end{tikzpicture}} % Orange R in a circle
+        \advance\baselineskip -1pt}
+    {\end{list}\vskip5pt%
+} % Tighter line spacing and white space after remark
+
+%----------------------------------------------------------------------------------------
+%    WARNING ENVIRONMENT
+%----------------------------------------------------------------------------------------
+
+\newenvironment{warning}{%
+    \par\vskip10pt\small % Vertical white space above the warning and smaller font size
+    \begin{list}{}{%
+        \leftmargin=35pt % Indentation on the left
+        \rightmargin=25pt}\item\ignorespaces % Indentation on the right
+        \makebox[-2.5pt]{%
+            \begin{tikzpicture}[overlay]%
+                \node[draw=warning_color,line width=1pt,circle,%
+%                fill=white,font=\sffamily\bfseries,inner sep=2pt,%
+                fill=white,font=\bfseries,inner sep=2pt,%
+                outer sep=0pt] at (-15pt,0pt){\normalfont\bfseries\large\textcolor{warning_color}{!}};%
+            \end{tikzpicture}} % Orange R in a circle
+        \advance\baselineskip -1pt}% 
+    {\end{list}\vskip5pt%
+} % Tighter line spacing and white space after warning
+
+%----------------------------------------------------------------------------------------
+%    SECTION NUMBERING IN THE MARGIN
+%----------------------------------------------------------------------------------------
+
+\makeatletter
+
+\begin{comment}
+
+    \renewcommand{\@seccntformat}[1]{%
+        \llap{%
+            \textcolor{ocre}%
+            {\csname the#1\endcsname}%
+            \hspace{1em}%
+        }%
+    }%                    
+\end{comment}
+
+\begin{comment}
+
+    \renewcommand{\@seccntformat}[1]{%
+     \csname the#1\endcsname.\quad
+    }
+
+
+% настройка нумерации
+
+    \renewcommand{\@seccntformat}[1]{%
+        \llap{%
+            %\textcolor{ocre}%
+            {\csname the#1\endcsname}%            %.\quad%
+            \hspace{5mm}%
+        }%    
+    }%
+\end{comment}
+
+% 
+\begin{comment}
+
+%    Стиль оформления section
+    \renewcommand{\section}{\@startsection
+        {section}%                                    name
+        {1}%                                        level    
+        {\z@}%                                        indent
+        {-4ex \@plus -1ex \@minus -.4ex}%            space above header
+        {1ex \@plus.2ex }%                            space under header
+        {\normalfont\LARGE\bfseries}%                style
+    }%
+\end{comment}
+
+%    Стиль оформления section
+    \renewcommand{\section}{\@startsection%
+        {section}%                                     name
+           {1}%                                           level
+%        {\z@}%                                        indent
+           {0mm}%                                         indent
+%        {-4ex \@plus -1ex \@minus -.4ex}%            space above header
+        {-5.5ex \@plus -1.5ex \@minus -.3ex}%                space above header
+%           {-3\baselineskip}%                           space above header
+%        {1ex \@plus.2ex }%                            space under header
+        {3ex \@plus1.5ex }%                            space under header
+%          {1.5\baselineskip}%                            space under header
+           {\normalfont\Large\bfseries}%                 style
+    }%
+
+%\begin{comment}
+    \renewcommand{\subsection}{\@startsection%
+        {subsection}%                                name
+        {2}%                                        level    
+%        {\z@}%                                        indent
+           {0mm}%                                         indent
+%        {-3ex \@plus -0.1ex \@minus -.4ex}%            space above header
+        {-4ex \@plus -1.5ex \@minus -0.2ex}%            space above header
+%       {-4ex \@plus -1.5ex \@minus -0.2ex}%       ace above header  last settings      
+%        {-3.5ex \@plus -1ex \@minus -.2ex}%            space above header
+%        {-5ex \@plus -0.1ex \@minus -.8ex}%            space above header
+%        {-1.5\baselineskip}%                           space above header
+%        {1.5ex}%                        space under header
+         {2ex \@plus1.5ex }%                        space under header
+%        {1ex \@plus 0.5ex \@minus -1ex}%                        space under header
+%        {1ex \@plus.2ex }%                            space under header
+%        {1ex \@plus -0.8ex \@minus-.8ex }%            space under header
+%          {0.5\baselineskip}%                            space under header
+        {\normalfont\large\bfseries}%                        style
+    }%
+%\end{comment}
+
+\begin{comment}
+    \renewcommand{\subsection}{\@startsection%
+        {subsection}%                                name
+        {2}%                                        level    
+%        {\z@}%                                        indent
+           {0mm}%                                         indent
+        {-5ex \@plus -20ex \@minus -2.5ex}%            space above header
+        {-1.5ex \@minus -1ex}%                        space under header
+        {\normalfont\bfseries}%                        style
+    }%
+\end{comment}
+
+
+
+    \renewcommand{\subsubsection}{\@startsection%    
+        {subsubsection}%                              name
+        {3}%                                          level
+        {0mm}%                                        indent
+        {-2ex \@plus -1ex \@minus -.2ex}%           space above header
+        {2ex \@plus.2ex }%                          space under header
+        {\normalfont\bfseries}%                       style
+    }                    
+    
+%\begin{comment}
+    
+    \titleformat{\subsubsection} [runin]
+      {}
+      {\thesubsubsection}
+      {1ex}{}[.]
+    \titlespacing*{\subsubsection}{\parindent}{*4}{1ex}
+    
+%\end{comment}
+    
+    
+    \renewcommand\paragraph{%
+        \@startsection{paragraph}{4}{\z@}%
+        {-2ex \@plus-.2ex \@minus .2ex}%
+        {0.1ex}%
+%        {\normalfont\small\sffamily\bfseries}%
+        {\normalfont\small\bfseries}%
+    }%
+
+\makeatother
+    
+    
+
+    
+    
+    %----------------------------------------------------------------------------------------
+    %    CHAPTER HEADINGS
+    %----------------------------------------------------------------------------------------
+
+
+
+\begin{comment}
+\makeatletter
+    
+    \newcommand{\thechapterimage}{}
+    \newcommand{\chapterimage}[1]{\renewcommand{\thechapterimage}{#1}}
+    \def\thechapter{\arabic{chapter}}
+    \def\@makechapterhead#1{
+    \thispagestyle{empty}
+%    {\centering \normalfont\sffamily
+    {\centering \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+    \if@mainmatter
+    \startcontents
+    \begin{tikzpicture}[remember picture,overlay]
+    \node at (current page.north west)
+    {\begin{tikzpicture}[remember picture,overlay]
+    
+    \node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{\thechapterimage}};
+    %\node[anchor=north west,inner sep=0pt] at (0,0) {\IncludeEpsFromSvg[width=\paperwidth]{\thechapterimage}};
+    %Commenting the 3 lines below removes the small contents box in the chapter heading
+    %\draw[fill=white,opacity=.6] (1cm,0) rectangle (8cm,-7cm);
+    %\node[anchor=north west] at (1cm,.25cm) {\parbox[t][8cm][t]{6.5cm}{\huge\bfseries\flushleft \printcontents{l}{1}{\setcounter{tocdepth}{2}}}};
+%\normalfont\Large\bfseries    
+    \draw[anchor=west] (1.5cm,-8.4cm) node [rounded corners=25pt,fill=white,fill opacity=.6,text opacity=1,draw=ocre,draw opacity=1,line width=2pt,inner sep=15pt]{\normalfont\Large\bfseries\textcolor{black}{\thechapter\ ---\ #1\vphantom{plPQq}\makebox[22cm]{}}};    
+    \end{tikzpicture}};
+    \end{tikzpicture}}\par\vspace*{230\p@}
+    \fi
+    \fi
+    }
+    \def\@makeschapterhead#1{
+    \thispagestyle{empty}
+%    {\centering \normalfont\sffamily
+    {\centering \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+    \if@mainmatter
+    \startcontents
+    \begin{tikzpicture}[remember picture,overlay]
+    \node at (current page.north west)
+    {\begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west] at (-4pt,4pt) {\includegraphics[width=\paperwidth]{\thechapterimage}};
+    %\node[anchor=north west] at (-4pt,4pt) {\IncludeEpsFromSvg[width=\paperwidth]{\thechapterimage}};
+%    \draw[anchor=west] (5cm,-9cm) node [rounded corners=25pt,fill=white,opacity=.7,inner sep=15.5pt]{\huge\sffamily\bfseries\textcolor{black}{\vphantom{plPQq}\makebox[22cm]{}}};
+    \draw[anchor=west] (5cm,-9cm) node [rounded corners=25pt,fill=white,opacity=.7,inner sep=15.5pt]{\huge\bfseries\textcolor{black}{\vphantom{plPQq}\makebox[22cm]{}}};    
+%    \draw[anchor=west] (5cm,-9cm) node [rounded corners=25pt,draw=ocre,line width=2pt,inner sep=15pt]{\huge\sffamily\bfseries\textcolor{black}{#1\vphantom{plPQq}\makebox[22cm]{}}};
+    \draw[anchor=west] (5cm,-9cm) node [rounded corners=25pt,draw=ocre,line width=2pt,inner sep=15pt]{\huge\bfseries\textcolor{black}{#1\vphantom{plPQq}\makebox[22cm]{}}};    
+    \end{tikzpicture}};
+    \end{tikzpicture}}\par\vspace*{230\p@}
+    \fi
+    \fi
+    }
+\makeatother
+
+
+
+\definecolor{gray75}{gray}{0.75} % определяем цвет
+\newcommand{\hsp}{\hspace{10pt}} % длина линии в 20pt
+% titleformat определяет стиль
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+\end{comment}
+
+\makeatletter
+    
+    \newcommand{\thechapterimage}{}
+    \newcommand{\chapterimage}[1]{\renewcommand{\thechapterimage}{#1}}
+    \def\thechapter{\arabic{chapter}}
+    \def\@makechapterhead#1{
+    \thispagestyle{empty}
+%    {\centering \normalfont\sffamily
+    {\centering \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+    \if@mainmatter
+    \startcontents
+    \begin{tikzpicture}[remember picture,overlay]
+    \node at (current page.north west)
+    {\begin{tikzpicture}[remember picture,overlay]
+    
+    \node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{\thechapterimage}};
+    %\node[anchor=north west,inner sep=0pt] at (0,0) {\IncludeEpsFromSvg[width=\paperwidth]{\thechapterimage}};
+    %Commenting the 3 lines below removes the small contents box in the chapter heading
+    %\draw[fill=white,opacity=.6] (1cm,0) rectangle (8cm,-7cm);
+    %\node[anchor=north west] at (1cm,.25cm) {\parbox[t][8cm][t]{6.5cm}{\huge\bfseries\flushleft \printcontents{l}{1}{\setcounter{tocdepth}{2}}}};
+%\normalfont\Large\bfseries    
+    \draw[anchor=west] (1.5cm,-6.3cm) node [rounded corners=25pt,fill=white,fill opacity=.8,text opacity=1,draw=ocre, draw opacity=1,line width=2pt,inner sep=15pt]{\normalfont\LARGE\bfseries\textcolor{black}{\thechapter\ .\ #1\vphantom{plPQq}\makebox[22cm]{}}};    
+    \end{tikzpicture}};
+    \end{tikzpicture}}\par\vspace*{150\p@}
+    \fi
+    \fi
+    }
+    \def\@makeschapterhead#1{
+    \thispagestyle{empty}
+%    {\centering \normalfont\sffamily
+    {\centering \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+    \if@mainmatter
+    \startcontents
+    \begin{tikzpicture}[remember picture,overlay]
+    \node at (current page.north west)
+    {\begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north west] at (-4pt,4pt) {\includegraphics[width=\paperwidth]{\thechapterimage}};
+    %\node[anchor=north west] at (-4pt,4pt) {\IncludeEpsFromSvg[width=\paperwidth]{\thechapterimage}};
+%    \draw[anchor=west] (5cm,-9cm) node [rounded corners=25pt,fill=white,opacity=.7,inner sep=15.5pt]{\huge\sffamily\bfseries\textcolor{black}{\vphantom{plPQq}\makebox[22cm]{}}};
+    \draw[anchor=west] (5cm,-6.3cm) node [rounded corners=25pt,fill=white,opacity=.8,inner sep=15.5pt]{\normalfont\LARGE\bfseries\textcolor{black}{\vphantom{plPQq}\makebox[22cm]{}}};    
+%    \draw[anchor=west] (5cm,-9cm) node [rounded corners=25pt,draw=ocre,line width=2pt,inner sep=15pt]{\huge\sffamily\bfseries\textcolor{black}{#1\vphantom{plPQq}\makebox[22cm]{}}};
+    \draw[anchor=west] (5cm,-6.3cm) node [rounded corners=25pt,draw=ocre,line width=2pt,inner sep=15pt]{\normalfont\LARGE\bfseries\textcolor{black}{#1\vphantom{plPQq}\makebox[22cm]{}}};    
+    \end{tikzpicture}};
+    \end{tikzpicture}}\par\vspace*{150\p@}
+    \fi
+    \fi
+    }
+\makeatother
+
+%----------------------------------------------------------------------------------------
+%    Оформление ОГЛАВЛЕНИя
+%----------------------------------------------------------------------------------------
+
+% точки после названий частей !!!
+\renewcommand\cftchapaftersnum{.}
+
+%все номера частей, секций и т.п. и точки - одним цветом !
+\renewcommand\cftchappagefont{\color{my_color}}
+
+\renewcommand\cftchappagefont{\color{my_color}}
+\renewcommand\cftchapleader{\color{my_color}\cftdotfill{\cftdotsep}}
+
+\renewcommand\cftsecpagefont{\color{my_color}}
+\renewcommand\cftsecleader{\color{my_color}\cftdotfill{\cftsecdotsep}}
+
+\renewcommand\cftsubsecpagefont{\color{my_color}}
+\renewcommand\cftsubsecleader{\color{my_color}\cftdotfill{\cftsubsecdotsep}}
+
+
+% отступы между частями!!!
+%\preto\section{\ifnum\value{section}=0\addtocontents{toc}{\vskip10pt}\fi}
+\makeatletter
+\pretocmd{\chapter}{\addtocontents{toc}{\protect\addvspace{7\p@}}}{}{}
+\pretocmd{\section}{\addtocontents{toc}{\protect\addvspace{7\p@}}}{}{}
+\pretocmd{\subsection}{\addtocontents{toc}{\protect\addvspace{5\p@}}}{}{}
+\pretocmd{\subsubsection}{\addtocontents{toc}{\protect\addvspace{5\p@}}}{}{}
+\makeatother
+
+
+%\preto\subsection{\ifnum\value{subsection}=0\addtocontents{toc}{\vskip7pt}\fi}
+
+%\preto\subsection{\addtocontents{toc}{\vskip7pt}}
+
+% отступы!!! (для subsection - обязательно оставить!!!)
+
+    \setlength{\cftsecindent}{7pt}  % Indent of section No.
+    \setlength{\cftsecnumwidth}{34pt}  % Width of section No.
+
+    \setlength{\cftsubsecindent}{21pt}  % Indent of subsection No.
+    \setlength{\cftsubsecnumwidth}{52pt}  % Width of subsection No.
+
+    \setlength{\cftsubsubsecindent}{35pt}  % Indent of subsubsection No.
+    \setlength{\cftsubsubsecnumwidth}{62pt}  % Width of subsubsection No.
+
+\begin{comment}
+\contentsmargin{0cm} % Removes the default margin
+% Chapter text styling
+\titlecontents{chapter}[1.25cm] % Indentation
+{\addvspace{15pt}\large\sffamily\bfseries} % Spacing and font options for chapters
+{\color{ocre!60}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{ocre}} % Chapter number
+{}  
+{\color{ocre!60}\normalsize\sffamily\bfseries\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+% Section text styling
+\titlecontents{section}[1.25cm] % Indentation
+{\addvspace{5pt}\sffamily\bfseries} % Spacing and font options for sections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Section number
+{}
+{\sffamily\hfill\color{black}\thecontentspage} % Page number
+[]
+% Subsection text styling
+\titlecontents{subsection}[1.25cm] % Indentation
+{\addvspace{1pt}\sffamily\small} % Spacing and font options for subsections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Subsection number
+{}
+{\sffamily\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+[] 
+
+\end{comment}
+
+
+% % % % % % % % % % % Настройка параметров и переопределение предметного указателя % % % % %
+\makeatletter
+% 2-й параметр - отступ от левого края основного текста
+% 1-й параметр - сдвиг (от левого края) при переносе текста на новую строку
+\begin{comment}
+\renewcommand{\@idxitem}{\par\hangindent=7pt\hspace*{0pt}}
+
+%\renewcommand{\subitem}{\par\hangindent=70pt\hspace*{12pt}}
+\renewcommand{\subitem}{\par\hangindent=21pt\hspace*{14pt}}
+
+%\renewcommand{\subsubitem}{\par\hangindent=35pt\hspace*{24pt}}
+\renewcommand{\subsubitem}{\par\hangindent=35pt\hspace*{28pt}}
+\end{comment}
+
+\renewcommand{\@idxitem}{\par\hangindent=5pt\hspace*{0pt}}
+
+%\renewcommand{\subitem}{\par\hangindent=70pt\hspace*{12pt}}
+\renewcommand{\subitem}{\par\hangindent=17pt\hspace*{10pt}}
+
+%\renewcommand{\subsubitem}{\par\hangindent=35pt\hspace*{24pt}}
+\renewcommand{\subsubitem}{\par\hangindent=28pt\hspace*{21pt}}
+
+
+\renewenvironment*{theindex}{\columnseprule=0pt\columnsep=15pt
+\@makeschapterhead{\indexname}%
+\@mkboth{\uppercase{\indexname}}{\uppercase{\indexname}}%
+\thispagestyle{plain}\parindent=0pt
+\setlength{\parskip}{0pt plus .3pt}%
+\let\item=\@idxitem
+\begin{multicols}{2}}%
+{\end{multicols}}
+
+\makeatother
+
+
+
+%%%***************************%%%
+%%%***    Листинги         ***%%%
+%%%***************************%%%
+
+
+%\color{frame}
+
+\begin{comment}
+\makeatletter
+
+\renewenvironment{snugshade}{%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed}
+
+\makeatother
+\end{comment}
+
+%!!! определение стиля для служебных слов
+
+\newcommand{\KeyWordUpcaseBold}{\normalfont\bfseries}%  нужен знак *
+\newcommand{\KeyWordLocaseBold}{\normalfont\bfseries}%    без знака *
+\newcommand{\KeyWordUpcase}{\bfseries}%                   нужен знак *
+\newcommand{\KeyWordLocase}{\bfseries}%                      без знака *
+
+%\newcommand{\KeyWordSt}{\bfseries}%
+
+%    *\normalfont   - для UPcase
+%     \normalfont\bfseries   - для LOcase
+
+\newcommand{\KeyWordSt}{\KeyWordLocaseBold}%
+
+%   \bfseries - lo case
+%  *\bfseries - up case
+% просто \bfseries не дает нужного эффекта, нужен \bf, но он только на аргумент
+% хорошая альтернатива для нормального болда: \normalfont\bfseries
+% 
+
+\ifKeyWordUpCase
+
+    \newcommand{\MyKeyWordSt}{%
+        *\normalfont}%
+        
+    }%
+
+\else
+    \newcommand{\MyKeyWordSt}{%
+        \normalfont\bfseries%
+    }%
+\fi
+
+
+\lstdefinelanguage{cnc_lang}
+{%
+    classoffset=0,
+    morekeywords={abort, abs, adisable, begin, bstart, bstop,% break,
+    cclr, ccmode0, ccmode1, ccmode2, ccmode3, ccr,  cexec,% 
+    cmd, continue, cout, cset, cskip, D, ddisable,  delay,%default,
+    disable, bgcplc, rticplc, dkill, do, dread, dtogread, dwell,%
+    enable, F, frax, fread, G, hold, home, homez, inc, jog, jogret,%
+%    kill, lh, lhpurge, M, N, nofrax, normal, nxyz, pause, pclear, pload,% 
+    kill, lh, lhpurge, M, nofrax, normal, nxyz, pause, pclear, pload,% 
+    pmatch, pread, pset, pstore, read, resume, return, run, s, S, send,% 
+    sendall, sendallcmds, sendallsystemsmds, start, step, system, %stop,
+    struct,union, void, __attribute__%  
+    T, td, tm, tread, tsel, tsel1, tsel2, tsel3, txyz,%ts,
+%    rot, lookahead, plc, plcc, undefine, r, R, A, b, B, c, C, S,% 
+    rot, lookahead, plc, plcc, undefine, r, R, b, B, c, C, S,% 
+    p, q, v, h, u, U, % 
+%    a, j, p, q, v, k, h, u, U, I, i, % 
+    open, inverse, forward, prog, prog1000, close, clear, delete, gather,%
+    define, all, rotary, ecat, echo, buffer, buffers, hmz, hm, free,%
+    program, list, kinematic, backup, bpclear, bpclearall, bpset, %
+    brickacver, bricklvver, cpu, cpx, cx, alias, assign, config, slaves,%
+%    apc, pc, subprog, out, reboot, rotfree, save, size, string, type, date,%  
+    apc, pc, subprog, out, reboot, rotfree, save, size, string, date,%  
+    G00, G01, G02, G03, G04, G05, G06, G07, G08, G09,%
+    G10, G11, G12, G13, G14, G15, G16, G17, G18, G19,%
+    G20, G21, G22, G23, G24, G25, G26, G27, G28, G29,%
+    G30, G31, G32, G33, G34, G35, G36, G37, G38, G39,%
+    G40, G41, G42, G43, G44, G45, G46, G47, G48, G49,%
+    G50, G51, G52, G53, G54, G55, G56, G57, G58, G59,%
+    G60, G61, G62, G63, G64, G65, G66, G67, G68, G69,%
+    G70, G71, G72, G73, G74, G75, G76, G77, G78, G79,%
+    G80, G81, G82, G83, G84, G85, G86, G87, G88, G89,%
+    G90, G91, G92, G93, G94, G95, G96, G97, G98, G99,%
+    G100,Gnn, G115, F, tm, Global, csglobal,%ts, ta,
+    },%
+%    keywordstyle=*\ttfamily\color{key_word_1_color},%
+    keywordstyle=\ttfamily\normalfont\bfseries\color{key_word_1_color},%
+    classoffset=1,%
+    morekeywords={call, callsub, case, if, else, endif, and, or, endwhile, while,%
+    , wait, goto, gosub, switch, break, default,},%
+%    keywordstyle=*\ttfamily\color{key_word_2_color},%
+    keywordstyle=\ttfamily\normalfont\bfseries\color{key_word_2_color},%
+    classoffset=2,%
+    morekeywords={circle, circle1, circle2, circle3, circle4, linear,pvt,%
+    rapid,spline, spline1, spline2, circlen, splinen,},%
+%    keywordstyle=*\ttfamily\color{key_word_3_color},%
+    keywordstyle=\ttfamily\normalfont\bfseries\color{key_word_3_color},%
+    classoffset=3,
+    morekeywords={cos, sin, tan, asin, acos, atan2,%
+%    morekeywords={cos, sin, tan, asin, acos, atan, atan2,%
+    int, double, int32_t, uint32_t, exp, ln, sqrt},%
+%    keywordstyle=*\ttfamily\color{key_word_4_color},%
+    keywordstyle=\ttfamily\normalfont\bfseries\color{key_word_4_color},%
+    classoffset=0,
+    %otherkeywords={$, &, $},
+    %otherkeywords={&,\#},
+%    otherkeywords={\#,\$,&,\%},
+    otherkeywords={\#,\%},    %&,
+     morecomment=[l]{//},% l is for line comment
+    morecomment=[l]{;},%
+    morecomment=[s]{/*}{*/}, % s is for start and end delimiter
+    %morestring=[b]" % defines that strings are enclosed in double quotes
+% Цвета
+    stringstyle=\color{string}%
+    commentstyle=\ttfamily\normalfont\footnotesize\bfseries\itshape\color{comment},%
+        sensitive=false,%
+%    commentstyle=\sffamily\footnotesize\itshape\bfseries\color{comment},%
+%    commentstyle=\ttfamily\normalfont\bfseries\itshape\color{comment},%
+    commentstyle=\ttfamily\normalfont\footnotesize\bfseries\itshape\color{comment},%
+    %numberstyle=\color{kew_word_2_color},
+    postbreak=\space, 
+    breakindent=5pt, 
+    breaklines,                            % Перенос длинных строк
+    breakatwhitespace,
+%    xleftmargin = 12pt,                % отступ слева
+    lineskip = 5pt,                        % расстояние между строками
+    emptylines =*1,                        % максимальное количество "пустых" линий между строками - остальные просто режутся
+}
+
+%breaklines=true,                        % Automatic line breaking?
+%   breakatwhitespace=true,                % Automatic breaks only at whitespace
+   
+
+% Настройки отображения кода
+\lstset{%
+    language=cnc_lang,                      % Язык кода по умолчанию
+%    basicstyle=\footnotesize,              % Шрифт для отображения кода
+%    basicstyle=\ttfamily\footnotesize,     % Шрифт для отображения кода
+    basicstyle=\ttfamily,     % Шрифт для отображения кода
+%    basicstyle=\sffamily\footnotesize,    % Шрифт для отображения кода
+%    columns = flexible,
+    backgroundcolor=\color{bk},             % Цвет фона кода
+    frame=none,
+    columns=fixed, % make all characters equal width
+%    frame=lrb,xleftmargin=\fboxsep,xrightmargin=-\fboxsep,      % Рамка, подогнанная к заголовку
+%    rulecolor=\color{frame},                % Цвет рамки
+    tabsize=2,                              % Размер табуляции в пробелах
+% Настройка отображения номеров строк. Если не нужно, то удалите весь блок
+%    numbers=left,                           % Слева отображаются номера строк
+%    stepnumber=1,                           % Каждую строку нумеровать
+%    numbersep=5pt,                          % Отступ от кода
+%    numberstyle=\small\color{black},        % Стиль написания номеров строк
+% Для отображения русского языка
+    extendedchars=true,
+    literate=
+    {~}{{\textasciitilde}}1
+    {а}{{\selectfont\char224}}1
+    {б}{{\selectfont\char225}}1
+    {в}{{\selectfont\char226}}1
+    {г}{{\selectfont\char227}}1
+    {д}{{\selectfont\char228}}1
+    {е}{{\selectfont\char229}}1
+    {ё}{{\"e}}1
+    {ж}{{\selectfont\char230}}1
+    {з}{{\selectfont\char231}}1
+    {и}{{\selectfont\char232}}1
+    {й}{{\selectfont\char233}}1
+    {к}{{\selectfont\char234}}1
+    {л}{{\selectfont\char235}}1
+    {м}{{\selectfont\char236}}1
+    {н}{{\selectfont\char237}}1
+    {о}{{\selectfont\char238}}1
+    {п}{{\selectfont\char239}}1
+    {р}{{\selectfont\char240}}1
+    {с}{{\selectfont\char241}}1
+    {т}{{\selectfont\char242}}1
+    {у}{{\selectfont\char243}}1
+    {ф}{{\selectfont\char244}}1
+    {х}{{\selectfont\char245}}1
+    {ц}{{\selectfont\char246}}1
+    {ч}{{\selectfont\char247}}1
+    {ш}{{\selectfont\char248}}1
+    {щ}{{\selectfont\char249}}1
+    {ъ}{{\selectfont\char250}}1
+    {ы}{{\selectfont\char251}}1
+    {ь}{{\selectfont\char252}}1
+    {э}{{\selectfont\char253}}1
+    {ю}{{\selectfont\char254}}1
+    {я}{{\selectfont\char255}}1
+    {А}{{\selectfont\char192}}1
+    {Б}{{\selectfont\char193}}1
+    {В}{{\selectfont\char194}}1
+    {Г}{{\selectfont\char195}}1
+    {Д}{{\selectfont\char196}}1
+    {Е}{{\selectfont\char197}}1
+    {Ё}{{\"E}}1
+    {Ж}{{\selectfont\char198}}1
+    {З}{{\selectfont\char199}}1
+    {И}{{\selectfont\char200}}1
+    {Й}{{\selectfont\char201}}1
+    {К}{{\selectfont\char202}}1
+    {Л}{{\selectfont\char203}}1
+    {М}{{\selectfont\char204}}1
+    {Н}{{\selectfont\char205}}1
+    {О}{{\selectfont\char206}}1
+    {П}{{\selectfont\char207}}1
+    {Р}{{\selectfont\char208}}1
+    {С}{{\selectfont\char209}}1
+    {Т}{{\selectfont\char210}}1
+    {У}{{\selectfont\char211}}1
+    {Ф}{{\selectfont\char212}}1
+    {Х}{{\selectfont\char213}}1
+    {Ц}{{\selectfont\char214}}1
+    {Ч}{{\selectfont\char215}}1
+    {Ш}{{\selectfont\char216}}1
+    {Щ}{{\selectfont\char217}}1
+    {Ъ}{{\selectfont\char218}}1
+    {Ы}{{\selectfont\char219}}1
+    {Ь}{{\selectfont\char220}}1
+    {Э}{{\selectfont\char221}}1
+    {Ю}{{\selectfont\char222}}1
+    {Я}{{\selectfont\char223}}1
+    {і}{{\selectfont\char105}}1
+    {ї}{{\selectfont\char168}}1
+    {є}{{\selectfont\char185}}1
+    {ґ}{{\selectfont\char160}}1
+    {І}{{\selectfont\char73}}1
+    {Ї}{{\selectfont\char136}}1
+    {Є}{{\selectfont\char153}}1
+    {Ґ}{{\selectfont\char128}}1
+    {\{}{{{\color{brackets}\{}}}1 % Цвет скобок {
+    {\}}{{{\color{brackets}\}}}}1 % Цвет скобок }
+}
+
+
+
+
+\begin{comment}
+\lstdefinestyle{basic}{  
+  basicstyle=\footnotesize\ttfamily,
+  numbers=left,
+  numberstyle=\tiny\color{gray}\ttfamily,
+  numbersep=5pt,
+  backgroundcolor=\color{white},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  frame=single,
+  rulecolor=\color{black},
+  captionpos=b,
+  keywordstyle=\color{blue}\bf,
+  commentstyle=\color{gray},
+  stringstyle=\color{green},
+  keywordstyle={[2]\color{red}\bf},
+}
+\end{comment}
+
+% по умолчанию - сквозная нумерация!!!
+\begin{comment}
+%Формат: ХХ.YY.ZZ.PP.number
+\AtBeginDocument{%
+  \renewcommand{\thelstlisting}{%
+    \ifnum\value{subsection}=0
+      \thesection.\arabic{lstlisting}%
+    \else
+      \ifnum\value{subsubsection}=0
+        \thesubsection.\arabic{lstlisting}%
+      \else
+        \thesubsubsection.\arabic{lstlisting}%
+      \fi
+    \fi
+  }
+}
+\end{comment}
+
+% Формат: ХХ.YY.number
+\begin{comment}
+\AtBeginDocument{%
+  \renewcommand{\thelstlisting}{%
+%      \arabic{lstlisting}%
+      \thesection.\arabic{lstlisting}%
+    %  \textbf{\arabic{lstlisting}}%
+  }
+}
+\end{comment}
+
+%%%*** ---------------------------------- ***%%%
+
+
+%%%*********************************************%%%
+%%%*** Настройка формата подписей к листингам***%%%
+%%%*********************************************%%%
+%\DeclareCaptionFormat{listing}{\rule{\dimexpr\textwidth+17pt\relax}{0.4pt}\par\vskip1pt#1#2#3}
+%\captionsetup[lstlisting]{margin=0pt, labelfont = bf}
+
+\DeclareCaptionFormat{listing}{#1#2#3}
+\captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt,labelsep = space,labelfont = bf}
+
+
+\newcommand{\IncludeListing}[3]{%
+%\begin{snugshade}%
+\begin{listingExample}
+\lstinputlisting[caption=#2,label=#3]{#1}%
+\end{listingExample}
+
+%\end{snugshade}%
+}
+
+\newcommand{\IncludeLstWithoutBorder}[3]{%
+\lstinputlisting[caption=#2,label=#3]{#1}%
+}
+
+\newcommand{\mylstinline}[1]{%
+\colorbox{bk}{\lstinline[backgroundcolor=\color{bk}]{#1}}~%
+}%
+
+\renewcommand{\lstlistingname}{\textbf{Пример}}         % %\renewcommand{\lstlistingname}{\textbf{Пример кода программы}}         % Переименование Listings в нужное именование структуры
+
+% подписи к листингам
+%\DeclareCaptionFont{white}{\color{сaptiontext}}
+%\DeclareCaptionFormat{listing}{\parbox{\linewidth}{\colorbox{сaptionbk}{\parbox{\linewidth}{#1#2#3}}\vskip-4pt}}
+%\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+%%%*** -------------------------- ***%%%
+
+
+%%%*** ------------------- ***%%%
+
+
+%%%**********************************%%%
+%%%*** Настройка формата подписей ***%%%
+%%%**********************************%%%
+% подписи к рисункам и таблицам
+\DeclareCaptionLabelFormat{viadot}{#1 #2.}          % после номера Рис№ и Табл№  
+\captionsetup{labelsep=space, labelformat=viadot}   % - стоит точка!!!
+
+
+\newcommand{\keyword}[1]{%
+%    \textbf{\textcolor{key_word_color}{#1}}%
+    \lstinline{#1}%
+}%
+
+
+\newcommand{\killoverfullbefore}{%
+    {\sloppy%     % чтобы был минимум переполнений (чтобы строки не разрастались
+
+    }
+}
+
+\ifbiblatex
+    \newcommand{\BiblioCite}[1]{%
+        \cite{#1}%
+    }
+\else
+    \newcommand{\BiblioCite}[1]{%
+        {}%
+    }
+\fi
+
+
+%*******************************************
+% стиль названий плат расширения
+\newcommand{\DSPGATEthree}{%
+    \textbf{DSPGATE3} %
+}%
+
+
+
+%*******************************************
+% стиль структур данных
+\newcommand{\mystruct}[1]{%
+    \textbf{#1}%
+%    \textbf{\nameref{sec:#1}}%
+}%
+
+% стиль структур данных
+\newcommand{\mystructA}[1]{%
+    \textbf{#1}%
+%    \textbf{\nameref{sec:#1}}%
+}%
+
+% стиль структур данных
+\newcommand{\mystructall}[1]{%
+    \textbf{#1}%
+}%
+
+
+
+\setrefcountdefault{0}
+
+%\getrefbykeydefault{}{page}{0}
+
+\newcommand{\myreftosec}[1]{%
+    \ifnum \getpagerefnumber{sec:#1}=0% 
+        \textbf{#1}%                  если ссылка не определена - просто текст
+    \else% 
+        \textbf{\nameref{sec:#1}}%    если ссылка определена - текст с гиперссылкой
+    \fi
+%    \IfRefUndefinedBabe{sec:#1}{%
+%        \textbf{#1}%                  если ссылка не определена - просто текст
+%    }%
+%    {% 
+%        \textbf{\nameref{sec:#1}}%    если ссылка определена - текст с гиперссылкой
+%    }%
+}%
+
+\newcommand{\myreftosecwithpage}[1]{%
+    \ifnum \getpagerefnumber{sec:#1}=0% 
+        \textbf{#1}%                  если ссылка не определена - просто текст
+    \else% 
+        \textbf{\nameref{sec:#1}}~(стр.~\pageref{sec:#1})%    если ссылка определена - текст с гиперссылкой + указанием номера страницы
+    \fi
+}%
+
+
+\begin{comment}
+
+
+\ifnum \getpagerefnumber{sec:Gate3[i].Chan[j].UVW} = 0 
+    <tex-code-1> 
+\else 
+    <tex-code-2>
+\fi
+
+\end{comment}
+
+
+% стиль значений элементов структур данных
+\newcommand{\myval}[1]{%
+    \textit{#1}%
+}%
+
+
+%*******************************************
+% стиль названий плат расширения
+\newcommand{\myacc}[1]{%
+    \textit{\textbf{#1}}%
+}%
+
+
+\newcommand{\mytextBFIT}[1]{%
+    \textit{\textbf{#1}}%
+}%
+
+
+
+%*******************************************
+% стиль названий типов обработки ДОС
+\newcommand{\mytypeECT}[1]{%
+    \textit{\textbf{#1}}%
+}%
+
+
+
+%*******************************************
+% стиль записей справа 
+\newcommand{\RightHandText}[1]{%
+    \textit{#1}%
+}%
+
+
+%*******************************************
+% Диапазоны переменных(полей структур)
+                            %Floating-point
+\newcommand{\myfloatpoint}{%
+    Диапазон чисел с плавающей запятой%
+}%
+
+\newcommand{\myinteger}{%
+    Диапазон целых чисел%
+}%
+
+\newcommand{\mynonneginteger}{%
+    Диапазон неотрицательных целых чисел%
+}%
+
+                            %Positive floating-point (double-precision)
+\newcommand{\mypositfloatp}{%
+    Диапазон положительных чисел с плавающей запятой%
+}%
+
+                            %Positive floating-point
+\newcommand{\mypositfloatpoint}{%
+    Диапазон положительных чисел с плавающей запятой%
+}%
+
+                            %Non-negative floating-point
+\newcommand{\mynonnegfloatp}{%
+    Диапазон неотрицательных чисел с плавающей запятой%
+}%
+
+                            %Non-negative floating-point
+\newcommand{\myposfloatp}{%
+    Диапазон положительных чисел с плавающей запятой%
+}%
+
+\newcommand{\myflpointsixteenbt}{%
+    +/-32768 (число с плавающей запятой)%
+}%
+
+%Legitimate addresses
+\newcommand{\mylegitimadrs}{%
+    Все допустимые адреса%
+}%
+    
+\newcommand{\myautoconf}{%
+    Автоматическая настройка %
+}%
+
+
+% требуют уточнения
+\newcommand{\myReqwestDetail}{%
+    \textcolor{red}{ТРЕБУЕТСЯ УТОЧНЕНИЕ}%
+}%
+
+
+%*******************************************
+
+
+%*******************************************
+% Единицы измерения переменных(полей структур)
+
+                    
+\newcommand{\myuserset}{%
+    Пользовательская настройка%
+}%
+
+\newcommand{\axisunit}{%
+    Единицы измерения перемещения по оси%
+}%
+
+                             %Data structure element addresses
+\newcommand{\mydatastreladr}{%
+    Адреса элементов структур данных%
+}%
+
+                               %Motor units
+\newcommand{\motorunits}{%
+    Дискреты положения%
+}%
+
+                               %Motor units per millisecond
+\newcommand{\unitspermsec}{%
+    Дискреты положения/мс%
+}%
+
+                               %Motor units per servocycle
+\newcommand{\unitspermservo}{%
+    Дискреты положения/период сервоцикла%
+}%
+                               %Motor units per millisecond in sq
+\newcommand{\unitspermsecinsq}{%
+    Дискреты положения/$\text{мс}^2$%
+}%
+
+                             %Motor units per units of source data
+\newcommand{\unitspersource}{%
+    Дискреты положения/единицы измерения исходных данных%
+}%
+
+                             %Motor units per LSB of source data
+\newcommand{\unitsperlsbsource}{%
+    Дискреты положения/МЗР исходных данных%
+}%
+
+                %Milliseconds (if >= 0) or milliseconds2 per motor unit (if < 0)
+\newcommand{\unitabortta}{%
+    мс (если значение >= 0) или мс$^2$/дискреты положения (если значение < 0)%
+}%
+
+                %Milliseconds (if >= 0) or milliseconds3 per motor unit (if < 0)
+\newcommand{\unitabortts}{%
+    мс (если значение >= 0) или мс$^3$/дискреты положения (если значение < 0)%
+}%
+
+                               %Motor units per millisecond in sq
+\newcommand{\msecinsqperunit}{%
+    $\text{мс}^2$/дискреты положения%
+}%
+
+                %LSBs of 16-bit output per motor unit of position error
+\newcommand{\mylsbperuniterror}{%
+    МЗР 16-битного выхода(ЦАП)/дискреты измерения ошибки положения}%
+
+                         %Bit field
+\newcommand{\mybitfield}{%
+    Битовое поле%
+}%
+
+                         %Bits of a signed 16-bit input/output
+\newcommand{\myunitsixteenadcdac}{%
+    Биты 16-битного значения АЦП/ЦАП со знаком%
+}%
+
+                         %Bit field
+\newcommand{\myunitbool}{%
+    Логический тип данных%
+}%
+
+                           %none (unit-less z-transform coefficient)
+\newcommand{\myunitlessz}{%
+    Нет%
+}%
+
+
+
+
+%*******************************************
+%     Область действия
+\newcommand{\myscope}{%
+    Область действия
+}%
+
+\newcommand{\ComThreadSpec}{%
+    Заданный коммуникационный поток%
+}%
+
+\newcommand{\CoordSysSpec}{%
+    Заданная координатная система%
+}%
+
+\newcommand{\CoordSysAndComThreadSpec}{%
+    Заданные коммуникационный поток и координатная система%
+}%
+
+\newcommand{\MotorSpec}{%
+    Заданный двигатель%
+}%
+
+
+\newcommand{\GlobalScope}{%
+    Глобальная%
+}%
+
+
+%*******************************************
+
+%*******************************************
+% Значение по умолчанию для переменных (полей структур)
+\newcommand{\myautoconfhard}{%
+    Автоматически настраивается в зависимости от аппаратной конфигурации%
+}%
+
+%*******************************************
+
+%*******************************************
+% Тип буферов, для которых предназначена команда 
+
+\newcommand{\TypeBufAllPMC}{%
+    Программа движения (\keyword{prog} и~\keyword{rotary})%
+}%
+
+\newcommand{\TypeBufProgPMC}{%
+    Программа движения (только \keyword{prog})%
+}%
+
+\newcommand{\TypeBufAllPMCandPLC}{%
+    Программа движения (\keyword{prog} и~\keyword{rotary}), PLC программа%
+}%
+
+\newcommand{\TypeBufProgPMCandPLC}{%
+    Программа движения (только \keyword{prog}), PLC программа%
+}%
+
+
+
+
+
+%*******************************************
+%        Для Смотрите также:
+%*******************************************
+
+\newcommand{\SeeAlso}{%
+    \vspace{8pt}%
+    \textbf{\textit{\underline{Смотрите также:}}}%
+    \vspace{2pt}%
+}%
+
+\newcommand{\SeeAlsoAcc}{%
+    \vspace{8pt}%
+    \textbf{\textit{\underline{Для более подробной информации смотрите:}}}%
+    \vspace{2pt}%
+}%
+
+\newcommand{\DescriptInDev}{%
+    \begin{remark}%
+    \textbf{Примечание:}\BL 
+    \textit{Пункт находится в стадии разработки.}%
+    \end{remark}%
+%    \vspace{1pt}%
+}%
+
+\newcommand{\DescriptInDevTemp}{%
+    \BL 
+    \begin{remark}%
+    \textbf{Примечание:}\BL 
+    \textit{Более подробное описание находится в стадии разработки.}%
+    \end{remark}%
+%    \vspace{1pt}%
+}%
+
+\newcommand{\DescriptCMDInDev}{%
+    \begin{remark}%
+    \textbf{Примечание:}\BL 
+    \textit{Описание команды находится в стадии разработки.}%
+    \end{remark}%
+    \vspace{1pt}%
+}%
+
+
+\newcommand{\SeeParagraphs}{%
+    Разделы:%
+}%
+
+\newcommand{\SeeVar}{%
+    Переменные:%
+}%
+
+\newcommand{\SeeProgCmd}{%
+    Программные команды:%
+}%
+
+\newcommand{\SeeOnlineCmd}{%
+    Онлайн команды:%
+}%
+
+
+\newcommand{\tabitem}{~\llap{\textbullet}~~}
+
+\newcommand{\DbgSecSt}[2]{%
+% DebugSectionState     DbgSecSt
+    % 0 - вообще не готова 
+    % 1 - название есть
+    % 2 - готова частично
+    % 3 - готова полностью
+\ifDebugSectState%    
+    \ifcase #1%
+            \textcolor{red}{#2}%      0    \StZero
+        \or \textcolor{violet}{#2}%   1    \StName
+        \or \textcolor{blue}{#2}%     2    \StPart
+        \or \textcolor{green}{#2}%    3    \StFull
+        \or \textcolor{orange}{#2}%   4    \StNote
+        \or \textcolor{gray}{#2}%     5    \StDis        
+    \else     \textcolor{red}{#2}%    
+    \fi%
+\else%
+    {#2}%        - как есть
+\fi
+}%
+
+\newcommand{\StZero}{0}
+\newcommand{\StName}{1}
+\newcommand{\StPart}{2}
+\newcommand{\StFull}{3}
+\newcommand{\StHome}{4}
+\newcommand{\StNote}{4}
+\newcommand{\StDis}{5}
+
+
+% % % % % % % Типы обработки ДОС % % % % % % % %
+
+\newcommand{\myECTtypeZero}{\mytypeECT{Флаг окончания модуля обработки ДОС}}
+
+\newcommand{\myECTtypeOne}{\mytypeECT{Чтение одного 32-битного регистра}}
+
+\newcommand{\myECTtypeTwo}{\mytypeECT{Зарезервировано}}
+
+\newcommand{\myECTtypeThree}{\mytypeECT{Программная <<1/T интерполяция>>}}
+
+\newcommand{\myECTtypeFour}{\mytypeECT{Интерполяция с программным вычислением арктангенса угла}}
+
+\newcommand{\myECTtypeFive}{\mytypeECT{Зарезервировано}}
+
+\newcommand{\myECTtypeSix}{\mytypeECT{Прямое резольверное преобразование арктангенса угла}}
+
+\newcommand{\myECTtypeSeven}{\mytypeECT{Интерполяция с аппаратным вычислением арктангенса угла}}
+
+\newcommand{\myECTtypeEight}{\mytypeECT{Сложение результатов двух записей модуля обработки ДОС}}
+
+\newcommand{\myECTtypeNine}{\mytypeECT{Вычитание результатов двух записей модуля обработки ДОС}}
+
+\newcommand{\myECTtypeTen}{\mytypeECT{Триггерная временная развертка}}
+
+\newcommand{\myECTtypeEleven}{\mytypeECT{Зарезервировано}}
+
+\newcommand{\myECTtypeTwelve}{\mytypeECT{Зарезервировано}}
+
+
+%в дальнейшем требует корректировки!!!
+\newcommand{\ToCorrect}[1]{%
+   \textcolor{red}{\textbf{#1}}%
+}%
+
+
+% знак градуса
+\newcommand{\degree}{%
+$^\circ$ %
+}%
+
+
+% корректный перенос строки - вместо \\ + новый параграф без отступа
+\newcommand{\BL}{%
+    \par\vspace{\baselineskip}%
+    \noindent% 
+}%
+
+% новый параграф без отступа
+\newcommand{\NL}{%
+    \noindent% 
+}%
+
+
+% корректировка ширины таблицы, чтобы не было ошибок
+\newcommand{\TBW}{%
+    >{\raggedright}%
+}%
+
+% корректировка ширины таблицы, чтобы не было ошибок
+\newcommand{\TB}{%
+    \raggedright%
+}%
+
+% если TB в конце, то нужно это:
+\newcommand{\TBend}{%
+    \tabularnewline%
+}%
+
+
+%\newcommand*{\nom}[2]{#1\nomenclature{#1}{#2}}
+
+
+
+\newcounter{word}
+\makeatletter
+\newcommand*{\LBL}{%
+  \@dblarg\@LBL
+}
+\def\@LBL[#1]#2{%
+  \begingroup
+    \renewcommand*{\theword}{#2}%
+    \refstepcounter{word}%
+    \label{#1}%
+    #2%
+  \endgroup
+}
+\makeatother
+
+
+
+
+
+
+ %       \LBL[BtnKill]{\textit{<<Выключить>>}}
+
+
+\newcommand{\mylbl}[2]{%
+%   \LBL[#2]{\textbf\textit{<<#1>>}}%
+   \LBL[#2]{\textcolor{linkcolor}{\textit{\textbf{\textit{#1}}}}}%
+}
+
+\newcommand{\myheader}[2]{%
+%   \LBL[#2]{\textbf\textit{<<#1>>}}%
+   \LBL[#2]{\textcolor{indigo_dye}{\textit{\textbf{\textit{#1}}}}}%
+}
+%
+
+\newcommand{\myref}[1]{%
+ \ref{#1}, стр. \pageref{#1}%
+}
+
+% Величина пробелов списка
+\renewenvironment{itemize}{
+    \begin{list}{\labelitemi}{
+    \setlength{\topsep}{0pt}
+    \setlength{\partopsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parsep}{0pt}
+    }
+}{\end{list}}
+
+% ссылки на слова
+%\newcommand{mylbl}[1]{%
+%   \textcolor{blue}{\textbf{\LBL{#1}}}%
+%}%
+
+
+%\newcommand{\myreftolbl}[1]{%
+%    \ifnum \getpagerefnumber{sec:#1}=0% 
+%        \textbf{#1}%                  если ссылка не определена - просто текст
+%    \else% 
+%        \textbf{\nameref{sec:#1}}%    если ссылка определена - текст с гиперссылкой
+%    \fi
+
+\renewcommand{\sfdefault}{cmss}

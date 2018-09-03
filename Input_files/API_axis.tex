@@ -1,0 +1,682 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Управление осями}}
+%--------------------------------------------------------
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{AxisStates}}
+\index{Программный интерфейс ПЛК!Управление осями!Перечисление AxisStates}
+\label{sec:AxisStates}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление AxisStates}\\
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы состояний оси.
+
+\begin{MyTableTwoColAllCntr}{Перечисление AxisStates}{tbl:AxisStates}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline axisInactive &  Ось выключена  \\
+\hline axisActive &  Ось находится в слежении \\
+\hline axisJoggingPlus & Толчковое движение в положительном направлении \\
+\hline axisJoggingMinus & Толчковое движение в отрицательном направлении \\
+\hline axisJoggingTo & Толчковое движение в заданное положение или на заданное расстояние \\
+\hline axisStopping & Останов оси \\
+\hline axisHomeWaitHW & Ожидание применения аппаратных настроек выезда в нулевую точку \\
+\hline axisHoming & Выезд в нулевую точку \\
+\hline axisIndexWaitHW & Ожидание применения аппаратных настроек поиска индексной метки \\
+\hline axisIndexing & Поиск индексной метки \\
+\hline axisAborting & Аварийное торможение \\
+\hline axisWaitActivate & Ожидание включения \\
+\hline axisWaitDeactivate & Ожидание выключения \\
+\hline axisWaitPhaseRef  & Ожидание фазировки \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{AxisCommands}}
+\index{Программный интерфейс ПЛК!Управление осями!Перечисление AxisCommands}
+\label{sec:AxisCommands}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление AxisCommands}\\
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы команд управления осями. 
+
+\begin{MyTableTwoColAllCntr}{Перечисление AxisCommands}{tbl:AxisCommands}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline axisCmdIdle &  Нет команды  \\
+\hline axisCmdKill  &  Выключить ось \\
+\hline axisCmdActivate  &  Включить ось в слежение \\
+\hline axisCmdDeactivate  &  Выключить ось  \\
+\hline axisCmdJogPlus  &  Выполнить толчковое движение в положительном направлении \\
+\hline axisCmdJogMinus  & Выполнить толчковое движение в отрицательном направлении \\
+\hline axisCmdJogStop & Выполнить останов \\
+\hline axisCmdJogRet & Вернуться в сохраненную позицию \\
+\hline axisCmdInc  & Выполнить толчковое движение на заданное расстояние \\
+\hline axisCmdAbs & Выполнить толчковое движение в заданное положение \\
+\hline axisCmdHome & Выполнить движение в нулевую точку \\
+\hline axisCmdIndex & Выполнить движение до индексной метки \\
+\hline axisCmdPhaseRef & Выполнить фазировку \\
+\hline axisCmdAbort & Выполнить аварийное выключение \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+
+\clearpage
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{AxisAbortMode}}
+\index{Программный интерфейс ПЛК!Управление осями!Перечисление AxisAbortMode}
+\label{sec:AxisAbortMode}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление AxisAbortMode}\\
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы действий по команде аварийного останова (ABORT).
+
+\begin{MyTableTwoColAllCntr}{Перечисление AxisAbortMode}{tbl:AxisAbortMode}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline axisAbortStop & Останов категории 2 (аварийно затормозить и оставаться в слежении) \\
+\hline axisAbortAndKill  & Останов категории 1 (аварийно затормозить и выключить) \\
+\hline axisAbortKill & Останов категории 0 (выключить) \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{AxisConfig}}
+\index{Программный интерфейс ПЛК!Управление осями!Структура AxisConfig}
+\label{sec:AxisConfig}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура AxisConfig}\\
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{fHeader}
+
+Структура определяет настройки оси.
+
+\begin{MyTableThreeColAllCntr}{Структура AxisConfig}{tbl:AxisConfig}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline servo & \centering{unsigned} & Номер платы управления ($0\div3$)\\
+\hline chan & \centering{unsigned} & Номер канала ($0\div7$)\\
+\hline motor & \centering{unsigned} & Номер связанного с осью двигателя ($0\div31$)\\
+\hline homeOrder & \centering{unsigned} & Порядок выезда в нулевую точку \\
+\hline needDKill & \centering{unsigned:1} & Требуется задержка перед отключением \\
+\hline needPhaseRef & \centering{unsigned:1} & Требуется фазировка \\
+
+\hline needHome & \centering{unsigned:1} & Требуется выезд в нулевую точку \\
+\hline needIndex & \centering{unsigned:1} & Требуется позиционирование по индексной метке \\
+\hline hasAbsPos & \centering{unsigned:1} & Установлен абсолютный датчик \\
+
+\hline abortMode & \centering{unsigned:2} & Реакции на команду аварийного выключения (см. \myreftosec{AxisAbortMode}) \\
+\hline homeCaptCtrl & \centering{unsigned:4} & Настройка захвата положения для выезда в нулевую точку по входу (флагу) \\
+\hline indexCaptCtrl & \centering{unsigned:4} & Настройка захвата положения для выезда в нулевую точку по индексной метке ДОС \\
+\hline needPosRef & \centering{unsigned:1} & Требуется позиционирование при включении станка \\
+\hline refAxis & \centering{unsigned:5} & Координата для оси \\
+\hline rotaryAxis & \centering{unsigned:1} & Вращающаяся ось с периодом 360 \\
+
+\hline reserved & \centering{unsigned:10} & Резерв \\
+\hline homeVel & \centering{double} & Скорость и направление выезда в нулевую точку \\
+\hline indexVel & \centering{double} & Скорость и направление поиска индексной метки \\
+\hline homeOffset & \centering{double} & Смещение нулевой точки относительно позиции ДОС \\
+\hline indexOffset & \centering{double} & Смещение индексной метки относительно позиции ДОС \\
+\hline homeOfsVel & \centering{double} & Скорость движения в позицию смещения нулевой точки (не используется) \\
+\hline indexOfsVel & \centering{double} & Скорость движения в позицию смещения индексной метки (не используется) \\
+\hline minPos & \centering{double} & Программное ограничение в отрицательном направлении (для абсолютного ДОС настраивается в дискретах датчика, определённых в энкодерной таблице) \\
+\hline maxPos & \centering{double} &  Программное ограничение в положительном направлении (для абсолютного ДОС настраивается в дискретах датчика, определённых в энкодерной таблице) \\
+\hline defaultTa & \centering{double} & Время в мс ускорения/замедления (при значении больше 0) или коэффициент, обратный величине амплитуды ускорения/замедления (при значении меньше 0) по умолчанию \\
+\hline defaultTs & \centering{double} & Время в мс (при значении больше 0) или коэффициент, обратный значению амплитуды рывка (при значении меньше 0), для каждой половины S-кривой профиля ускорения по умолчанию \\
+\hline manualTa & \centering{double} & Время в мс ускорения/замедления (при значении больше 0) или коэффициент, обратный величине амплитуды ускорения/замедления (при значении меньше 0) в ручном режиме \\
+\hline manualTs & \centering{double} & Время в мс (при значении больше 0) или коэффициент, обратный значению амплитуды рывка (при значении меньше 0), для каждой половины S-кривой профиля ускорения в ручном режиме \\
+\hline hwlTa & \centering{double} & Время в мс ускорения/замедления (при значении больше 0) или коэффициент, обратный величине амплитуды ускорения/замедления (при значении меньше 0) в режиме дискретных перемещений \\
+\hline hwlTs & \centering{double} & Время в мс (при значении больше 0) или коэффициент, обратный значению амплитуды рывка (при значении меньше 0), для каждой половины S-кривой профиля ускорения в режиме дискретных перемещений \\
+\hline homeTa & \centering{double} & Время в мс ускорения/замедления (при значении больше 0) или коэффициент, обратный величине амплитуды ускорения/замедления (при значении меньше 0) в режиме выезда в нулевую точку \\
+\hline homeTs & \centering{double} &  Время в мс (при значении больше 0) или коэффициент, обратный значению амплитуды рывка (при значении меньше 0), для каждой половины S-кривой профиля ускорения в режиме выезда в нулевую точку \\
+\hline autoTa & \centering{double} & Время в мс ускорения/замедления (при значении больше 0) или коэффициент, обратный величине амплитуды ускорения/замедления (при значении меньше 0) в автоматическом режиме \\
+\hline autoTs & \centering{double} &  Время в мс (при значении больше 0) или коэффициент, обратный значению амплитуды рывка (при значении меньше 0), для каждой половины S-кривой профиля ускорения в автоматическом режиме \\
+\hline encRes & \centering{double} &  Число дискрет датчика на оборот\\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+
+Поля \texttt{homeCaptCtrl} и \texttt{indexCaptCtrl} являются 4-битными и содержат настройки захвата положения для выезда в нулевую точку:
+\begin{itemize}
+\item биты 0 и 1 определяют тип захвата положения (0 ~-- непосредственный захват, 1 ~--  по индексному сигналу датчика, 2 ~-- захват по флагу, 3 ~-- по флагу и индексному сигналу); \killoverfullbefore
+\item бит 2 управляет инверсией индексного сигнала ДОС (0 ~-- не инвертировать, 1 ~-- инвертировать); \killoverfullbefore
+\item бит 3 управляет инверсией флага при захвате положения (0 ~-- не инвертировать, 1 ~-- инвертировать). \killoverfullbefore \BL
+\end{itemize} 
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{Axis}}
+\index{Программный интерфейс ПЛК!Управление осями!Структура Axis}
+\label{sec:Axis}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура Axis}\\
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{fHeader}
+
+Структура определяет состояние, параметры и данные оси.
+
+\begin{MyTableThreeColAllCntr}{Структура Axis}{tbl:Axis}{|m{0.3\linewidth}|m{0.25\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline state & \centering{\myreftosec{AxisStates}} & Текущее состояние \\
+\hline command & \centering{\myreftosec{AxisCommands}} & Текущая команда \\
+\hline statePreHome & \centering{\myreftosec{AxisStates}} & Состояние перед выездом в нулевую точку \\
+\hline followup & \centering{unsigned:1} & Восстановление после ошибки \\
+\hline phaseRefComplete & \centering{unsigned:1} & Фазировка выполнена \\
+\hline phaseRefError & \centering{unsigned:1} & Ошибка фазировки \\
+\hline homeComplete & \centering{unsigned:1} & Выполнен выезд в нулевую точку \\
+\hline homeErrorFlag & \centering{unsigned:1} & Ошибка выезда в нулевую точку \\
+\hline posRefComplete & \centering{unsigned:1} & Позиционирование при включении станка выполнено \\
+\hline timer & \centering{\myreftosec{Timer}} & Таймер \\
+\hline JogValue & \centering{double} & Значение заданной позиции для толчкового перемещения \\
+\hline IncStep & \centering{double} & Значение заданного расстояния для толчкового перемещения \\
+\hline platform & \centering{\hyperlink{Axis_Platform_Control}{AxisPlatformControl}} & Пользовательские параметры и переменные оси \\
+\end{MyTableThreeColAllCntr}
+
+\hypertarget{Axis_Platform_Control}{Структура} \texttt{AxisPlatformControl} является пользовательской и служит для введения дополнительных параметров и переменных оси.\killoverfullbefore
+
+Если структура \texttt{AxisPlatformControl} задана пользователем, то должен быть определён идентификатор \texttt{AXES\_PLATFORM\_CONTROL\_DEFINED}: \texttt{\#define AXES\_PLATFORM\_CONTROL\_DEFINED}. \killoverfullbefore
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{AxesControl}}
+\index{Программный интерфейс ПЛК!Управление осями!Структура AxesControl}
+\label{sec:AxesControl}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура AxesControl}\\
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{fHeader}
+
+Структура определяет состояние, параметры и данные осей.
+
+\begin{MyTableThreeColAllCntr}{Структура AxesControl}{tbl:AxesControl}{|m{0.3\linewidth}|m{0.25\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline homeState & \centering{\myreftosec{HomeStates}} & Состояние выезда в нулевую точку\\
+\hline homeComplete & \centering{unsigned:1} & Выполнен выезд в нулевую точку \\
+\hline homeErrorFlag & \centering{unsigned:1} & Ошибка выезда в нулевую точку \\
+\hline homeStage & \centering{int} & Этап выезда в нулевую точку \\
+\hline axis[ЧИСЛО\_ОСЕЙ] & \centering{\myreftosec{Axis}} & Данные осей \\
+\hline timerHome & \centering{\myreftosec{Timer}} & Таймер для задержек переключений состояний в режиме выезда в нулевую точку\\
+\hline platform & \centering{\hyperlink{Axes_Platform_Control}{AxesPlatformControl}} & Пользовательские параметры и переменные осей \\
+\hline saveSpeed & \centering{int} & Сохранённая скорость с пульта оператора \\
+\hline activeAxis & \centering{int} & Номер активной оси \\
+\end{MyTableThreeColAllCntr}
+
+\hypertarget{Axes_Platform_Control}{Структура} \texttt{AxesPlatformControl} является пользовательской и служит для введения дополнительных параметров и переменных осей.\killoverfullbefore
+
+Если структура \texttt{AxesPlatformControl} задана пользователем, то должен быть определён идентификатор \texttt{AXES\_PLATFORM\_CONTROL\_DEFINED}: \texttt{\#define AXES\_PLATFORM\_CONTROL\_DEFINED}.\killoverfullbefore
+% *******end subsection***************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesForceKill}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesForceKill}
+\label{sec:axesForceKill}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axesForceKill();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция вызывает принудительное выключение всех осей.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axisForceKill}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axisForceKill}
+\label{sec:axisForceKill}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axisForceKill(unsigned axis);}\\
+    Аргумент(ы):    & \RightHandText{unsigned axis ~-- номер оси} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция вызывает принудительное выключение оси, номер которой является аргументом функции.
+
+Является системной.
+% *******end section*****************
+
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesDeactivate}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesDeactivate}
+\label{sec:axesDeactivate}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axesDeactivate();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция вызывает выключение всех осей.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesActivate}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesActivate}
+\label{sec:axesActivate}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axesActivate();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция вызывает включение в слежение всех осей.
+
+Является системной.
+% *******end section*****************
+
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesInactive}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesInactive}
+\label{sec:axesInactive}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axesInactive();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если хотя бы одна ось не находится в слежении, и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesActive}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesActive}
+\label{sec:axesActive}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axesActive();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если все оси находятся в слежении, и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesPhaseRefComplete}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesPhaseRefComplete}
+\label{sec:axesPhaseRefComplete}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axesPhaseRefComplete();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если фазировка выполнена для всех осей, и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesPhaseRef}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesPhaseRef}
+\label{sec:axesPhaseRef}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axesPhaseRef();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция возвращает 1, если хотя бы одна ось требует фазировки, и 0 в противном случае. Для оси, фазировка которой не выполнена, даётся команда фазировки.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesAborted}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesAborted}
+\label{sec:axesAborted}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axesAborted();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если все оси аварийно остановлены, и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axisStopped}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axisStopped}
+\label{sec:axisStopped}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axisStopped(unsigned axis);}\\
+    Аргумент(ы):    & \RightHandText{unsigned axis ~-- номер оси} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция возвращает 1, если ось остановлена (ось в слежении имеет равную нулю заданную скорость и находится в позиции), и 0 в противном случае.  
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesStopped}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesStopped}
+\label{sec:axesStopped}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axesStopped();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если все оси остановлены (оси в слежении имеют равную нулю заданную скорость и находятся в позиции), и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesAbortAll}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesAbortAll}
+\label{sec:axesAbortAll}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axesAbortAll();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция вызывает аварийное выключение всех осей.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesStopAll}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesStopAll}
+\label{sec:axesStopAll}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axesStopAll();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция вызывает останов всех осей при толчковых перемещениях.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesRet}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesRet}
+\label{sec:axesRet}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axesRet();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция вызывает перемещение осей в сохраненную позицию при толчковых перемещениях.
+
+Является системной.
+% *******end section*****************
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axisIndexInit}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axisIndexInit}
+\label{sec:axisIndexInit}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axisIndexInit(unsigned axis);}\\
+    Аргумент(ы):    & \RightHandText{unsigned axis ~-- номер оси} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+%Функция выполняет запрос выезда оси, номер которой является аргументом функции, в нулевую точку по индексной метке. 
+
+Функция выполняет инициализацию параметров поиска индексной метки для оси, номер которой является аргументом функции.
+
+Является системной.
+% *******end section*****************
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axisPosition}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axisPosition}
+\label{sec:axisPosition}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{double axisPosition(unsigned axis);}\\
+    Аргумент(ы):    & \RightHandText{unsigned axis ~-- номер оси} \\    
+%    Возвращаемое значение:       & \RightHandText{Число с плавающей запятой двойной точности} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция возвращает заданную позицию оси, номер которой является аргументом функции.
+
+Возвращаемое значение измеряется в единицах \texttt{encRes} (см. структуру \myreftosec{AxisConfig}). Для вращающихся осей возвращаемое значение ~-- остаток от деления на 360. \killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesFollowup}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesFollowup}
+\label{sec:axesFollowup}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axesFollowup();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция устанавливает для всех осей флаг <<Восстановление после ошибки>> (см. структуру \myreftosec{Axis}).\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{initAxis}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция initAxis}
+\label{sec:initAxis}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void initAxis(int axis);}\\
+    Аргумент(ы):    & \RightHandText{int axis ~-- номер оси} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция выполняет инициализацию оси, номер которой является аргументом функции, параметрами по умолчанию. 
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{initAxes}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция initAxes}
+\label{sec:initAxes}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void initAxes();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция выполняет инициализацию осей параметрами по умолчанию. 
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axisInitPlatform}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axisInitPlatform}
+\label{sec:axisInitPlatform}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axisInitPlatform(int axis);}\\
+    Аргумент(ы):    & \RightHandText{int axis ~-- номер оси} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция выполняет инициализацию параметров оси, номер которой является аргументом функции, пользовательскими значениями, в том числе структуры \hyperlink{Axis_Platform_Control}{AxisPlatformControl}. \killoverfullbefore
+
+Реализуется пользователем.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesInitPlatform}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesInitPlatform}
+\label{sec:axesInitPlatform}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axesInitPlatform();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция выполняет инициализацию параметров осей пользовательскими значениями, в том числе структуры \hyperlink{Axes_Platform_Control}{AxesPlatformControl}. \killoverfullbefore
+
+Реализуется пользователем.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesAbsPosRead}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesAbsPosRead}
+\label{sec:axesAbsPosRead}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void axesAbsPosRead();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция выполняет запрос чтения данных абсолютных ДОС для осей.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesAbsPosReadComplete}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesAbsPosReadComplete}
+\label{sec:axesAbsPosReadComplete}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axesAbsPosReadComplete();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если чтение данных абсолютных ДОС для осей завершено, и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axisRefPosComplete}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axisRefPosComplete}
+\label{sec:axisRefPosComplete}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axisRefPosComplete(unsigned axis);}\\
+    Аргумент(ы):   & \RightHandText{unsigned axis ~-- номер оси}\\
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если требуется и выполнено позиционирование оси, номер которой является аргументом функции, при включении станка или запуске программы, и 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesRefPosComplete}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesRefPosComplete}
+\label{sec:axesRefPosComplete}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axesRefPosComplete();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если требуется и выполнено позиционирование всех осей при включении станка или запуске программы, и 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axisAtRefPos}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axisAtRefPos}
+\label{sec:axisAtRefPos}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axisAtRefPos(unsigned axis);}\\
+    Аргумент(ы):    & \RightHandText{unsigned axis ~-- номер оси} \\    
+%%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если ось, номер которой является аргументом функции, находится в первой референтной позиции, и 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{axesAtRefPos}}
+\index{Программный интерфейс ПЛК!Управление осями!Функция axesAtRefPos}
+\label{sec:axesAtRefPos}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int axesAtRefPos();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если все оси находятся в первой референтной позиции, и 0 в противном случае. 
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------

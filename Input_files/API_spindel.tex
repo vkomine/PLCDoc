@@ -1,0 +1,620 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Управление шпинделями}}
+%--------------------------------------------------------
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{SpindleStates}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Перечисление SpindleStates}
+\label{sec:SpindleStates}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление SpindleStates}\\
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы состояний шпинделя.
+
+\begin{MyTableTwoColAllCntr}{Перечисление SpindleStates}{tbl:SpindleStates}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline spndInactive & Шпиндель выключен  \\
+\hline spndActive &  Шпиндель находится в слежении \\
+\hline spndCW & Вращение по часовой стрелке\\
+\hline spndCCW & Вращение против часовой стрелки \\
+\hline spndStopping & Останов шпинделя \\
+\hline spndHomeWaitHW & Ожидание применения аппаратных настроек выезда в нулевую точку \\
+\hline spndHoming & Выезд в нулевую точку \\
+\hline spndIndexWaitHW & Ожидание применения аппаратных настроек поиска индексной метки \\
+\hline spndIndexing & Поиск индексной метки \\
+\hline spndAborting & Аварийное торможение \\
+\hline spndWaitActivate & Ожидание включения \\
+\hline spndWaitDeactivate & Ожидание выключения \\
+\hline spndWaitPhaseRef & Ожидание фазировки \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{SpindleCommands}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Перечисление SpindleCommands}
+\label{sec:SpindleCommands}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление SpindleCommands}\\
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы команд управления шпинделями. 
+
+\begin{MyTableTwoColAllCntr}{Перечисление SpindleCommands}{tbl:SpindleCommands}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline spndCmdIdle &  Нет команды  \\
+\hline spndCmdKill  &  Выключить шпиндель \\
+\hline spndCmdActivate  &  Включить шпиндель в слежение \\
+\hline spndCmdDeactivate  &  Выключить шпиндель  \\
+\hline spndCmdCW &  Выполнить вращение по часовой стрелке \\
+\hline spndCmdCCW & Выполнить вращение против часовой стрелки \\
+\hline spndCmdStop & Выполнить останов \\
+\hline spndCmdInc  & Выполнить поворот на заданный угол \\
+\hline spndCmdAbs & Выполнить поворот в заданное положение \\
+\hline spndCmdHome & Выполнить движение в нулевую точку \\
+\hline spndCmdIndex & Выполнить движение до индексной метки \\
+\hline spndCmdPhaseRef & Выполнить фазировку \\
+\hline spndCmdAbort & Выполнить аварийное выключение \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{SpindleStage}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Структура SpindleStage}
+\label{sec:SpindleStage}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура SpindleStage} \\
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{fHeader}
+
+Структура определяет настройки ступенчатого разгона шпинделя.
+
+\begin{MyTableThreeColAllCntr}{Структура SpindleStage}{tbl:SpindleStage}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline Vmin & \centering{double} & Минимальная скорость \\
+\hline Vmax & \centering{doubled} & Максимальная скорость \\
+\hline Amax & \centering{double} & Максимальное ускорение \\
+\hline Jmax & \centering{double} & Максимальный рывок \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{SpindleConfig}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Структура SpindleConfig}
+\label{sec:SpindleConfig}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура SpindleConfig} \\
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{fHeader}
+
+Структура определяет настройки шпинделя.
+
+\begin{MyTableThreeColAllCntr}{Структура SpindleConfig}{tbl:SpindleConfig}{|m{0.35\linewidth}|m{0.2\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline servo & \centering{unsigned} & Номер платы управления ($0\div3$) \\
+\hline chan & \centering{unsigned} & Номер канала ($0\div7$) \\
+\hline motor & \centering{unsigned} & Номер связанного с осью двигателя ($0\div31$)\\
+\hline homeOrder & \centering{unsigned} & Порядок выезда в нулевую точку \\
+\hline needDKill & \centering{Битовое поле:1} & Требуется задержка перед отключением \\
+\hline needPhaseRef & \centering{Битовое поле:1} & Требуется фазировка \\
+
+\hline needHome & \centering{Битовое поле:1} & Требуется выезд в нулевую точку \\
+\hline needIndex & \centering{Битовое поле:1} & Требуется позиционирование по индексной метке \\
+\hline hasAbsPos & \centering{Битовое поле:1} & Установлен абсолютный датчик \\
+
+\hline abortMode & \centering{Битовое поле:2} & Реакции на команду аварийного выключения (см. \myreftosec{AxisAbortMode})\\
+\hline homeCaptCtrl & \centering{Битовое поле:4} & Настройка CaptCtrl для выезда в нулевую точку по входу (флагу) \\
+\hline indexCaptCtrl & \centering{Битовое поле:4} & Настройка CaptCtrl для выезда в нулевую точку по индексной метке \\
+\hline killAfterStop & \centering{Битовое поле:1} &  Выключение после останова \\
+\hline reserved & \centering{Битовое поле:16} &  Резерв \\
+\hline homeVel & \centering{double} & Скорость выезда в нулевую точку \\
+\hline indexVel & \centering{double} & Скорость поиска индексной метки \\
+\hline homeOffset & \centering{double} & Смещение нулевой точки относительно позиции ДОС\\
+\hline indexOffset & \centering{double} & Смещение индексной метки относительно позиции ДОС\\
+\hline homeOfsVel & \centering{double} & Скорость движения в позицию смещения нулевой точки (не используется)\\
+\hline indexOfsVel & \centering{double} & Скорость движения в позицию смещения индексной метки (не используется)\\
+\hline minPos & \centering{double} & Программное ограничение в отрицательном направлении (для абсолютного ДОС настраивается в дискретах датчика, определённых в энкодерной таблице) \\
+\hline maxPos & \centering{double} &  Программное ограничение в положительном направлении (для абсолютного ДОС настраивается в дискретах датчика, определённых в энкодерной таблице) \\
+\hline spinEncRes & \centering{double} & Число дискрет датчика на оборот \\
+\hline atSpeedBand & \centering{double} & Амплитуда зоны ошибки заданной скорости \\
+\hline stages\newline[ЧИСЛО\_СТУПЕНЕЙ\_РАЗГОНА] & \centering{\myreftosec{SpindleStage}} & Параметры ступенчатого разгона \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+
+Поля \texttt{homeCaptCtrl} и \texttt{indexCaptCtrl} являются 4-битными и содержат настройки захвата положения для выезда в нулевую точку:
+\begin{itemize}
+\item биты 0 и 1 определяют тип захвата положения (0 ~-- непосредственный захват, 1 ~--  по индексному сигналу датчика, 2 ~-- захват по флагу, 3 ~-- по флагу и индексному сигналу); \killoverfullbefore
+\item бит 2 управляет инверсией индексного сигнала ДОС (0 ~-- не инвертировать, 1 ~-- инвертировать); \killoverfullbefore
+\item бит 3 управляет инверсией флага при захвате положения (0 ~-- не инвертировать, 1 ~-- инвертировать). \killoverfullbefore \BL
+\end{itemize} 
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{Spindle}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Структура Spindle}
+\label{sec:Spindle}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура Spindle}\\
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{fHeader}
+
+Структура определяет состояние, параметры и данные шпинделя.
+
+\begin{MyTableThreeColAllCntr}{Структура Spindle}{tbl:Spindle}{|m{0.31\linewidth}|m{0.29\linewidth}|m{0.4\linewidth}|}{Элемент}{Тип}{Описание}
+\hline state & \centering{\myreftosec{SpindleStates}} & Текущее состояние \\
+\hline command & \centering{\myreftosec{SpindleCommands}} & Текущая команда \\
+\hline commandAfterActivate & \centering{\myreftosec{SpindleCommands}} & Команда после включения \\
+\hline followup & \centering{Битовое поле:1} & Восстановление после ошибки \\
+\hline phaseRefComplete & \centering{Битовое поле:1} & Фазировка выполнена \\
+\hline phaseRefError & \centering{Битовое поле:1} & Ошибка фазировки \\
+\hline homeComplete & \centering{Битовое поле:1} & Выполнен выезд в нулевую точку \\
+\hline homeErrorFlag & \centering{Битовое поле:1} & Ошибка выезда в нулевую точку \\
+\hline atSpeed & \centering{Битовое поле:1} & Заданная скорость достигнута \\
+\hline timer & \centering{\myreftosec{Timer}} & Таймер \\
+\hline SpeedValue & \centering{double} &  Значение скорости \\
+\hline SpeedOverride & \centering{double} & Значение корректора скорости \\
+\hline spinStage & \centering{unsigned} & Номер ступени разгона \\
+\hline platform & \centering{\hyperlink{Spindle_Platform_Control}{SpindlePlatformControl}} & Пользовательские параметры и переменные шпинделя \\
+\end{MyTableThreeColAllCntr}
+
+\hypertarget{Spindle_Platform_Control}{Структура} \texttt{SpindlePlatformControl} является пользовательской и служит для введения дополнительных параметров и переменных шпинделя.\killoverfullbefore
+
+Если структура \texttt{SpindlePlatformControl} задана пользователем, то должен быть определён идентификатор \texttt{SPINDLE\_PLATFORM\_CONTROL\_DEFINED}: \texttt{\#define SPINDLE\_PLATFORM\_CONTROL\_DEFINED}. \killoverfullbefore
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{SpindleControl}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Структура SpindleControl}
+\label{sec:SpindleControl}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура SpindleControl}\\
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{fHeader}
+
+Структура определяет состояние, параметры и данные шпинделей. 
+
+\begin{MyTableThreeColAllCntr}{Структура SpindleControl}{tbl:SpindleControl}{|m{0.31\linewidth}|m{0.29\linewidth}|m{0.4\linewidth}|}{Элемент}{Тип}{Описание}
+\hline homeState & \centering{\myreftosec{HomeStates}} & Состояние выезда в нулевую точку\\
+\hline homeComplete & \centering{Битовое поле:1} & Выполнен выезд в нулевую точку \\
+\hline homeErrorFlag & \centering{Битовое поле:1} & Ошибка выезда в нулевую точку \\
+\hline homeStage & \centering{int} & Этап выезда в нулевую точку \\
+\hline spin[ЧИСЛО\_ШПИНДЕЛЕЙ] & \centering{\myreftosec{Spindle}} & Данные шпинделя(-ей) \\
+\hline timerHome & \centering{\myreftosec{Timer}} & Таймер для задержек переключений состояний в режиме выезда в нулевую точку\\
+\hline platform & \centering{\hyperlink{Spindles_Platform_Control}{SpindlesPlatformControl}} & Пользовательские параметры и переменные шпинделей \\
+\end{MyTableThreeColAllCntr}
+
+\hypertarget{Spindles_Platform_Control}{Структура} \texttt{SpindlesPlatformControl} является пользовательской и служит для введения дополнительных параметров и переменных шпинделей.\killoverfullbefore
+
+Если структура \texttt{SpindlesPlatformControl} задана пользователем, то должен быть определён идентификатор \texttt{SPINDLE\_PLATFORM\_CONTROL\_DEFINED}: \texttt{\#define SPINDLE\_PLATFORM\_CONTROL\_DEFINED}. \killoverfullbefore
+% *******end subsection***************
+
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsForceKill}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsForceKill}
+\label{sec:spinsForceKill}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void spinsForceKill();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\       
+\end{pHeader}
+
+Функция вызывает принудительное выключение всех шпинделей.
+
+Является системной.
+% *******end section*****************
+
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinForceKill}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinForceKill}
+\label{sec:spinForceKill}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void spinForceKill(unsigned spin);}\\
+    Аргумент(ы):    & \RightHandText{unsigned spin ~-- номер шпинделя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\       
+\end{pHeader}
+
+Функция вызывает принудительное выключение шпинделя, номер которого является аргументом функции.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsDeactivate}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsDeactivate}
+\label{sec:spinsDeactivate}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void spinsDeactivate();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\       
+\end{pHeader}
+
+Функция вызывает выключение всех шпинделей.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsActivate}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsActivate}
+\label{sec:spinsActivate}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void spinsActivate();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{pHeader}
+
+Функция вызывает включение в слежение всех шпинделей.
+
+Является системной.
+% *******end section*****************
+\clearpage
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsInactive}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsInactive}
+\label{sec:spinsInactive}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int spinsInactive();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если хотя бы один шпиндель не находится в слежении, и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsActive}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsActive}
+\label{sec:spinsActive}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int spinsActive();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если все шпиндели находятся в слежении, и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsPhaseRefComplete}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsPhaseRefComplete}
+\label{sec:spinsPhaseRefComplete}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int spinsPhaseRefComplete();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если фазировка выполнена для всех шпинделей, и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsPhaseRef}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsPhaseRef}
+\label{sec:spinsPhaseRef}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int spinsPhaseRef();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если хотя бы один шпиндель требует фазировки, и 0 в противном случае. Для шпинделя, фазировка которого не выполнена, даётся команда фазировки.
+
+Является системной.
+% *******end section*****************
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinAborted}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinAborted}
+\label{sec:spinAborted}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int spinAborted(unsigned spin);}\\
+    Аргумент(ы):    & \RightHandText{unsigned spin ~-- номер шпинделя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{pHeader}
+
+Функция возвращает 1, если шпиндель, номер которого является аргументом функции, аварийно остановлен, и 0 в противном случае.  
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsAborted}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsAborted}
+\label{sec:spinsAborted}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int spinsAborted();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если все шпиндели аварийно остановлены, и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinIsStopped}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinIsStopped}
+\label{sec:spinIsStopped}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int spinIsStopped(unsigned spin);}\\
+    Аргумент(ы):    & \RightHandText{unsigned spin ~-- номер шпинделя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{pHeader}
+
+Функция возвращает 1, если шпиндель, номер которого является аргументом функции, остановлен (в слежении имеет равную нулю заданную скорость), и 0 в противном случае.  
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsStopped}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsStopped}
+\label{sec:spinsStopped}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int spinsStopped();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{pHeader}
+
+Функция возвращает 1, если все шпиндели остановлены (в слежении имеют равную нулю заданную скорость), и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsAbortAll}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsAbortAll}
+\label{sec:spinsAbortAll}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void spinsAbortAll();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{pHeader}
+
+Функция вызывает аварийное выключение всех шпинделей.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsStopAll}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsStopAll}
+\label{sec:spinsStopAll}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void spinsStopAll();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{pHeader}
+
+Функция вызывает останов всех шпинделей при толчковых перемещениях.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinAtSpeed}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinAtSpeed}
+\label{sec:spinAtSpeed}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int spinAtSpeed(unsigned spin);}\\
+    Аргумент(ы):    & \RightHandText{unsigned spin ~-- номер шпинделя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{pHeader}
+
+Функция возвращает 1, если шпиндель, номер которого является аргументом функции, имеет скорость равную заданной, и 0 в противном случае. 
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinPosition}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinPosition}
+\label{sec:spinPosition}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{double spinPosition(unsigned spin);}\\
+    Аргумент(ы):    & \RightHandText{unsigned spin ~-- номер шпинделя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Число с плавающей запятой двойной точности} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{pHeader}
+
+Функция возвращает заданную позицию шпинделя, номер которого является аргументом функции.
+
+Возвращаемое значение измеряется в единицах \texttt{spinEncRes} (см. структуру \myreftosec{SpindleConfig}). \killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinSpeedCommand}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinSpeedCommand}
+\label{sec:spinSpeedCommand}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void spinSpeedCommand(unsigned spin, double speed,}\\
+    & \RightHandText{int direction);}\\
+    Аргумент(ы):    & \RightHandText{unsigned spin ~-- номер шпинделя, } \\ 
+    & \RightHandText{double speed ~--  скорость,} \\   
+    & \RightHandText{int direction ~-- направление вращения} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{pHeader}
+
+Функция задаёт скорость и направление вращения шпинделя, номер которого является аргументом функции. 
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinCurStage}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinCurStage}
+\label{sec:spinCurStage}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{unsigned spinCurStage(unsigned spin);}\\
+    Аргумент(ы):    & \RightHandText{unsigned spin ~-- номер шпинделя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Целое беззнаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{pHeader}
+
+Функция возвращает номер ступени разгона шпинделя, номер которого является аргументом функции. 
+
+Является системной.
+% *******end section*****************
+\clearpage
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinNeedChangeStage}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinNeedChangeStage}
+\label{sec:spinNeedChangeStage}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int spinNeedChangeStage(unsigned spin);}\\
+    Аргумент(ы):    & \RightHandText{unsigned spin ~-- номер шпинделя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/spnd.h} \\
+\end{pHeader}
+
+Функция возвращает 1, если требуется смена ступени разгона шпинделя, номер которого является аргументом функции, и 0 в противном случае.
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsFollowup}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsFollowup}
+\label{sec:spinsFollowup}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void spinsFollowup();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция устанавливает для всех шпинделей флаг <<Восстановление после ошибки>> (см. структуру \myreftosec{Spindle}).
+
+Является системной.
+% *******end section*****************
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{initSpindle}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция initSpindle}
+\label{sec:initSpindle}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void initSpindle(int spin);}\\
+    Аргумент(ы):    & \RightHandText{int spin ~-- номер шпинделя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция выполняет инициализацию шпинделя, номер которого является аргументом функции, параметрами по умолчанию. 
+
+Является системной.
+% *******end section*****************
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{initSpindles}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция initSpindles}
+\label{sec:initSpindles}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void initSpindles();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция выполняет инициализацию шпинделей параметрами по умолчанию. 
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinInitPlatform}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinInitPlatform}
+\label{sec:spinInitPlatform}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void spinInitPlatform(int spin);}\\
+    Аргумент(ы):    & \RightHandText{int spin ~-- номер шпинделя} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция выполняет инициализацию параметров шпинделя, номер которого является аргументом функции, пользовательскими значениями, в том числе структуры \hyperlink{Spindle_Platform_Control}{SpindlePlatformControl}. \killoverfullbefore 
+
+Реализуется пользователем.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spinsInitPlatform}}
+\index{Программный интерфейс ПЛК!Управление шпинделями!Функция spinsInitPlatform}
+\label{sec:spinsInitPlatform}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void spinsInitPlatform();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/axis.h} \\
+\end{pHeader}
+
+Функция выполняет инициализацию параметров шпинделей пользовательскими значениями, в том числе структуры \hyperlink{Spindles_Platform_Control}{SpindlesPlatformControl}. \killoverfullbefore 
+
+Реализуется пользователем.
+% *******end section*****************

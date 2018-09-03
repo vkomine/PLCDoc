@@ -1,0 +1,115 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Реферирование осей}}
+%--------------------------------------------------------
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{HomeStates}}
+\index{Программный интерфейс ПЛК!Реферирование осей!Перечисление HomeStates}
+\label{sec:HomeStates}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление HomeStates}\\
+    Файл объявления:             & \RightHandText{include/func/home.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы состояний выезда в нулевую точку. \killoverfullbefore
+
+\begin{MyTableTwoColAllCntr}{Перечисление HomeStates}{tbl:HomeStates}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline homeReady & Выезд в ноль не выполнен \\
+\hline homeStart &  Начало выезда в нулевую точку \\
+\hline homeWaitStage & Ожидание этапа выезда в нулевую точку \\
+\hline homeComplete & Выезд в нулевую точку выполнен \\
+\hline homeError & Ошибка выезда в нулевую точку \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{isHomeComplete}}
+\index{Программный интерфейс ПЛК!Реферирование осей!Функция isHomeComplete}
+\label{sec:isHomeComplete}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int isHomeComplete();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/home.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если завершено реферирование осей и шпинделей, и 0 в противном случае. 
+
+Реализуется пользователем.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{isHoming}}
+\index{Программный интерфейс ПЛК!Реферирование осей!Функция isHoming}
+\label{sec:isHoming}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int isHoming();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/home.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если выполняется реферирование осей и шпинделей, и 0 в противном случае.
+
+Реализуется пользователем.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{startHoming}}
+\index{Программный интерфейс ПЛК!Реферирование осей!Функция startHoming}
+\label{sec:startHoming}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void startHoming();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/home.h} \\       
+\end{pHeader}
+
+Функция инициирует начало реферирование осей и шпинделей.
+
+Реализуется пользователем.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{isHomingError}}
+\index{Программный интерфейс ПЛК!Реферирование осей!Функция isHomingError}
+\label{sec:isHomingError}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int isHomingError();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/home.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если произошла ошибка при реферировании осей или шпинделей, и 0 в противном случае.
+
+Реализуется пользователем.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{homeCancel}}
+\index{Программный интерфейс ПЛК!Реферирование осей!Функция homeCancel}
+\label{sec:homeCancel}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void homeCancel();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/home.h} \\       
+\end{pHeader}
+
+Функция выполняет останов реферирования осей и шпинделей.
+
+Реализуется пользователем.
+% *******end section*****************
+%--------------------------------------------------------

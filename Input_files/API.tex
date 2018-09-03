@@ -1,0 +1,1600 @@
+\etocsettocdepth.toc {chapter}
+
+\renewcommand{\arraystretch}{1.0} %% increase table row spacing
+\renewcommand{\tabcolsep}{0.1cm}   %% increase table column spacing
+
+\chapterimage{chapter_head_0} 
+\chapter{\DbgSecSt{\StPart}{Программный интерфейс ПЛК}}
+\label{sec:Functions}
+\index{Программный интерфейс ПЛК|(}
+
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Управление УЧПУ}}
+
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{CNCMode}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Типы данных!Перечисление CNCMode}
+\label{sec:CNCMode}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление CNCMode}\\
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы режимов работы УЧПУ.
+
+\begin{MyTableTwoColAllCntr}{Перечисление CNCMode}{tbl:CNCMode}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline cncNull &   Режим не определён  \\
+\hline cncOff &  УЧПУ не активно \\
+\hline cncManual  & Ручной режим \\
+\hline cncHome &  Режим выезда в нулевую точку \\
+\hline cncHWL &  Режим дискретных перемещений \\
+\hline cncAuto &  Автоматический режим \\
+\hline cncStep &  Пошаговый режим \\
+\hline cncMDI &  Режим преднабора \\
+\hline cncVirtual &  Виртуальный режим \\
+\hline cncReset &  Режим сброса \\
+\hline cncRepos &  Режим возврата на контур \\
+\hline cncWaitChangeMode &  Ожидание смены режима \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ProgramSeekMode}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Типы данных!Перечисление ProgramSeekMode}
+\label{sec:ProgramSeekMode}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление ProgramSeekMode}\\
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы режимов выполнения УП с произвольного кадра.
+
+\begin{MyTableTwoColAllCntr}{Перечисление ProgramSeekMode}{tbl:ProgramSeekMode}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline seekNone &  Режим не активен  \\
+\hline seekApproach &  Выполнение УП с начала выбранного кадра  \\
+\hline seekWithoutApproach  & Выполнение УП с конца выбранного кадра \\
+\hline seekWithoutCalc &  Выполнение УП без расчёта фрагмента программы до выбранного кадра \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ProgramStatus}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Типы данных!Перечисление ProgramStatus}
+\label{sec:ProgramStatus}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление ProgramStatus}\\
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы состояний УП.
+
+\begin{MyTableTwoColAllCntr}{Перечисление ProgramStatus}{tbl:ProgramStatus}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline programAborted &  Выполнение УП прервано и завершено  \\
+\hline programInterrupted  & Выполнение УП временно прервано для  какой-либо операции\\
+\hline programStopped  & Выполнение УП остановлено \\
+\hline programRunning  &  УП выполняется \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ChannelStatus}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Типы данных!Перечисление ChannelStatus}
+\label{sec:ChannelStatus}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление ChannelStatus}\\
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы состояний канала управления.
+
+\begin{MyTableTwoColAllCntr}{Перечисление ChannelStatus}{tbl:ChannelStatus}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}
+{Описание}
+\hline channelReset &   Готовность  \\
+\hline channelInterrupted &   Работа прервана \\
+\hline channelActive &   Активен \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ModeState}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Типы данных!Перечисление ModeState}
+\label{sec:ModeState}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление ModeState}\\
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы состояний текущего режима УЧПУ.
+
+\begin{MyTableTwoColAllCntr}{Перечисление ModeState}{tbl:ModeState}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline modeReset &   Готовность  \\
+\hline modeRunning  &  Выполнение \\
+\hline modeStopped  &  Останов \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ShutdownState}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Типы данных!Перечисление ShutdownState}
+\label{sec:ShutdownState}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление ShutdownState}\\
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы состояний автомата выключения УЧПУ и станка.
+
+\begin{MyTableTwoColAllCntr}{Перечисление ShutdownState}{tbl:ShutdownState}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline shutdownWaitCommand &  Ожидание команды выключения \\
+\hline shutdownWaitAck &  Ожидание подтверждения команды выключения \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ChannelInfo}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Типы данных!Структура ChannelInfo}
+\label{sec:ChannelInfo}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура ChannelInfo}\\
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{fHeader}
+
+Структура определяет данные канала управления.
+
+\begin{MyTableThreeColAllCntr}{Структура ChannelInfo}{tbl:ChannelInfo}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline canLoad & \centering{Битовое поле:1} &  Разрешение загрузки УП  \\
+\hline starting & \centering{Битовое поле:1} &  Подготовка к выполнению УП \\
+\hline running & \centering{Битовое поле:1} & Выполнение УП \\
+\hline holding & \centering{Битовое поле:1} & УП в процессе останова или возобновления  \\
+\hline stopped & \centering{Битовое поле:1} & УП не выполняется \\
+\hline waitingBlock & \centering{Битовое поле:1} & Запрос поиска кадра  \\
+\hline seekingBlock & \centering{Битовое поле:1} & Выполнение поиска кадра \\
+\hline virtualStart & \centering{Битовое поле:1} & Подготовка к выполнению УП в виртуальном режиме \\
+\hline virtualRun & \centering{Битовое поле:1} & Выполнение УП в виртуальном режиме \\
+\hline canLoadMDI & \centering{Битовое поле:1} & Разрешение загрузки УП в режиме преднабора \\
+\hline startingMDI & \centering{Битовое поле:1} & Подготовка к выполнению УП в режиме преднабора \\
+\hline runningMDI & \centering{Битовое поле:1} &  Выполнение УП в режиме преднабора \\
+\hline holdingMDI & \centering{Битовое поле:1} &  УП в режиме преднабора в процессе останова или возобновления \\
+\hline waitingMDI & \centering{Битовое поле:2} &  0 ~-- УП загружена для выполнения в режиме преднабора \newline 1 ~-- запрос загрузки УП для выполнения в режиме преднабора \newline 2 ~-- ошибка загрузки УП для выполнения в режиме преднабора \\
+\hline mdiReady & \centering{Битовое поле:1} &  УП в режиме преднабора готова к выполнению \\
+\hline switchToRepos & \centering{Битовое поле:1} &  Разрешение перехода в режим возврата на контур \\
+\hline setActual & \centering{Битовое поле:8} & Младшие 4 бита ~-- команда: \newline 1 ~-- текущая позиция = 0; \newline 2 ~-- текущая позиция = машинная позиция; \newline  3 ~-- текущая позиция = программная позиция \newline   
+Старшие 4 бита ~-- область применения: 0 ~-- все оси; другие значения определяются конфигурацией станка \\
+\hline res & \centering{Битовое поле:7} &  Резерв \\
+\hline Pos[ЧИСЛО\_ОСЕЙ] & \centering{double} &  Программная позиция \\
+\hline WorkPos[ЧИСЛО\_ОСЕЙ] & \centering{double} & Программная позиция относительно базового смещения \\
+\hline MachPos[ЧИСЛО\_ОСЕЙ] & \centering{double} &  Машинная позиция \\
+\hline TargetPos[ЧИСЛО\_ОСЕЙ] & \centering{double} &  Конечная позиция текущего кадра \\
+\hline DistToGo[ЧИСЛО\_ОСЕЙ] & \centering{double} &  Остаток пути \\
+\hline ActualPos[ЧИСЛО\_ОСЕЙ] & \centering{double} &  Текущая позиция \\
+\hline ActualBase[ЧИСЛО\_ОСЕЙ] & \centering{double} &  Базовое смещение текущей позиции \\
+\hline state & \centering{\myreftosec{ChannelStatus}} & Состояние канала управления \\
+\hline modeState & \centering{\myreftosec{ModeState}} &  Состояние текущего режима УЧПУ \\
+\hline runtime & \centering{\myreftosec{ProgramRuntime}} & Данные УП \\
+\hline startBlock & \centering{unsigned} & Начальный блок поиска кадра при выполнении УП с произвольного кадра\\
+\hline blockMode & \centering{unsigned} &  Режим выполнения УП с произвольного кадра \\
+\hline seekCount & \centering{unsigned} &  Номер итерации поиска кадра \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{CNCDesc}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Типы данных!Структура CNCDesc}
+\label{sec:CNCDesc}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура CNCDesc}\\
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{fHeader}
+
+Структура определяет данные УЧПУ.
+
+\begin{MyTableThreeColAllCntr}{Структура CNCDesc}{tbl:CNCDesc}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline mode & \centering{\myreftosec{CNCMode}} &  Текущий режим работы УЧПУ  \\
+\hline prevMode & \centering{\myreftosec{CNCMode}} & Предыдущий режим работы УЧПУ \\
+\hline nextMode & \centering{\myreftosec{CNCMode}} & Следующий режим работы УЧПУ \\
+\hline Watchdog & \centering{int} & Счётчик сторожевого таймера \\
+\hline HMIFeedback & \centering{int} &  Флаг обратной связи пульта оператора \\
+\hline HMIFirstStart & \centering{int} &  Флаг включения пульта оператора (до включения пульта оператора равен 1) \\
+\hline hmiTripped & \centering{int} & Флаг срабатывания сторожевого таймера \\
+\hline HMIWatchdog & \centering{\myreftosec{Timer}} &  Таймер сторожевого таймера \\
+\hline shutdown & \centering{\myreftosec{Timer}} &  Таймер выключения УЧПУ и станка \\
+\hline modeAutoStep & \centering{unsigned} & Флаг покадровой отработки УП \\
+\hline modeAutoVirtual & \centering{unsigned} & Флаг отработки УП в виртуальном режиме \\
+\hline modeAutoSkip & \centering{unsigned} &  Флаг программного пропуска кадров при отработке УП \\
+\hline modeAutoOptStop & \centering{unsigned} & Флаг опционального останова при отработке УП  \\
+\hline modeAutoRepos & \centering{unsigned} &  Флаг возврата на контур при возобновлении выполнения УП \\
+\hline alarmCancel & \centering{unsigned} &  Запрос сброса ошибок \\
+\hline modeDryRun & \centering{unsigned} &  Флаг пробной подачи при отработке УП  \\
+\hline modeReducedG0 & \centering{unsigned} &  Флаг уменьшенной подачи быстрого хода при отработке УП  \\
+\hline nodeNoMovement & \centering{unsigned} &  Флаг отработки УП с блокировкой движения \\
+\hline request & \centering{\myreftosec{MTCNCRequests}} & Текущая исполняемая команда УЧПУ  \\
+\hline channel[ЧИСЛО\_КАНАЛОВ] & \centering{\myreftosec{ChannelInfo}} &  Данные канала управления \\
+\hline notReadyReq & \centering{Битовое поле:1} &  УЧПУ не готово \\
+\hline startDisableReq & \centering{Битовое поле:1} &  Запрет запуска УП \\
+\hline enablePortablePult & \centering{Битовое поле:1} &  Разрешение работы переносного пульта \\
+\hline ShutdownHMI & \centering{int} &  Переменная выключения УЧПУ и станка принимает значения: \newline 0x5A при включении УЧПУ, \newline 0xA5 ~-- при получении команды, выключения, \newline 0x55 ~-- при подтверждении команды выключения\\
+\hline ShutdownState & \centering{int} & Состояние автомата выключения УЧПУ и станка \\
+\hline commands & \centering{\myreftosec{CommandQueue}} &  Очередь команд \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{CNCSettings}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Типы данных!Структура CNCSettings}
+\label{sec:CNCSettings}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура CNCSettings}\\
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{fHeader}
+
+Структура определяет значения подачи для различных режимов.
+
+\begin{MyTableThreeColAllCntr}{Структура CNCSettings}{tbl:CNCSettings}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline Frapid & \centering{double} &  Значение подачи быстрого хода \\
+\hline Fdry & \centering{double} & Значение пробной подачи \\
+\hline FrapidReduced & \centering{double} & Значение уменьшенной подачи быстрого хода \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+\begin{comment}
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{void InitCnc()}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!void InitCnc()}
+\label{sec:InitCnc}
+
+\begin{pHeader}
+%    Синтаксис:      & \RightHandText{void InitCnc();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция инициализации УЧПУ. 
+
+Является системной.
+% *******end section*****************
+\end{comment}
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{InitCnc}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!InitCnc}
+\label{sec:InitCnc}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void InitCnc();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция инициализации УЧПУ. 
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{mtIsReady}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!mtIsReady}
+\label{sec:mtIsReady}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int mtIsReady();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\   
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\      
+\end{pHeader}
+
+Функция проверки готовности станка к работе. Функция возвращает 1, если станок готов, и 0 в противном случае.  
+
+Реализуется пользователем. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncSetMode}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncSetMode}
+\label{sec:cncSetMode}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncSetMode(CNCMode mode);}\\
+    Аргумент(ы):    & \RightHandText{Идентификатор перечисления \myreftosec{CNCMode}} \\   
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция устанавливает режим работы УЧПУ, принимая в качестве аргумента значение одного из идентификаторов перечисления \myreftosec{CNCMode}. 
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncRequest}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncRequest}
+\label{sec:cncRequest}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncRequest (MTCNCRequests request);}\\
+    Аргумент(ы):    & \RightHandText{Идентификатор перечисления \myreftosec{MTCNCRequests}} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция посылает команду УЧПУ, принимая в качестве аргумента значение одного из идентификаторов перечисления \myreftosec{MTCNCRequests}. 
+
+Является системной.
+
+% *******end subsection*****************
+\begin{comment}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{void cncCustomRequest (MTCNCRequests request)}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!void cncCustomRequest (MTCNCRequests request)}
+\label{sec:cncCustomRequest}
+
+\begin{pHeader}
+%    Синтаксис:      & \RightHandText{void cncSetMode(CNCMode mode);}\\
+    Аргумент(ы):    & \RightHandText{Идентификатор перечисления \myreftosec{MTCNCRequests}} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция посылает команду УЧПУ, принимая в качестве аргумента значение одного из идентификаторов перечисления \myreftosec{MTCNCRequests}. 
+% *******end subsection*****************
+\end{comment}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncChangeMode}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncChangeMode}
+\label{sec:cncChangeMode}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncChangeMode (int newMode);}\\
+    Аргумент(ы):    & \RightHandText{Целое знаковое число} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция выполняет запрос изменения режима работы УЧПУ. 
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{channelUpdate}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!channelUpdate}
+\label{sec:channelUpdate}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void channelUpdate (int channel);}\\
+    Аргумент(ы):    & \RightHandText{Целое знаковое число} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обновляет данные канала, номер которого задаётся в качестве аргумента. 
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncModeManual}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncModeManual}
+\label{sec:cncModeManual}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncModeManual();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки команд в ручном режиме работы УЧПУ. 
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncModeHome}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncModeHome}
+\label{sec:cncModeHome}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncModeHome();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки команд в режиме выезда в нулевую точку УЧПУ. 
+
+Является системной.
+% *******end subsection*****************
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncModeHandwheel}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncModeHandwheel}
+\label{sec:cncModeHandwheel}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncModeHandwheel();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки команд в режиме дискретных перемещений УЧПУ. 
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncModeAuto}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncModeAuto}
+\label{sec:cncModeAuto}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncModeAuto();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки команд в автоматическом режиме работы УЧПУ. 
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncModeMDI}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncModeMDI}
+\label{sec:cncModeMDI}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncModeMDI();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки команд в режиме преднабора УЧПУ. 
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncModeRepos}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncModeRepos}
+\label{sec:cncModeRepos}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncModeRepos();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки команд в режиме возврата на контур УЧПУ. 
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+
+
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncManualEnter}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncManualEnter}
+\label{sec:cncManualEnter}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncManualEnter());}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при установке ручного режима работы УЧПУ. В ней должны определяться действия, выполняемые при входе в данный режим. \killoverfullbefore
+
+Реализуется пользователем. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncManualLeave}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncManualLeave}
+\label{sec:cncManualLeave}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int cncManualLeave (CNCMode newMode);}\\
+    Аргумент(ы):    & \RightHandText{Идентификатор перечисления \myreftosec{CNCMode}} \\
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при выходе из ручного режима работы УЧПУ. В ней должны определяться действия, выполняемые при выходе из данного режима, а также осуществляться проверка возможности установки нового режима работы УЧПУ, который задаётся аргументом ~-- значением одного из идентификаторов перечисления \myreftosec{CNCMode}. Возвращаемое значение должно быть отлично от 0 для разрешения нового режима работы. \killoverfullbefore
+
+Реализуется пользователем.  
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncHwlEnter}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncHwlEnter}
+\label{sec:cncHwlEnter}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncHwlEnter();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при установке режима дискретных перемещений УЧПУ. В ней должны определяться действия, выполняемые при входе в данный режим. \killoverfullbefore
+
+Реализуется пользователем. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncHwlLeave}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncHwlLeave}
+\label{sec:cncHwlLeave}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int cncHwlLeave (CNCMode newMode);}\\
+    Аргумент(ы):    & \RightHandText{Идентификатор перечисления \myreftosec{CNCMode}} \\
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при выходе из режима дискретных перемещений УЧПУ. В ней должны определяться действия, выполняемые при выходе из данного режима, а также осуществляться проверка возможности установки нового режима работы УЧПУ, который задаётся аргументом ~-- значением одного из идентификаторов перечисления \myreftosec{CNCMode}. Возвращаемое значение должно быть отлично от 0 для разрешения нового режима работы. \killoverfullbefore
+
+Реализуется пользователем. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncHomeEnter}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncHomeEnter}
+\label{sec:cncHomeEnter}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncHomeEnter();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при установке режима выезда в нулевую точку УЧПУ. В ней должны определяться действия, выполняемые при входе в данный режим. \killoverfullbefore
+
+Реализуется пользователем. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncHomeLeave}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncHomeLeave}
+\label{sec:cncHomeLeave}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int cncHomeLeave (CNCMode newMode);}\\
+    Аргумент(ы):    & \RightHandText{Идентификатор перечисления \myreftosec{CNCMode}} \\
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при выходе из режима выезда в нулевую точку УЧПУ. В ней должны определяться действия, выполняемые при выходе из данного режима, а также осуществляться проверка возможности установки нового режима работы УЧПУ, который задаётся аргументом ~-- значением одного из идентификаторов перечисления \myreftosec{CNCMode}. Возвращаемое значение должно быть отлично от 0 для разрешения нового режима работы. \killoverfullbefore
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncAutoEnter}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncAutoEnter}
+\label{sec:cncAutoEnter}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncAutoEnter();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при установке автоматического режима УЧПУ. В ней должны определяться действия, выполняемые при входе в данный режим. \killoverfullbefore
+
+Реализуется пользователем. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncAutoLeave}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncAutoLeave}
+\label{sec:cncAutoLeave}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int cncAutoLeave (CNCMode newMode);}\\
+    Аргумент(ы):    & \RightHandText{Идентификатор перечисления \myreftosec{CNCMode}} \\
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при выходе из автоматического режима УЧПУ. В ней должны определяться действия, выполняемые при выходе из данного режима, а также осуществляться проверка возможности установки нового режима работы УЧПУ, который задаётся аргументом ~-- значением одного из идентификаторов перечисления \myreftosec{CNCMode}. Возвращаемое значение должно быть отлично от 0 для разрешения нового режима работы. \killoverfullbefore
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncMDIEnter}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncMDIEnter}
+\label{sec:cncMDIEnter}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncMDIEnter();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при установке режима преднабора УЧПУ. В ней должны определяться действия, выполняемые при входе в данный режим. \killoverfullbefore
+
+Реализуется пользователем. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncMDILeave}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncMDILeave}
+\label{sec:cncMDILeave}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int cncMDILeave (CNCMode newMode);}\\
+    Аргумент(ы):    & \RightHandText{Идентификатор перечисления \myreftosec{CNCMode}} \\
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при выходе из режима преднабора УЧПУ. В ней должны определяться действия, выполняемые при выходе из данного режима, а также осуществляться проверка возможности установки нового режима работы УЧПУ, который задаётся аргументом ~-- значением одного из идентификаторов перечисления \myreftosec{CNCMode}. Возвращаемое значение должно быть отлично от 0 для разрешения нового режима работы. \killoverfullbefore
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncReposEnter}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncReposEnter}
+\label{sec:cncReposEnter}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncReposEnter();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при установке режима возврата на контур УЧПУ. В ней должны определяться действия, выполняемые при входе в данный режим. \killoverfullbefore
+
+Реализуется пользователем. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncReposLeave}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncReposLeave}
+\label{sec:cncReposLeave}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int cncReposLeave (CNCMode newMode);}\\
+    Аргумент(ы):    & \RightHandText{Идентификатор перечисления \myreftosec{CNCMode}} \\
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при выходе из режима возврата на контур УЧПУ. В ней должны определяться действия, выполняемые при выходе из данного режима, а также осуществляться проверка возможности установки нового режима работы УЧПУ, который задаётся аргументом ~-- значением одного из идентификаторов перечисления \myreftosec{CNCMode}. Возвращаемое значение должно быть отлично от 0 для разрешения нового режима работы. \killoverfullbefore
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{controlPowerCNC}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!controlPowerCNC}
+\label{sec: controlPowerCNC}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void controlPowerCNC (int request);}\\
+    Аргумент(ы):    & \RightHandText{Целое знаковое число} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки запроса выключения УЧПУ и станка.  Аргументом функции является  значение одного из идентификаторов перечисления \myreftosec{MTCNCRequests}.
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncAutoOnProgramExit}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncAutoOnProgramExit}
+\label{sec: cncAutoOnProgramExit}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncAutoOnProgramExit (int channel);}\\
+    Аргумент(ы):    & \RightHandText{Целое знаковое число} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция вызывается при выходе из автоматического режима УЧПУ. В ней должны определяться действия, выполняемые при выходе из данного режима для канала, номер которого является аргументом функции. \killoverfullbefore
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncCustomRequestManual}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncCustomRequestManual}
+\label{sec: cncCustomRequestManual}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncCustomRequestManual (int request);}\\
+    Аргумент(ы):    & \RightHandText{Целое знаковое число} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки пользовательских команд в ручном режиме УЧПУ. Аргументом функции является команда пользователя.
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncCustomRequestHome}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncCustomRequestHome}
+\label{sec: cncCustomRequestHome}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncCustomRequestHome (int request);}\\
+    Аргумент(ы):    & \RightHandText{Целое знаковое число} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки пользовательских команд в режиме выезда в нулевую точку УЧПУ.  Аргументом функции является команда пользователя.
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncCustomRequestAuto}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncCustomRequestAuto}
+\label{sec: cncCustomRequestAuto}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncCustomRequestAuto (int request);}\\
+    Аргумент(ы):    & \RightHandText{Целое знаковое число} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки пользовательских команд в автоматическом режиме УЧПУ.  Аргументом функции является команда пользователя.
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncCustomRequestMDI}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncCustomRequestMDI}
+\label{sec: cncCustomRequestMDI}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncCustomRequestMDI (int request);}\\
+    Аргумент(ы):    & \RightHandText{Целое знаковое число} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки пользовательских команд в режиме преднабора УЧПУ.  Аргументом функции является команда пользователя.
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncCustomRequestHwl}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции cncCustomRequestHwl}
+\label{sec: cncCustomRequestHwl}
+
+\begin{pHeader}
+   Синтаксис:      & \RightHandText{void cncCustomRequestHwl (int request);}\\
+    Аргумент(ы):    & \RightHandText{Целое знаковое число} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки пользовательских команд в режиме дискретных перемещений УЧПУ.  Аргументом функции является команда пользователя.
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncCustomRequestRepos}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncCustomRequestRepos}
+\label{sec: cncCustomRequestRepos}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void cncCustomRequestRepos (int request);}\\
+    Аргумент(ы):    & \RightHandText{Целое знаковое число} \\
+    Возвращаемое значение:       & \RightHandText{Нет} \\    
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция обработки пользовательских команд в режиме возврата на контур УЧПУ.  Аргументом функции является команда пользователя. 
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cncManualCanChangeOverride}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функции!cncManualCanChangeOverride}
+\label{sec: cncManualCanChangeOverride}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int cncManualCanChangeOverride();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\
+    Файл объявления:             & \RightHandText{include/cnc/cnc.h} \\
+\end{pHeader}
+
+Функция выполняет запрос на разрешение применения коррекции подачи. Возвращает 1, если коррекция разрешена, и 0 в противном случае.
+
+Реализуется пользователем.
+% *******end subsection*****************
+% *******end section*****************
+
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Управление станком}}
+%--------------------------------------------------------
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MTState}}
+\index{Программный интерфейс ПЛК!Управление станком!Перечисление MTState}
+\label{sec:MTState}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление MTState}\\
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы состояний станка.
+
+\begin{MyTableTwoColAllCntr}{Перечисление MTState}{tbl:MTState}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline mtNotReady &  Станок выключен  \\
+\hline mtStartOn &  Начало включения \\
+\hline mtDriveOn &  Включение приводов \\
+\hline mtWaitDriveOn &  Ожидание включения приводов \\
+\hline mtOthersMotorOn & Включение вспомогательных моторов \\
+\hline mtReady & Станок включен \\
+\hline mtStartOff & Начало выключения \\
+\hline mtOthersMotorOff & Выключение вспомогательных моторов \\
+\hline mtAxisStop & Останов осей и шпинделя \\
+\hline mtAxisWaitStop & Ожидание останова осей и шпинделя \\
+\hline mtDriveOff & Выключение приводов \\
+\hline mtAbort & Аварийное торможение \\
+\hline mtPhaseRef & Фазировка \\
+\hline mtWaitPhaseRef  & Ожидание фазировки \\
+\hline mtWaitOff & Ожидание выключения питания станка \\
+\hline mtWaitAbsPos & Ожидание данных от абсолютного ДОС \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MTCNCRequests}}
+\index{Программный интерфейс ПЛК!Управление станком!Перечисление MTCNCRequests}
+\label{sec:MTCNCRequests}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление MTCNCRequests}\\
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы команд управления станком. 
+
+Начальный номер блока пользовательских команд  (mtcncCommandStart) равен 1000, конечный (mtcncCommandEnd) ~-- 1999. \killoverfullbefore
+
+Начальный номер блока пользовательских команд движения (mtcncMoveCommandStart) равен 2000, конечный (mtcncMoveCommandEnd) ~-- 2999. \killoverfullbefore
+
+\begin{MyTableTwoColAllCntr}{Перечисление MTCNCRequests}{tbl:MTCNCRequests}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline mtcncNone &  Нет команды  \\
+\hline mtcncPowerOn  &  Включение станка \\
+\hline mtcncPowerOff  &  Выключение станка \\
+\hline mtcncEmergencyStop  &  Аварийный останов  \\
+\hline mtcncReset  &  Сброс в начальное состояние \\
+\hline mtcncStart  & Запуск операции в текущем режиме \\
+\hline mtcncStop &  Останов операции в текущем режиме  \\
+\hline mtcncCncOff &  Выключение УЧПУ \\
+
+\hline mtcncActivateManual  & Включение ручного режима  \\
+\hline mtcncActivateHandwheel  & Включение режима дискретных перемещений \\
+\hline mtcncActivateRef &  Включение режима выезда в нулевую точку \\
+\hline mtcncActivateMDI &  Включение режима преднабора \\
+\hline mtcncActivateAuto & Включение  автоматического режима \\
+\hline mtcncActivateRepos &  Включение режима возврата на контур \\
+
+\hline mtcncToggleStep &  Покадровая отработка УП \\
+\hline mtcncToggleRepos &  Возврат на контур \\
+\hline mtcncToggleVirtual &  Отработка УП в виртуальном режиме \\
+\hline mtcncToggleOptionalSkip & Отработка УП с программным пропуском кадров \\
+\hline mtcncToggleOptionalStop & Отработка УП с опциональным остановом \\
+\hline mtcncSelectSpeed1 & Выбор первой скорости/дискреты \newline безразмерных/дискретных
+перемещений  \\
+\hline mtcncSelectSpeed2 & Выбор второй скорости/дискреты \newline безразмерных/дискретных
+перемещений \\
+\hline mtcncSelectSpeed3 & Выбор третьей скорости/дискреты \newline безразмерных/дискретных перемещений  \\
+\hline mtcncSelectSpeed4 & Выбор четвёртой скорости/дискреты \newline безразмерных/дискретных перемещений \\
+\hline mtcncSelectRapid & Перемещение на скорости быстрого хода \\
+\hline mtcncDryRun & Пробная подача   \\
+\hline mtcncReducedRapid &  Уменьшенная подача быстрого хода \\
+\hline mtcncMoveLock & Отработка УП с блокировкой движения \\
+\hline mtcncAlarmCancel & Сброс ошибок \\
+
+\hline mtcncCommandStart & Начальный номер блока пользовательских команд \\
+\hline mtcncCommandEnd &  Конечный номер блока пользовательских команд \\
+
+\hline mtcncMoveCommandStart & Начальный номер блока пользовательских команд движения \\
+\hline mtcncMoveCommandEnd & Конечный номер блока пользовательских команд движения  \\
+
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+\begin{comment}
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{UsedPult}}
+\index{Программный интерфейс ПЛК!Управление станком!Перечисление UsedPult}
+\label{sec:UsedPult}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление UsedPult}\\
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы терминальных устройств.
+
+\begin{MyTableThreeColAllCntr}{Перечисление UsedPult}{tbl:UsedPult}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Идентификатор}{Значение}{Описание}
+\hline opertor & \centering{0} & Пульт оператора  \\
+\hline portable & \centering{1} & Переносной пульт \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+\end{comment}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MTDesc}}
+\index{Программный интерфейс ПЛК!Управление станком!Структура MTDesc}
+\label{sec:MTDesc}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура MTDesc}\\
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\
+\end{fHeader}
+
+Структура определяет данные станка.
+
+\begin{MyTableThreeColAllCntr}{Структура MTDesc}{tbl:MTDesc}{|m{0.33\linewidth}|m{0.222\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline State & \centering{int} &  Состояние автомата включения/выключения станка  \\
+\hline IN & \centering{\myreftosec{MTInputs}} & Входы плат входов\\
+\hline OUT & \centering{\myreftosec{MTOutputs}} & Выходы плат реле\\
+\hline PultIn & \centering{\myreftosec{PultInputs}} & Входы пульта оператора \\
+\hline PultOut & \centering{\myreftosec{PultOutputs}} & Выходы пульта оператора \\
+\hline PortablePultIn & \centering{\myreftosec{PortablePultInputs}} &  Входы переносного пульта \\
+
+\hline timerState & \centering{\myreftosec{Timer}} & Таймер состояния \\
+\hline timerReset & \centering{\myreftosec{Timer}} & Таймер сброса \\
+\hline timerScan & \centering{\myreftosec{Timer}} & Таймер выполнения операции \\
+
+\hline ncNotReadyReq & \centering{Битовое поле:1} & Запрос готовности системы \\
+\hline ncFollowUpReq & \centering{Битовое поле:1} & Запрос восстановления после ошибки  \\
+\hline ncStopReq & \centering{Битовое поле:1} & Запрос немедленного останова УП или движения  \\
+\hline ncStopAtEndReq & \centering{Битовое поле:1} & Запрос останова в конце текущего кадра\\
+%\hline usedPult & \centering{int} &   \\
+%\hline corrFTemp & \centering{double} &   \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{int systemPlcActive()}}
+\index{Программный интерфейс ПЛК!Управление станком!int systemPlcActive()}
+\label{sec:systemPlcActive}
+
+\begin{pHeader}
+%    Синтаксис:      & \RightHandText{void InitCnc();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если нет ошибок программ ПЛК, и 0 в противном случае.
+
+Реализуется пользователем.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{int hasEmergencyStopRequest()}}
+\index{Программный интерфейс ПЛК!Управление станком!int hasEmergencyStopRequest()}
+\label{sec:hasEmergencyStopRequest}
+
+\begin{pHeader}
+%    Синтаксис:      & \RightHandText{void InitCnc();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если есть запрос аварийного останова, и 0 в противном случае.
+
+Реализуется пользователем.
+% *******end section*****************
+\begin{comment}
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{int hasEmergencyStopMt()}}
+\index{Программный интерфейс ПЛК!Управление станком!int hasEmergencyStopMt()}
+\label{sec:hasEmergencyStopMt}
+
+\begin{pHeader}
+%    Синтаксис:      & \RightHandText{void InitCnc();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\       
+\end{pHeader}
+
+
+% *******end section*****************
+\end{comment}
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{void mtControlRequest()}}
+\index{Программный интерфейс ПЛК!Управление станком!void mtControlRequest()}
+\label{sec:mtControlRequest}
+
+\begin{pHeader}
+%    Синтаксис:      & \RightHandText{void InitCnc();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\       
+\end{pHeader}
+
+Функция добавления команд в очередь.
+
+Реализуется пользователем.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{void mtUpdateCNCIndication()}}
+\index{Программный интерфейс ПЛК!Управление станком!void mtUpdateCNCIndication()}
+\label{sec:mtUpdateCNCIndication}
+
+\begin{pHeader}
+%    Синтаксис:      & \RightHandText{void InitCnc();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\       
+\end{pHeader}
+
+Функция обновления индикации пульта оператора.
+
+Реализуется пользователем.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Обработка ошибок}}
+%--------------------------------------------------------
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{DriveErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение DriveErrors}
+\label{sec:DriveErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение DriveErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки сервоусилителя.
+
+\begin{MyTableThreeColAllCntr}{Объединение DriveErrors}{tbl:DriveErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline protocol & \centering{Битовое поле:1} & Ошибка протокола  \\
+\hline ampNotReady & \centering{Битовое поле:1} & Нет готовности \\
+\hline ampFault & \centering{Битовое поле:1} & Сервоусилитель в состоянии ошибки \\
+\hline i2tFault & \centering{Битовое поле:1} &  Ошибка i2t \\
+\hline crc & \centering{Битовое поле:1} & Ошибка контрольной суммы \\
+\hline igbtFault & \centering{Битовое поле:1} & Ошибка IGBT модуля \\
+\hline igbtTempFault & \centering{Битовое поле:1} & Превышение температуры IGBT модуля \\
+\hline highDCFault & \centering{Битовое поле:1} & Повышенное напряжение в ЗПТ \\
+\hline lowDCFault & \centering{Битовое поле:1} & Пониженное напряжение в ЗПТ \\
+\hline linkFault & \centering{Битовое поле:1} & Ошибка связи \\
+\hline brakeOnLowFault & \centering{Битовое поле:1} & Сигнал на открытие тормозного транзистора в состоянии L (не в слежении) \\
+\hline brakeOnHighFault & \centering{Битовое поле:1} & Сигнал на открытие тормозного транзистора в состоянии H (не в слежении) \\
+\hline brakeFault & \centering{Битовое поле:1} & Недостаточная мощность тормозного резистора \\
+\hline currentOutFault & \centering{Битовое поле:1} & Измеренный ток в фазе в отсечке \\
+\hline adcFault & \centering{Битовое поле:1} & Ошибка АЦП \\
+\hline pwmShortFault & \centering{Битовое поле:1} & Период ШИМ сигнала меньше 50 мкс \\
+\hline pwmLongFault & \centering{Битовое поле:1} & Период ШИМ сигнала больше 400 мкс \\
+\hline reserved & \centering{Битовое поле:8} & Резерв \\
+\hline ampState & \centering{Битовое поле:2} & Состояние сервоусилителя \\
+\hline errorCode & \centering{Битовое поле:4} & Текущий код ошибки \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{EncoderErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение EncoderErrors}
+\label{sec:EncoderErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение EncoderErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки ДОС.
+
+\begin{MyTableThreeColAllCntr}{Объединение EncoderErrors}{tbl:EncoderErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline encFault & \centering{Битовое поле:1} & Комбинированная ошибка датчика  \\
+\hline decode & \centering{Битовое поле:1} & Ошибка декодирования \\
+\hline sumOfSqr & \centering{Битовое поле:1} & Неверная сумма квадратов каналов синусно-косинусного датчика \\
+\hline faultN & \centering{Битовое поле:1} &  Сигнал FAULT\_N \\
+\hline adc & \centering{Битовое поле:1} & Ошибка АЦП \\
+\hline lineA & \centering{Битовое поле:1} & Ошибка канала A \\
+\hline lineB & \centering{Битовое поле:1} & Ошибка канала B \\
+\hline lineC & \centering{Битовое поле:1} & Ошибка канала C \\
+\hline power & \centering{Битовое поле:1} & Ошибка питания \\
+\hline serialDataNotReady & \centering{Битовое поле:1} & Ошибка последовательного ДОС \\
+\hline warningBiSS & \centering{Битовое поле:1} & Предупреждение ДОС BiSS \\
+\hline faultBiSS & \centering{Битовое поле:1} & Ошибка ДОС BiSS \\
+\hline statusEnDat & \centering{Битовое поле:1} & Ошибка статуса ДОС с протоколом EnDat \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{IOErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение IOErrors}
+\label{sec:IOErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение IOErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки последовательного интерфейса плат входов/выходов.
+
+\begin{MyTableThreeColAllCntr}{Объединение IOErrors}{tbl:IOErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline parity & \centering{Битовое поле:1} & Ошибка четности \\
+\hline protocol & \centering{Битовое поле:1} & Ошибка протокола \\
+\hline crc & \centering{Битовое поле:1} & Ошибка контрольной суммы \\
+\hline watchdog & \centering{Битовое поле:1} & Срабатывание сторожевого таймера \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MotorErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение MotorErrors}
+\label{sec:MotorErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение MotorErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки приводов.
+
+\begin{MyTableThreeColAllCntr}{Объединение MotorErrors}{tbl:MotorErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline phaseref & \centering{Битовое поле:1} & Не выполнена фазировка \\
+\hline home & \centering{Битовое поле:1} & Не выполнен поиск нулевой точки \\
+\hline homeError & \centering{Битовое поле:1} & Произошла ошибка при поиске нулевой точки \\
+\hline openLoop & \centering{Битовое поле:1} & Двигатель не в слежении \\
+
+\hline encoder & \centering{Битовое поле:1} & Ошибка ДОС \\
+\hline plusLimit & \centering{Битовое поле:1} & Срабатывание аппаратного ограничителя в положительном направлении \\
+\hline minusLimit & \centering{Битовое поле:1} & Срабатывание аппаратного ограничителя в отрицательном направлении\\
+\hline swPlusLimit & \centering{Битовое поле:1} & Срабатывание программного ограничителя в положительном направлении \\
+\hline swMinusLimit & \centering{Битовое поле:1} & Срабатывание программного ограничителя в отрицательном направлении \\
+\hline folError & \centering{Битовое поле:1} & Критическая ошибка слежения \\
+\hline folErrorWarning & \centering{Битовое поле:1} & Предупредительная ошибка слежения \\
+\hline temperature & \centering{Битовое поле:1} & Перегрев двигателя \\
+\hline tempWarning & \centering{Битовое поле:1} & Предупреждение о перегреве двигателя \\
+\hline auxFault & \centering{Битовое поле:1} & Внешняя ошибка \\
+\hline pos2Error & \centering{Битовое поле:1} & Ошибка рассогласования датчика положения и скорости \\
+\hline pos2Warning & \centering{Битовое поле:1} & Предупреждение рассогласования датчика положения и скорости \\
+\hline phasePosError & \centering{Битовое поле:1} & Ошибка рассогласования датчика положения и коммутации \\
+\hline phasePosWarning & \centering{Битовое поле:1} & Предупреждение рассогласования датчика положения и коммутации \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{AxisErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение AxisErrors}
+\label{sec:AxisErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение AxisErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки оси.
+
+\begin{MyTableThreeColAllCntr}{Объединение AxisErrors}{tbl:AxisErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline abortTimeout & \centering{Битовое поле:1} &   \\
+\hline activateTimeout & \centering{Битовое поле:1} &   \\
+\hline phaseRefTimeout & \centering{Битовое поле:1} &   \\
+\hline deactivateTimeout & \centering{Битовое поле:1} &   \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{SpindleErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение SpindleErrors}
+\label{sec:SpindleErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение SpindleErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки шпинделя.
+
+\begin{MyTableThreeColAllCntr}{Объединение SpindleErrors}{tbl:SpindleErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline abortTimeout & \centering{Битовое поле:1} &   \\
+\hline activateTimeout & \centering{Битовое поле:1} &   \\
+\hline phaseRefTimeout & \centering{Битовое поле:1} &   \\
+\hline deactivateTimeout & \centering{Битовое поле:1} &   \\
+\hline speedTimeout & \centering{Битовое поле:1} &   \\
+\hline stopTimeout & \centering{Битовое поле:1} &   \\
+\hline homeTimeout & \centering{Битовое поле:1} &   \\
+\hline positionTimeout & \centering{Битовое поле:1} &   \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ChannelErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение ChannelErrors}
+\label{sec:ChannelErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение ChannelErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет ошибки канала управления.
+
+\begin{MyTableThreeColAllCntr}{Объединение ChannelErrors}{tbl:ChannelErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline phaseRefTimeout  & \centering{Битовое поле:1} &   \\
+\hline driveOnTimeout  & \centering{Битовое поле:1} &   \\
+\hline driveOffTimeout  & \centering{Битовое поле:1} &   \\
+\hline abortTimeout & \centering{Битовое поле:1} &   \\
+\hline stopTimeout & \centering{Битовое поле:1} &   \\
+\hline homeTimeout & \centering{Битовое поле:1} &   \\
+\hline homeError & \centering{Битовое поле:1} &   \\
+
+\hline startWithoutHome & \centering{Битовое поле:1} &   \\
+\hline cannotStart & \centering{Битовое поле:1} &   \\
+
+\hline progStopOk & \centering{Битовое поле:1} &   \\
+\hline progStopAbort & \centering{Битовое поле:1} &   \\
+\hline progStopSyncError & \centering{Битовое поле:1} &   \\
+\hline progStopBufferError & \centering{Битовое поле:1} &   \\
+\hline progStopCCMove & \centering{Битовое поле:1} &   \\
+\hline progStopLinToPvt & \centering{Битовое поле:1} &   \\
+\hline progStopCCLeadOut & \centering{Битовое поле:1} &   \\
+\hline progStopCCLeadIn & \centering{Битовое поле:1} &   \\
+\hline progStopCCBufSize & \centering{Битовое поле:1} &   \\
+\hline progStopPvt & \centering{Битовое поле:1} &   \\
+\hline progStopCCFeed & \centering{Битовое поле:1} &   \\
+\hline progStopCCDir & \centering{Битовое поле:1} &   \\
+\hline progStopAbort & \centering{Битовое поле:1} &   \\
+\hline progStopNoSolve & \centering{Битовое поле:1} &   \\
+\hline progStopCC3NdotT & \centering{Битовое поле:1} &   \\
+\hline progStopCCDist & \centering{Битовое поле:1} &   \\
+\hline progStopCCNoIntersect & \centering{Битовое поле:1} &   \\
+\hline progStopCCNoMoves & \centering{Битовое поле:1} &   \\
+
+\hline progStopRunTime & \centering{Битовое поле:1} &   \\
+\hline progStopInPos & \centering{Битовое поле:1} &   \\
+\hline progStopSoftLimit & \centering{Битовое поле:1} &   \\
+\hline progStopRadiusX & \centering{Битовое поле:1} &   \\
+\hline progStopRadiusXX & \centering{Битовое поле:1} &   \\
+
+\hline progPausedM00 & \centering{Битовое поле:1} &   \\
+
+\hline cycleInvalidArgs & \centering{Битовое поле:1} &   \\
+
+\hline seekingBlock & \centering{Битовое поле:1} &   \\
+\hline seekBlockFound & \centering{Битовое поле:1} &   \\
+\hline seekBlockNotFound & \centering{Битовое поле:1} &   \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{NCErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Объединение NCErrors}
+\label{sec:NCErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение NCErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Объединение определяет системные ошибки.
+
+\begin{MyTableThreeColAllCntr}{Объединение NCErrors}{tbl:NCErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline factory & \centering{Битовое поле:1} &  Ошибка загрузки системных параметров \\
+\hline userFactory & \centering{Битовое поле:1} &  Ошибка загрузки параметров пользователя \\
+\hline swClock & \centering{Битовое поле:1} &   \\
+\hline bgWdt & \centering{Битовое поле:1} & Срабатывание сторожевого таймера фонового режима \\
+\hline rtWdt & \centering{Битовое поле:1} &  Срабатывание сторожевого таймера реального времени \\
+\hline sysPlcFault & \centering{Битовое поле:1} &   \\
+\hline hmiWatchdog & \centering{Битовое поле:1} &   \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MachineErrors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Структура MachineErrors}
+\label{sec:MachineErrors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура MachineErrors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Структура определяет ошибки станка.
+
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{Errors}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Структура Errors}
+\label{sec:Errors}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура Errors}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Структура содержит данные о системных ошибках, об ошибках станка, каналов управления, осей, шпинделей, приводов, ДОС, сервоусилителей и плат входов/выходов.
+
+\begin{MyTableThreeColAllCntr}{Структура Errors}{tbl:Errors}{|m{0.38\linewidth}|m{0.22\linewidth}|m{0.4\linewidth}|}{Элемент}{Тип}{Описание}
+\hline machine & \centering{\myreftosec{MachineErrors}} & Ошибки станка \\
+\hline nc & \centering{\myreftosec{NCErrors}} & Системные ошибки  \\
+\hline channel [ЧИСЛО\_КАНАЛОВ] & \centering{\myreftosec{ChannelErrors}} & Ошибки каналов управления \\
+\hline axes [ЧИСЛО\_ОСЕЙ] & \centering{\myreftosec{AxisErrors}} & Ошибки осей \\
+\hline spindles [ЧИСЛО\_ШПИНДЕЛЕЙ] & \centering{\myreftosec{SpindleErrors}} & Ошибки шпинделей \\
+\hline motors [ЧИСЛО\_ДВИГАТЕЛЕЙ+1] & \centering{\myreftosec{MotorErrors}} & Ошибки приводов \\
+\hline encoders [ЧИСЛО\_ДОС] & \centering{\myreftosec{EncoderErrors}} & Ошибки ДОС \\
+\hline drive [ЧИСЛО\_ДВИГАТЕЛЕЙ+1] & \centering{\myreftosec{DriveErrors}} & Ошибки сервоусилителей \\
+\hline io [ЧИСЛО\_ПЛАТ\_ВХ/ВЫХ] & \centering{\myreftosec{IOErrors}} & Ошибки плат входов/выходов \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ErrorReaction}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Перечисление ErrorReaction}
+\label{sec:ErrorReaction}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление ErrorReaction}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы типов реакций на ошибки.
+
+\begin{MyTableTwoColAllCntr}{Перечисление ErrorReaction}{tbl:ErrorReaction}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline reactNone &  Нет реакции \\
+\hline reactLocal &    \\
+\hline reactFollowUp  &  Восстановление после ошибки \\
+\hline reactStopProgram  & Прервано выполнение программы \\
+\hline reactNCNotReady  & Нет готовности системы \\
+\hline reactChannelNotReady  & Нет готовности канала \\
+\hline reactStartDisable  & Запрет запуска программы в канале \\
+\hline reactNeedHome  & Требуется повторный выезд в 0 для осей в канале \\
+\hline reactShowAlarm  & Показать в ЧПУ \\
+\hline reactStop &  Остановить оси \\
+\hline reactStopAtEnd  & Остановить в конце блока \\
+\hline reactAutoOnly  & Только в автоматическом режиме \\
+\hline reactWarning  & Отображение предупреждения \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ErrorClear}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Перечисление ErrorClear}
+\label{sec:ErrorClear}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление ErrorClear}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы типов сброса ошибок.
+
+\begin{MyTableTwoColAllCntr}{Перечисление ErrorClear}{tbl:ErrorClear}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline clearSelf &  Автоматический сброс \\
+\hline clearCancel &  Сброс по ALARM CANCEL, CYCLE START или RESET \\
+\hline clearNCStart &   Сброс по CYCLE START, RESET с возобновлением программы \\
+\hline clearReset &  Сброс по RESET для канала \\
+\hline clearNCReset &  Сброс по RESET для системы \\
+\hline clearPowerOn &  Сброс по включению питания \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{DriveErrorReaction}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Перечисление DriveErrorReaction}
+\label{sec:DriveErrorReaction}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление DriveErrorReaction}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы типов реакции на ошибки сервоусилителя.
+
+\begin{MyTableTwoColAllCntr}{Перечисление DriveErrorReaction}{tbl:DriveErrorReaction}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline dreactNone &  Нет реакции \\
+\hline dreactOFF1 &  STOP -> DKILL в слежении, иначе KILL \\
+\hline dreactOFF1delayed  &  DELAY -> STOP -> KILL в слежении, иначе DELAY -> KILL \\
+\hline dreactOFF2 &  KILL \\
+\hline dreactOFF3 &  ABORT -> DKILL в слежении, иначе KILL \\
+\hline dreactSTOP2 &  ABORT \\
+\hline dreactIASC\_DCBRK  & Для синхронного - закоротить обмотки, для асинхронного - торможение постоянным током \\
+\hline dreactENC & Настраивается (по умолчанию OFF2) \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{DriveErrorAcknowledge}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Перечисление DriveErrorAcknowledge}
+\label{sec:DriveErrorAcknowledge}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление DriveErrorAcknowledge}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы подтверждений ошибок сервоусилителя.
+
+\begin{MyTableTwoColAllCntr}{Перечисление DriveErrorAcknowledge}{tbl:DriveErrorAcknowledge}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline dackPowerOn &    \\
+\hline dackImmediately  &   \\
+\hline dackDisable &    \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ErrorDescription}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Структура ErrorDescription}
+\label{sec:ErrorDescription}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура ErrorDescription}\\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{fHeader}
+
+Структура определяет описание ошибки.
+
+\begin{MyTableThreeColAllCntr}{Структура ErrorDescription}{tbl:ErrorDescription}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline id & \centering{double} &  Код ошибки \\
+\hline reaction & \centering{double} & Тип реакции \\
+\hline clear & \centering{double} & Тип сброса \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{errorScanRequest}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функции!errorScanRequest}
+\label{sec:errorScanRequest}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void errorScanRequest (ErrorClear request);}\\
+    Аргумент(ы):    & \RightHandText{Идентификатор перечисления \myreftosec{ErrorClear}} \\    
+    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\
+\end{pHeader}
+
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{void errorScan()}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!void errorScan()}
+\label{sec:errorScan}
+
+\begin{pHeader}
+%    Синтаксис:      & \RightHandText{int mtIsReady();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\   
+    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\      
+\end{pHeader}
+
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{errorSetScan}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функции!errorSetScan}
+\label{sec:errorSetScan}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int errorSetScan (unsigned curInput, unsigned input, const ErrorDescription \&desc, ErrorClear request)}\\
+    Аргумент(ы):    & \RightHandText{Целое беззнаковое число, целое беззнаковое число,} \\   
+    & \RightHandText {экземпляр структуры \myreftosec{ErrorDescription},} \\
+    & \RightHandText {идентификатор перечисления \myreftosec{ErrorClear}} \\
+    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\      
+\end{pHeader}
+
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{errorReaction}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!Функции!errorReaction}
+\label{sec:errorReaction}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void errorReaction (unsigned input, const ErrorDescription \&desc);}\\
+    Аргумент(ы):    & \RightHandText{Целое беззнаковое число, экземпляр структуры \myreftosec{ErrorDescription}} \\   
+    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\      
+\end{pHeader}
+
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{void errorsMachineScan (int request)}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!void errorsMachineScan (int request)}
+\label{sec:errorsMachineScan}
+
+\begin{pHeader}
+%    Синтаксис:      & \RightHandText{int mtIsReady();}\\
+    Аргумент(ы):    & \RightHandText{Целое знаковое число} \\   
+    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\      
+\end{pHeader}
+
+
+Реализуется пользователем.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{void errorsMachineReaction()}}
+\index{Программный интерфейс ПЛК!Обработка ошибок!void errorsMachineReaction()}
+\label{sec:errorsMachineReaction}
+
+\begin{pHeader}
+%    Синтаксис:      & \RightHandText{int mtIsReady();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\   
+    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{include/cnc/errors.h} \\      
+\end{pHeader}
+
+
+Реализуется пользователем. 
+% *******end subsection*****************
+
+%--------------------------------------------------------
+\index{Программный интерфейс ПЛК|)}
+
+\clearpage

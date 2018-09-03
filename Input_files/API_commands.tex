@@ -1,0 +1,123 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Очередь команд}}
+%--------------------------------------------------------
+
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{CommandRequest}}
+\index{Программный интерфейс ПЛК!Очередь команд!Структура CommandRequest}
+\label{sec:CommandRequest}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура CommandRequest}\\
+    Файл объявления:             & \RightHandText{include/func/commands.h} \\
+\end{fHeader}
+
+Структура определяет параметры команды.
+
+\begin{MyTableThreeColAllCntr}{Структура CommandRequest}{tbl:CommandRequest}{|m{0.3\linewidth}|m{0.25\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline command & \centering{unsigned} & Идентификатор команды \\
+\hline prio & \centering{unsigned} & Приоритет \\
+\hline next & \centering{int} & Номер следующей команды в очереди \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{CommandQueue}}
+\index{Программный интерфейс ПЛК!Очередь команд!Структура CommandQueue}
+\label{sec:CommandQueue}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура CommandQueue}\\
+    Файл объявления:             & \RightHandText{include/func/commands.h} \\
+\end{fHeader}
+
+Структура определяет параметры очереди команд.
+
+\begin{MyTableThreeColAllCntr}{Структура CommandQueue}{tbl:CommandQueue}{|m{0.41\linewidth}|m{0.24\linewidth}|m{0.35\linewidth}|}{Элемент}{Тип}{Описание}
+\hline used & \centering{int} & Первый используемый номер команды в очереди \\
+\hline free & \centering{int} & Первый неиспользуемый номер команды в очереди  \\
+\hline queue[РАЗМЕР\_ОЧЕРЕДИ\_КОМАНД] & \centering{\myreftosec{CommandRequest}} & Массив команд \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{commandsInit}}
+\index{Программный интерфейс ПЛК!Очередь команд!Функция commandsInit}
+\label{sec:commandsInit}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void commandsInit(struct CommandQueue \&queue);}\\
+   Аргумент(ы):    & \RightHandText{struct \myreftosec{CommandQueue} \&queue ~-- очередь команд} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/commands.h} \\       
+\end{pHeader}
+
+Функция инициализирует очередь команд. 
+
+Является системной.
+% *******end section*****************
+
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{commandPush}}
+\index{Программный интерфейс ПЛК!Очередь команд!Функция commandPush}
+\label{sec:commandPush}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int commandPush(struct CommandQueue \&queue,}\\
+      & \RightHandText{unsigned command, unsigned prio);}\\
+    Аргумент(ы):    & \RightHandText{struct \myreftosec{CommandQueue} \&queue ~-- очередь команд,} \\
+    & \RightHandText{unsigned command ~-- идентификатор команды, } \\   
+    & \RightHandText{unsigned prio ~-- приоритет команды} \\  
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/commands.h} \\
+\end{pHeader}
+
+Функция помещает команду с учётом заданного приоритета в очередь команд.\killoverfullbefore
+
+Функция возвращает номер команды, если она помещена в очередь, и -1 в случае ошибки.
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{commandPop}}
+\index{Программный интерфейс ПЛК!Очередь команд!Функция commandPop}
+\label{sec:commandPop}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{unsigned commandPop(struct CommandQueue \&queue);}\\
+    Аргумент(ы):    & \RightHandText{struct \myreftosec{CommandQueue} \&queue ~-- очередь команд} \\ 
+%    Возвращаемое значение:       & \RightHandText{Целое беззнаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/commands.h} \\
+\end{pHeader}
+
+Функция возвращает идентификатор команды, которая должна быть выполнена с учётом приоритета, из очереди команд. 
+
+Является системной.
+% *******end section*****************
+
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{commandFlush}}
+\index{Программный интерфейс ПЛК!Очередь команд!Функция commandFlush}
+\label{sec:commandFlush}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void commandFlush(struct CommandQueue \&queue);}\\
+   Аргумент(ы):    & \RightHandText{struct \myreftosec{CommandQueue} \&queue ~-- очередь команд} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/commands.h} \\
+\end{pHeader}
+
+Функция очищает очередь команд. 
+
+Является системной.
+% *******end section*****************
+

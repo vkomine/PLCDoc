@@ -1,0 +1,239 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Управление станком}}
+%--------------------------------------------------------
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MTState}}
+\index{Программный интерфейс ПЛК!Управление станком!Перечисление MTState}
+\label{sec:MTState}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление MTState}\\
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы состояний станка.
+
+\begin{MyTableTwoColAllCntr}{Перечисление MTState}{tbl:MTState}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline mtNotReady &  Станок выключен  \\
+\hline mtStartOn &  Начало включения \\
+\hline mtDriveOn &  Включение приводов \\
+\hline mtWaitDriveOn &  Ожидание включения приводов \\
+\hline mtOthersMotorOn & Включение вспомогательных моторов \\
+\hline mtReady & Станок включен \\
+\hline mtStartOff & Начало выключения \\
+\hline mtOthersMotorOff & Выключение вспомогательных моторов \\
+\hline mtAxisStop & Останов осей и шпинделя \\
+\hline mtAxisWaitStop & Ожидание останова осей и шпинделя \\
+\hline mtDriveOff & Выключение приводов \\
+\hline mtAbort & Аварийное торможение \\
+\hline mtPhaseRef & Фазировка \\
+\hline mtWaitPhaseRef  & Ожидание фазировки \\
+\hline mtWaitOff & Ожидание выключения питания станка \\
+\hline mtWaitAbsPos & Ожидание данных от абсолютного ДОС \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MTCNCRequests}}
+\index{Программный интерфейс ПЛК!Управление станком!Перечисление MTCNCRequests}
+\label{sec:MTCNCRequests}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление MTCNCRequests}\\
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы команд управления станком. 
+
+Начальный номер блока пользовательских команд  (mtcncCommandStart) равен 1000, конечный (mtcncCommandEnd) ~-- 1999. \killoverfullbefore
+
+Начальный номер блока пользовательских команд движения (mtcncMoveCommandStart) равен 2000, конечный (mtcncMoveCommandEnd) ~-- 2999. \killoverfullbefore
+
+\begin{MyTableTwoColAllCntr}{Перечисление MTCNCRequests}{tbl:MTCNCRequests}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline mtcncNone &  Нет команды  \\
+\hline mtcncPowerOn  &  Включение станка \\
+\hline mtcncPowerOff  &  Выключение станка \\
+\hline mtcncEmergencyStop  &  Аварийный останов  \\
+\hline mtcncReset  &  Сброс в начальное состояние \\
+\hline mtcncStart  & Запуск операции в текущем режиме \\
+\hline mtcncStop &  Останов операции в текущем режиме  \\
+\hline mtcncCncOff &  Выключение УЧПУ \\
+
+\hline mtcncActivateManual  & Включение ручного режима  \\
+\hline mtcncActivateHandwheel  & Включение режима дискретных перемещений \\
+\hline mtcncActivateRef &  Включение режима выезда в нулевую точку \\
+\hline mtcncActivateMDI &  Включение режима преднабора \\
+\hline mtcncActivateAuto & Включение  автоматического режима \\
+\hline mtcncActivateRepos &  Включение режима возврата на контур \\
+
+\hline mtcncToggleStep &  Покадровая отработка УП \\
+\hline mtcncToggleRepos &  Возврат на контур \\
+\hline mtcncToggleVirtual &  Отработка УП в виртуальном режиме \\
+\hline mtcncToggleOptionalSkip & Отработка УП с программным пропуском кадров \\
+\hline mtcncToggleOptionalStop & Отработка УП с опциональным остановом \\
+\hline mtcncSelectSpeed1 & Выбор первой скорости/дискреты \newline безразмерных/дискретных
+перемещений  \\
+\hline mtcncSelectSpeed2 & Выбор второй скорости/дискреты \newline безразмерных/дискретных
+перемещений \\
+\hline mtcncSelectSpeed3 & Выбор третьей скорости/дискреты \newline безразмерных/дискретных перемещений  \\
+\hline mtcncSelectSpeed4 & Выбор четвёртой скорости/дискреты \newline безразмерных/дискретных перемещений \\
+\hline mtcncSelectRapid & Перемещение на скорости быстрого хода \\
+\hline mtcncDryRun & Пробная подача   \\
+\hline mtcncReducedRapid &  Уменьшенная подача быстрого хода \\
+\hline mtcncMoveLock & Отработка УП с блокировкой движения \\
+\hline mtcncAlarmCancel & Сброс ошибок \\
+
+\hline mtcncCommandStart & Начальный номер блока пользовательских команд \\
+\hline mtcncCommandEnd &  Конечный номер блока пользовательских команд \\
+
+\hline mtcncMoveCommandStart & Начальный номер блока пользовательских команд движения \\
+\hline mtcncMoveCommandEnd & Конечный номер блока пользовательских команд движения  \\
+
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+\begin{comment}
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{UsedPult}}
+\index{Программный интерфейс ПЛК!Управление станком!Перечисление UsedPult}
+\label{sec:UsedPult}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление UsedPult}\\
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы терминальных устройств.
+
+\begin{MyTableThreeColAllCntr}{Перечисление UsedPult}{tbl:UsedPult}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Идентификатор}{Значение}{Описание}
+\hline opertor & \centering{0} & Пульт оператора  \\
+\hline portable & \centering{1} & Переносной пульт \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+\end{comment}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MTDesc}}
+\index{Программный интерфейс ПЛК!Управление станком!Структура MTDesc}
+\label{sec:MTDesc}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура MTDesc}\\
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\
+\end{fHeader}
+
+Структура определяет данные станка.
+
+\begin{MyTableThreeColAllCntr}{Структура MTDesc}{tbl:MTDesc}{|m{0.33\linewidth}|m{0.222\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline State & \centering{int} &  Состояние автомата включения/выключения станка  \\
+\hline IN & \centering{\hyperlink{IO_union}{MTInputs}} & Входы плат входов\\
+\hline OUT & \centering{\hyperlink{IO_union}{MTOutputs}} & Выходы плат реле\\
+\hline PultIn & \centering{\hyperlink{IO_union}{PultInputs}} & Входы пульта оператора \\
+\hline PultOut & \centering{\hyperlink{IO_union}{PultOutputs}} & Выходы пульта оператора \\
+\hline PortablePultIn & \centering{\hyperlink{IO_union}{PortablePultInputs}} &  Входы переносного пульта \\
+
+\hline timerState & \centering{\myreftosec{Timer}} & Таймер состояния \\
+\hline timerReset & \centering{\myreftosec{Timer}} & Таймер сброса \\
+\hline timerScan & \centering{\myreftosec{Timer}} & Таймер выполнения операции \\
+
+\hline ncNotReadyReq & \centering{Битовое поле:1} & Запрос готовности системы \\
+\hline ncFollowUpReq & \centering{Битовое поле:1} & Запрос восстановления после ошибки  \\
+\hline ncStopReq & \centering{Битовое поле:1} & Запрос немедленного останова УП или движения  \\
+\hline ncStopAtEndReq & \centering{Битовое поле:1} & Запрос останова в конце текущего кадра\\
+%\hline usedPult & \centering{int} &   \\
+%\hline corrFTemp & \centering{double} &   \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{systemPlcActive}}
+\index{Программный интерфейс ПЛК!Управление станком!Функция systemPlcActive}
+\label{sec:systemPlcActive}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int systemPlcActive();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если нет ошибок программ ПЛК, и 0 в противном случае.
+
+Реализуется пользователем.
+\clearpage
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{hasEmergencyStopRequest}}
+\index{Программный интерфейс ПЛК!Управление станком!Функция hasEmergencyStopRequest}
+\label{sec:hasEmergencyStopRequest}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int hasEmergencyStopRequest();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если есть запрос аварийного останова, и 0 в противном случае.
+
+Реализуется пользователем.
+% *******end section*****************
+\begin{comment}
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{int hasEmergencyStopMt()}}
+\index{Программный интерфейс ПЛК!Управление станком!Функция int hasEmergencyStopMt()}
+\label{sec:hasEmergencyStopMt}
+
+\begin{pHeader}
+%    Синтаксис:      & \RightHandText{void InitCnc();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\       
+\end{pHeader}
+
+
+% *******end section*****************
+\end{comment}
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{mtControlRequest}}
+\index{Программный интерфейс ПЛК!Управление станком!Функция mtControlRequest}
+\label{sec:mtControlRequest}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void mtControlRequest();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\
+\end{pHeader}
+
+Функция добавляет команды в очередь.
+
+Реализуется пользователем.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{mtUpdateCNCIndication}}
+\index{Программный интерфейс ПЛК!Управление станком!Функция mtUpdateCNCIndication}
+\label{sec:mtUpdateCNCIndication}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void mtUpdateCNCIndication();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/cnc/mt.h} \\       
+\end{pHeader}
+
+Функция обновляет индикацию пульта оператора.
+
+Реализуется пользователем.
+% *******end section*****************
+%-------------------------------------------------------------------

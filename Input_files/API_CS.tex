@@ -1,0 +1,92 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Состояние управляющей программы}}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csProgramRunning}}
+\index{Программный интерфейс ПЛК!Состояние управляющей программы!Функция csProgramRunning}
+\label{sec:csProgramRunning}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int csProgramRunning(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номер координатной системы} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/cs.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если выполняется УП, и 0 в противном случае. 
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csProgramHolding}}
+\index{Программный интерфейс ПЛК!Состояние управляющей программы!Функция csProgramHolding}
+\label{sec:csProgramHolding}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int csProgramHolding(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номер координатной системы} \\
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/cs.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если произведён приостанов подачи, и 0 в противном случае. 
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csProgramStarting}}
+\index{Программный интерфейс ПЛК!Состояние управляющей программы!Функция csProgramStarting}
+\label{sec:csProgramStarting}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int csProgramStarting(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номер координатной системы} \\  
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/cs.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если УП начинает выполняться, и 0 в противном случае. 
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csProgramPaused}}
+\index{Программный интерфейс ПЛК!Состояние управляющей программы!Функция csProgramPaused}
+\label{sec:csProgramPaused}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int csProgramPaused(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номер координатной системы} \\  
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/cs.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если УП временно приостановлена, и 0 в противном случае. 
+
+Является системной.
+% *******end section*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{csProgramStopped}}
+\index{Программный интерфейс ПЛК!Состояние управляющей программы!Функция csProgramStopped}
+\label{sec:csProgramStopped}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int csProgramStopped(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номер координатной системы} \\    
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/cs.h} \\       
+\end{pHeader}
+
+Функция возвращает 1, если УП остановлена, и 0 в противном случае. 
+
+Является системной.
+% *******end section*****************
+

@@ -1,0 +1,208 @@
+%%%****************************************%%%
+%%%*** Настройка шрифтов и кодировок    ***%%%
+%%%****************************************%%%
+\usepackage{cmap}    % Улучшенный поиск русских слов в полученном pdf-файле
+% % % % % % % % % должна быть после documentclass!!!
+
+%\usepackage[auto]{chappg} %НОМЕРГЛАВЫ-Страница 7-11
+%%%*****************************************%%%
+%%%*** Индексация (предметный указатель) ***%%%
+%%%***      обязательно в начале         ***%%%
+%%%*****************************************%%%
+\makeindex % Tells LaTeX to create the files required for indexing
+\usepackage{calc} % For simpler calculation - used for spacing the index letter headings correctly
+\usepackage{makeidx} % Required to make an index
+%%%*** -------------------------------- ***%%%
+
+
+%%%*** -------------------------------- ***%%%
+%\usepackage{nomencl}		% номенклатура - список терминов и определений
+%\makenomenclature    		% Нужно закомментить, если список не нужен
+%%%*** -------------------------------- ***%%%
+
+\usepackage{datetime}
+\usepackage[T2A]{fontenc}                % Поддержка русских букв
+\usepackage[utf8]{inputenc}                % Кодировка utf8
+\usepackage[english, russian]{babel}    % Языки: русский, английский
+
+\usepackage[default,scale=0.95]{opensans}		% гладкий, но без засечек
+%\usepackage{DejaVuSerif}	% гладкий, с засечками . тоже можно использовать!
+
+%\usepackage{ptserif}		% гладкий, с засечками	!!!	оптимальнее всего
+
+\frenchspacing
+
+
+%\usepackage{parskip}
+%\setlength\parskip{\baselineskip}
+%\setlength\parindent{0pt}
+
+
+%\usepackage{avant} % Use the Avantgarde font for headings
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+\usepackage{setspace} 
+
+\linespread{1.1} %  интервал между строк
+
+
+%%%*** -------------------------------- ***%%%
+
+%%%***************************%%%
+%%%*** Блочные комментарии ***%%%
+%%%***************************%%%
+\usepackage{comment}
+% uncomment to include stuff in standard comment-environment
+%\includecomment{comment}
+% define a mysection env which content is excluded
+%\excludecomment{mysections}
+%%%*** ------------------- ***%%%
+
+
+%%%***************************%%%
+%%%***    Библиография     ***%%%
+%%%***************************%%%
+\usepackage{csquotes}
+\usepackage[style=alphabetic,sorting=nyt,sortcites=true,autopunct=true,babel=hyphen,hyperref=true,abbreviate=false,backref=true,backend=biber]{biblatex}
+
+%\usepackage[style=apa, apabackref = true, backend = biber, hyperref = true,    backref=true, maxbibnames = 99, sorting = debug] {Biblatex} 
+         
+%\usepackage[natbib=true,citestyle=verbose-ibid,isbn=false,maxnames=3,bibstyle=authoryear,useprefix=true,citereset=chapter]{biblatex}
+
+\addbibresource{bibliography.bib} % BibTeX bibliography file
+\defbibheading{bibempty}{}
+
+%\usepackage{cite} % Красивые ссылки на литературу
+
+%%%*** ------------------- ***%%%
+
+%%%***************************%%%
+%%%***      Графика        ***%%%
+%%%***************************%%%
+%\usepackage[pdftex]{graphicx}
+\usepackage{graphicx} % Required for including pictures
+%%%*** ------------------- ***%%%
+
+%%%***************************%%%
+%%%*** Оформление документа***%%%
+%%%***************************%%%
+\usepackage[top=1.7cm,bottom=2.3cm,left=2cm,right=2cm,headsep=10pt,a4paper]{geometry}
+                                % Page margins                                  
+\usepackage{indentfirst}        % Задает отступ в первых абзацах
+\usepackage{multicol}           % возможность представления текста в несколько колонок 
+
+
+\usepackage{titlesec}           % Allows customization of titles
+
+\usepackage[section,above,below]{placeins}
+
+\usepackage{framed}
+
+\usepackage{lipsum}             % Inserts dummy text
+\usepackage{tikz}               % Required for drawing custom shapes
+
+\usepackage{longtable}  % для работы с longtable
+\usepackage{multirow}  % 
+
+\usepackage{verbatim}
+   
+\usepackage{afterpage}
+
+\usepackage{array}
+
+\usepackage{enumitem} % Customize lists
+\setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
+
+\usepackage{booktabs} % Required for nicer horizontal rules in tables
+
+\usepackage{eso-pic} % Required for specifying an image background in the title page
+%%%*** ------------------- ***%%%
+   
+
+%%%***************************%%%
+%%%***    PAGE HEADERS     ***%%%
+%%%***************************%%%
+\usepackage{fancyhdr} % Required for header and footer configuration
+%%%*** ------------------- ***%%%
+
+%%%***************************%%%
+%%%***    THEOREM STYLES   ***%%%
+%%%***************************%%%
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % For including math equations, theorems, symbols, etc
+%%%*** ------------------- ***%%%
+
+
+%%%**************************************%%%
+%%%***      Цветовые настройки        ***%%%
+%%%**************************************%%%
+\usepackage{color}
+\usepackage{xcolor}         % Required for specifying colors by name
+
+% Общие цвета
+\definecolor{ocre}{RGB}{10,175,15} 
+
+% Цвета ссылок
+\definecolor{linkcolor}{RGB}{25,125,225}     % цвет ссылок
+\definecolor{urlcolor}{HTML}{0000FF}         % цвет гиперссылок
+\definecolor{my_color}{RGB}{25,125,225}        % оформления TOC
+
+% Цвета ремарок
+\definecolor{remark_color}{HTML}{15AF15}    %цвет ремарок!!!
+\definecolor{warning_color}{HTML}{E01515}    %цвет предупреждений!!!
+\definecolor{darkelectricblue}{rgb}{0.33, 0.41, 0.47}
+\definecolor{darkgray}{rgb}{0.66, 0.66, 0.66}
+\definecolor{battleshipgrey}{rgb}{0.52, 0.52, 0.51}
+\definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}
+\definecolor{lightgray}{rgb}{0.83, 0.83, 0.83}  
+\definecolor{indigo_dye}{rgb}{0.0, 0.25, 0.42}   
+\definecolor{jasper}{rgb}{0.84, 0.23, 0.24}
+\definecolor{exComm}{rgb}{0.18,0.55,0.34}
+\definecolor{title_color}{HTML}{CDCDB4} %A98040
+%%%***************************%%%
+%%%***    Листинги         ***%%%
+%%%***************************%%%
+\usepackage{listings}
+%%%*** ------------------- ***%%%
+
+
+%%%***********************************%%%
+%%%***    Оформление оглавления    ***%%%
+%%%***********************************%%%
+\usepackage{etoolbox}
+
+\usepackage{titletoc} % Required for manipulating the table of contents
+
+\usepackage{etoc}
+
+\usepackage[titles]{tocloft}    % необходим для форматирования ОГЛАВЛЕНИЯ и пр.
+                                % нужно загружать с этой опцией - иначе ломает  
+                                % все настройки по  хеадеру1
+%%%*** -------------------------- ***%%%
+        
+%%%**********************************%%%
+%%%*** Настройка формата подписей ***%%%
+%%%**********************************%%%
+\usepackage{caption}
+%%%*** -------------------------- ***%%%
+
+\usepackage{nameref}
+
+\usepackage{refcount}
+
+\usepackage{ragged2e}
+
+\usepackage{setspace}
+
+%	!!!!!!!!!!!!!!!!!!!!!!!!!	%
+%\pdfcompresslevel=9 % сжимать PDF
+
+
+%\usepackage[hyphenbreaks]{breakurl}
+%\usepackage[toc,style=treenoname,order=word,subentrycounter]{glossaries}
+
+%\usepackage[refpages]{gloss} 
+\usepackage{gloss} 
+
+\usepackage{hhline}
+
+\makegloss

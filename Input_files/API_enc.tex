@@ -1,0 +1,87 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Датчики обратной связи}}
+%--------------------------------------------------------
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{EncType}}
+\index{Программный интерфейс ПЛК!Датчики обратной связи!Перечисление EncType}
+\label{sec:EncType}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление EncType}\\
+    Файл объявления:             & \RightHandText{include/func/enc.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы типов датчиков обратной связи.
+
+\begin{MyTableTwoColAllCntr}{Перечисление EncType}{tbl:EncType}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline encNone & Нет \\
+\hline encIncrement & Инкрементальный ДОС \\
+\hline encSinCos & Синусно-косинусный ДОС \\
+\hline encEnDat & ДОС с интерфейсом EnDat 2.2\\
+\hline encBiSS & ДОС с интерфейсом BiSS \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{EncConfig}}
+\index{Программный интерфейс ПЛК!Датчики обратной связи!Структура EncConfig}
+\label{sec:EncConfig}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура EncConfig} \\
+    Файл объявления:             & \RightHandText{include/func/enc.h} \\
+\end{fHeader}
+
+Структура определяет параметры датчика.
+
+\begin{MyTableThreeColAllCntr}{Структура EncConfig}{tbl:EncConfig}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline servo & \centering{unsigned} & Номер платы (0$\div$3) \\
+\hline chan & \centering{unsigned} & Номер канала (0$\div$7) \\
+\hline type & \centering{unsigned} & Тип датчика (см. \myreftosec{EncType})\\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+\begin{comment}
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{encoderScanErrors}}
+\index{Программный интерфейс ПЛК!Датчики обратной связи!Функция encoderScanErrors}
+\label{sec:encoderScanErrors}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void encoderScanErrors(ErrorClear request);}\\
+    Аргумент(ы):    & \RightHandText{\myreftosec{ErrorClear} request ~-- идентификатор типа сброса ошибки} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/enc.h} \\       
+\end{pHeader}
+
+ 
+
+Является системной.
+% *******end section*****************
+
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{encoderErrorsReaction}}
+\index{Программный интерфейс ПЛК!Датчики обратной связи!Функция encoderErrorsReaction}
+\label{sec:encoderErrorsReaction}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void encoderErrorsReaction();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\    
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{include/func/enc.h} \\       
+\end{pHeader}
+
+
+
+Является системной.
+% *******end section*****************
+\end{comment}
+
+%--------------------------------------------------------

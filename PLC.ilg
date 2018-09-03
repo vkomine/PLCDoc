@@ -1,0 +1,10 @@
+Scanning style file ./style_index.ist........done (8 attributes redefined, 0 ignored).
+This is makeindex, version 2.15 [MiKTeX 2.9.6500 64-bit] (kpathsea + Thai support).
+Scanning input file stdin....done (335 entries accepted, 0 rejected).
+Sorting entries......done (3075 comparisons).
+Generating output file stdout....
+## Warning (input = stdin, line = 25; output = stdout, line = 14):
+   -- Unmatched range opening operator (.
+done (367 lines written, 1 warning).
+Output written in stdout.
+Transcript written in PLC.ilg.

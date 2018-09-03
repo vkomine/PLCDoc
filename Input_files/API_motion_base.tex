@@ -1,0 +1,2788 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Управление движением}}
+%--------------------------------------------------------
+
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{XYZ}}
+\index{Программный интерфейс ПЛК!Управление движением!Структура XYZ}
+\label{sec:XYZ}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура XYZ}\\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{fHeader}
+
+Структура определяет координаты по осям декартовой системы координат.
+
+\begin{MyTableThreeColAllCntr}{Структура XYZ}{tbl:XYZ}{|m{0.3\linewidth}|m{0.25\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline \qquad X & \centering{double} & Координата по оси Х  \\
+\hline \qquad Y & \centering{double} & Координата по оси Y  \\
+\hline \qquad Z & \centering{double} & Координата по оси Z  \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{SpindleTimeBase}}
+\index{Программный интерфейс ПЛК!Управление движением!Перечисление SpindleTimeBase}
+\label{sec:SpindleTimeBase}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Перечисление SpindleTimeBase}\\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{fHeader}
+
+Перечисление определяет идентификаторы временной развёртки шпинделя.
+
+\begin{MyTableTwoColAllCntr}{Перечисление SpindleTimeBase}{tbl:SpindleTimeBase}{|m{0.38\linewidth}|m{0.57\linewidth}|}{Идентификатор}{Описание}
+\hline spinUseCSTimebase & Временная развёртка указанной координатной системы \\
+\hline spinUseCS0TimeBase  & Временная развёртка координатной системы \newline № 0 \\
+\hline spinUseFixedTimeBase & 100\% фиксированная временная развёртка \\
+\end{MyTableTwoColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{Timer}}
+\index{Программный интерфейс ПЛК!Управление движением!Структура Timer}
+\label{sec:Timer}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура Timer}\\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{fHeader}
+
+Структура определяет параметры таймера.
+
+\begin{MyTableThreeColAllCntr}{Структура Timer}{tbl:Timer}{|m{0.41\linewidth}|m{0.24\linewidth}|m{0.35\linewidth}|}{Элемент}{Тип}{Описание}
+\hline start & \centering{int} & Начальное значение счётчика таймера \\
+\hline timeout & \centering{int} & Интервал \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{MotorDefinition}}
+\index{Программный интерфейс ПЛК!Управление движением!Структура MotorDefinition}
+\label{sec:MotorDefinition}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура MotorDefinition}\\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{fHeader}
+
+Структура определяет параметры привязки двигателя к оси координатной системы.
+
+\begin{MyTableThreeColAllCntr}{Структура MotorDefinition}{tbl:MotorDefinition}{|m{0.41\linewidth}|m{0.24\linewidth}|m{0.35\linewidth}|}{Элемент}{Тип}{Описание}
+\hline A, B, C, U, V, W, X, Y, Z \newline  XA, XB, XC, XD, XE, XF, XG, XH \newline XL, XM, XN, XO, XP, XQ, XR, XS \newline XT, XU, XV, XW, XX, XY, XZ & \centering{double} & Масштабные коэффициенты,
+связывающие положение двигателя и координаты осей (число дискрет перемещения для двигателя на одну единицу величины перемещения по оси) \\
+\hline Ofs & \centering{double} & Смещение между нулевой точкой двигателя и нулевой позицией оси \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{Pos}}
+\index{Программный интерфейс ПЛК!Управление движением!Объединение Pos}
+\label{sec:Pos}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение Pos}\\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{fHeader}
+
+Объединение определяет данные перемещения для различных режимов движения.
+
+\begin{MyTableThreeColAllCntr}{Объединение Pos}{tbl:Pos}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline
+A, B, C, U, V, W, X, Y, Z & \newline \centering{double} & \newline Координаты по осям \\
+\hhline{~} I, J, K & \centering{double} & Компоненты вектора \\
+\hhline{~} R \} & \centering{double} & Радиус \\
+\hline struct \{ 
+\newline
+Axis[9] & \newline \centering{double} & \newline Координаты по осям \\
+\hhline{~} Vec[6] \} & \centering{double} & Компоненты вектора, радиус \\
+\end{MyTableThreeColAllCntr}
+
+\begin{comment}
+\begin{MyTableThreeColAllCntr}{Объединение Pos}{tbl:Pos}{|m{0.41\linewidth}|m{0.24\linewidth}|m{0.35\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline double A, B, C, U, V, W, X, Y, Z; 
+\newline double I, J, K; 
+\newline double R; 
+\newline \}
+& \centering{структура} & 
+\newline Координаты по осям, 
+\newline компоненты вектора, 
+\newline радиус \newline \\
+\hline struct \{ 
+\newline double Axis[9]; 
+\newline double Vec[6]; 
+\newline \} 
+& \centering{структура} &  
+\newline Координаты по осям, 
+\newline компоненты вектора, радиус \newline \\
+\end{MyTableThreeColAllCntr}
+\end{comment}
+
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{JogTarget}}
+\index{Программный интерфейс ПЛК!Управление движением!Структура JogTarget}
+\label{sec:JogTarget}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура JogTarget}\\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{fHeader}
+
+Структура определяет координаты и смещения для толчковых перемещений.
+
+\begin{MyTableThreeColAllCntr}{Структура JogTarget}{tbl:JogTarget}{|m{0.41\linewidth}|m{0.24\linewidth}|m{0.35\linewidth}|}{Элемент}{Тип}{Описание}
+\hline pos[32] & \centering{double} & Координаты \\
+\hline offset[32] & \centering{double} & Смещения \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{Vec}}
+\index{Программный интерфейс ПЛК!Управление движением!Объединение Vec}
+\label{sec:Vec}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Объединение Vec}\\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{fHeader}
+
+Объединение определяет компоненты вектора.
+
+\begin{MyTableThreeColAllCntr}{Объединение Pos}{tbl:Pos}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline I, J, K \} & \newline \centering{double} & \newline Компоненты вектора \\
+\hline V[3] & \centering{double} & Компоненты вектора \\
+\end{MyTableThreeColAllCntr}
+
+\begin{comment}
+\begin{MyTableThreeColAllCntr}{Объединение Pos}{tbl:Pos}{|m{0.41\linewidth}|m{0.24\linewidth}|m{0.35\linewidth}|}{Элемент}{Тип}{Описание}
+\hline struct \{ 
+\newline double I, J, K;
+\newline \} 
+& \centering{структура} & 
+\newline Компоненты вектора \newline \\
+\hline V[3] & \centering{double} & Компоненты вектора \\
+\end{MyTableThreeColAllCntr}
+\end{comment}
+
+% *******end subsection***************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции и макросы}}
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{kill}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция kill}
+\label{sec:kill}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int kill(int motor);}\\
+   Аргумент(ы):  & \RightHandText{int motor ~-- номер двигателя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{sys/sys.h} \\       
+\end{pHeader}
+
+Функция вызывает снятие управления и полное отключение двигателя, номер которого определяется аргументом функции, с последующим остановом в режиме свободного выбега (категория останова 0).\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{killMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция killMulti}
+\label{sec:killMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int killMulti(int motors);}\\
+   Аргумент(ы):  & \RightHandText{int motors ~-- номера двигателей} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{sys/sys.h} \\       
+\end{pHeader}
+
+Функция снятие управления и полное отключение двигателей, номера которых определяются аргументом функции, с последующим остановом в режиме свободного выбега (категория останова 0). \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам отключаемых двигателей.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{dkill}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция dkill}
+\label{sec:dkill}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int dkill(int motor);}\\
+   Аргумент(ы):  & \RightHandText{int motor ~-- номер двигателя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{sys/sys.h} \\       
+\end{pHeader}
+
+Функция вызывает снятие управления и полное отключение двигателя, номер которого определяется аргументом функции, с задержкой на включение тормоза (категория останова 0).\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{dkillMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция dkillMulti}
+\label{sec:dkillMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int dkillMulti(int motors);}\\
+   Аргумент(ы):  & \RightHandText{int motors ~-- номера двигателей} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{sys/sys.h} \\       
+\end{pHeader}
+
+Функция вызывает снятие управления и полное отключение двигателей, номера которых определяются аргументом функции, с задержкой на включение тормоза (категория останова 0). \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам отключаемых двигателей.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{abortMotor}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция abortMotor}
+\label{sec:aborMotort}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int abortMotor(int motor);}\\
+   Аргумент(ы):  & \RightHandText{int motor ~-- номер двигателя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{sys/sys.h} \\       
+\end{pHeader}
+
+Функция выполняет управляемый аварийный останов двигателя, номер которого определяется аргументом функции. После останова двигатель либо выключается (категория останова 1) либо остается в слежении (категория останова 2).\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{abortMotorMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция abortMotorMulti}
+\label{sec:abortMotorMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int abortMotorMulti(int motors);}\\
+   Аргумент(ы):  & \RightHandText{int motors ~-- номера двигателей} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{sys/sys.h} \\       
+\end{pHeader}
+
+Функция выполняет управляемый аварийный останов двигателей, номера которых определяются аргументом функции. После останова двигатели либо выключаются (категория останова 1) либо остаются в слежении (категория останова 2). \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам останавливаемых двигателей. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{adisableMotor}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция adisableMotor}
+\label{sec:adisableMotor}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int adisableMotor(int motor);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~--  номер двигателя} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет управляемый аварийный останов двигателя, номер которого определяется аргументом функции, с последующим отключением с задержкой на включение тормоза (категория останова 1).\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{adisableMotorMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция adisableMotorMulti}
+\label{sec:adisableMotorMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int adisableMotorMulti(int motors);}\\
+    Аргумент(ы):    & \RightHandText{int motors ~--  номера двигателей} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет управляемый аварийный останов двигателей, номера которых определяются аргументом функции, с последующим их отключением с задержкой на включение тормоза (категория останова 1). \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам останавливаемых двигателей. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{assignMotor}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция assignMotor}
+\label{sec:assignMotor}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int assignMotor(int motor, const MotorDefinition \&def);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя,} \\ 
+     & \RightHandText {const \myreftosec{MotorDefinition} \&def ~-- параметры привязки двигателя к оси} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет привязку двигателя, номер которого определяется аргументом функции, к оси координатной системы.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{assignMotorInverse}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция assignMotorInverse}
+\label{sec:assignMotorInverse}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int assignMotorInverse(int motor);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет привязку двигателя, номер которого определяется аргументом функции, к оси  инверсной кинематики.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{assignMotorSpindle}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция assignMotorSpindle}
+\label{sec:assignMotorSpindle}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int assignMotorSpindle(int motor, SpindleTimeBase mode);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя,} \\ 
+    & \RightHandText {\myreftosec{SpindleTimeBase} mode ~-- идентификатор временной развёртки} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет привязку двигателя, номер которого определяется аргументом функции, к шпиндельной оси.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{unassignMotor}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция unassignMotor}
+\label{sec:unassignMotor}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int unassignMotor(int motor);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет отвязку двигателя, номер которого определяется аргументом функции, от оси (обнуляет масштабирующие коэффициенты, связывающие положение двигателя и координаты осей).\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{phaseref}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция phaseref}
+\label{sec:phaseref}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int phaseref(int motor);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает выполнение фазировки двигателем, номер которого определяется аргументом функции.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{phaserefMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция phaserefMulti}
+\label{sec:phaserefMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int phaserefMulti(int motors);}\\
+   Аргумент(ы):  & \RightHandText{int motors ~-- номера двигателей} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{sys/sys.h} \\       
+\end{pHeader}
+
+Функция вызывает выполнение фазировки двигателями, номера которых определяются аргументом функции. \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам двигателей.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{home}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция home}
+\label{sec:home}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int home(int motor);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает выполнение поиска нулевой точки двигателем, номер которого определяется аргументом функции.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{homeMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция homeMulti}
+\label{sec:homeMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int homeMulti(int motors);}\\
+   Аргумент(ы):  & \RightHandText{int motors ~-- номера двигателей} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{sys/sys.h} \\       
+\end{pHeader}
+
+Функция вызывает выполнение поиска нулевой точки двигателями, номера которых определяются аргументом функции. \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам двигателей.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{homez}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция homez}
+\label{sec:homez}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int homez(int motor);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает установку новой позиции нулевой точки для двигателя, номер которого определяется аргументом функции.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{homezMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция homezMulti}
+\label{sec:homezMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int homezMulti(int motors);}\\
+   Аргумент(ы):  & \RightHandText{int motors ~-- номера двигателей} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{sys/sys.h} \\       
+\end{pHeader}
+
+Функция вызывает установку новой позиции нулевой точки для двигателей, номера которых определяются аргументом функции. \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам двигателей.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogPlus}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogPlus}
+\label{sec:jogPlus}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogPlus(int motor);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое перемещение в положительном направлении двигателем, номер которого определяется аргументом функции.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogMotorsPlus}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogMotorsPlus}
+\label{sec:jogMotorsPlus}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogMotorsPlus(int motors);}\\
+    Аргумент(ы):    & \RightHandText{int motors ~-- номера двигателей} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое перемещение в положительном направлении двигателями, номера которых определяются аргументом функции. \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам двигателей.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogMinus}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogMinus}
+\label{sec:jogMinus}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogMinus(int motor);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое перемещение в отрицательном направлении двигателем, номер которого определяется аргументом функции.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogMotorsMinus}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogMotorsMinus}
+\label{sec:jogMotorsMinus}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogMotorsMinus(int motors);}\\
+    Аргумент(ы):    & \RightHandText{int motors ~-- номера двигателей} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое перемещение в отрицательном направлении двигателями, номера которых определяются аргументом функции.\killoverfullbefore
+
+ Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам двигателей.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogStop}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogStop}
+\label{sec:jogStop}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogStop(int motor);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает останов толчкового перемещение двигателя, номер которого определяется аргументом функции. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogMotorsStop}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogMotorsStop}
+\label{sec:jogMotorsStop}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogMotorsStop(int motors);}\\
+    Аргумент(ы):    & \RightHandText{int motors ~-- номера двигателей} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает останов толчкового перемещения двигателей, номера которых определяются аргументом функции.\killoverfullbefore
+
+ Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам двигателей.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogTo}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogTo}
+\label{sec:jogTo}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogTo(int motor, double target);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя,} \\   
+     & \RightHandText{double target ~-- заданная позиция} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое движение в заданную позицию относительно
+нулевой точки двигателя, номер которого определяется аргументом функции.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogMotorsTo}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogMotorsTo}
+\label{sec:jogMotorsTo}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogMotorsTo(JogTarget target);}\\
+    Аргумент(ы):    & \RightHandText{\myreftosec{JogTarget} target ~-- заданные позиции} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое движение в заданные позиции относительно
+нулевой точки двигателей, номера которых определяются аргументом функции.\killoverfullbefore
+
+ Аргумент функции ~-- структура \myreftosec{JogTarget}, в которой номера ячеек массива со значениями, отличными от \texttt{NAN}, соответствуют номерам двигателей, а сами значения ячеек являются заданными позициями. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogRelToCmd}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogRelToCmd}
+\label{sec:jogRelToCmd}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogRelToCmd(int motor, double target);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя,} \\   
+     & \RightHandText{double target ~-- заданное расстояние} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое движение на заданное расстояние относительно текущей программной позиции двигателя, номер которого определяется аргументом функции.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogMotorsRelToCmd}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogMotorsRelToCmd}
+\label{sec:jogMotorsRelToCmd}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogMotorsRelToCmd(JogTarget target);}\\
+    Аргумент(ы):    & \RightHandText{\myreftosec{JogTarget} target ~-- заданные расстояния} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое движение на заданные расстояния относительно текущей программной позиции двигателей, номера которых определяются аргументом функции.\killoverfullbefore
+
+ Аргумент функции ~-- структура \myreftosec{JogTarget}, в которой номера ячеек массива со значениями, отличными от \texttt{NAN}, соответствуют номерам двигателей, а сами значения ячеек являются заданными расстояниями.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogRelToAct}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogRelToAct}
+\label{sec:jogRelToAct}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogRelToAct(int motor, double target);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя,} \\   
+     & \RightHandText{double target ~-- заданное расстояние} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое движение на заданное расстояние относительно текущей фактической позиции двигателя, номер которого определяется аргументом функции.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogMotorsRelToAct}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogMotorsRelToAct}
+\label{sec:jogMotorsRelToAct}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogMotorsRelToAct(JogTarget target);}\\
+    Аргумент(ы):    & \RightHandText{\myreftosec{JogTarget} target ~-- заданные расстояния} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое движение на заданные расстояния относительно текущей фактической позиции двигателей, номера которых определяются аргументом функции.\killoverfullbefore
+
+ Аргумент функции ~-- структура \myreftosec{JogTarget}, в которой номера ячеек массива со значениями, отличными от \texttt{NAN}, соответствуют номерам двигателей, а сами значения ячеек являются заданными расстояниями.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogRet}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogRet}
+\label{sec:jogRet}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogRet(int motor);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое движение в сохранённую позицию двигателем, номер которого определяется аргументом функции. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogMotorsRet}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogMotorsRet}
+\label{sec:jogMotorsRet}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogMotorsRet(int motors);}\\
+    Аргумент(ы):    & \RightHandText{int motors ~-- номера двигателей} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое движение в сохранённую позицию двигателями, номера которых определяются аргументом функции.\killoverfullbefore
+
+ Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам двигателей.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogToSave}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogToSave}
+\label{sec:jogToSave}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogToSave(int motor, double target);}\\
+    Аргумент(ы):    & \RightHandText{int motor ~-- номер двигателя,} \\   
+     & \RightHandText{double target ~-- заданная позиция} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое движение в заданную позицию относительно
+нулевой точки двигателя, номер которого определяется аргументом функции, и сохранение значения конечного положения. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{jogMotorsToSave}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция jogMotorsToSave}
+\label{sec:jogMotorsToSave}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int jogMotorsToSave(JogTarget target);}\\
+    Аргумент(ы):    & \RightHandText{\myreftosec{JogTarget} target ~-- заданные позиции} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает толчковое движение в заданные позиции относительно
+нулевой точки двигателей, номера которых определяются аргументом функции, и сохранение значений конечного положения.\killoverfullbefore
+
+ Аргумент функции ~-- структура \myreftosec{JogTarget}, в которой номера ячеек массива со значениями, отличными от \texttt{NAN}, соответствуют номерам двигателей, а сами значения ячеек являются заданными позициями. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{absAxes}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция absAxes}
+\label{sec:absAxes}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int absAxes(unsigned axes);}\\
+    Аргумент(ы):    & \RightHandText{unsigned axes ~--  номера осей} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция устанавливает абсолютный режим перемещений для осей, номера которых определяются аргументом функции. В данном режиме программируется величина конечного положения.\killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам осей.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{incAxes}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция incAxes}
+\label{sec:incAxes}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int incAxes(unsigned axes);}\\
+    Аргумент(ы):    & \RightHandText{unsigned axes ~-- номера осей} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает относительный режим перемещений для осей, номера которых определяются аргументом функции. В данном режиме программируется величина перемещения от текущего положения.\killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам осей.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{absVectors}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция absVectors}
+\label{sec:absVectors}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int absVectors(unsigned vectors);}\\
+    Аргумент(ы):    & \RightHandText{unsigned vectors ~-- номера векторов} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает абсолютный режим для задающих центр окружности компонент вектора, номера которых определяются аргументом функции. В данном режиме компоненты  I, J, K, II, JJ, KK параллельные осям X, Y, Z, XX, XY, XZ соответственно, определяют расстояние от начала координат до центра окружности. \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам векторов.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{incVectors}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция incVectors}
+\label{sec:incVectors}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int incVectors(unsigned vectors);}\\
+    Аргумент(ы):    & \RightHandText{unsigned vectors ~--  номера векторов} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает относительный режим для задающих центр окружности компонент вектора, номера которых определяются аргументом функции. В данном режиме компоненты  I, J, K, II, JJ, KK параллельные осям X, Y, Z, XX, XY, XZ соответственно, определяют расстояние от начальной точки перемещения до центра окружности. \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам векторов.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{frax}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция frax}
+\label{sec:frax}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int frax(unsigned axes);}\\
+    Аргумент(ы):    & \RightHandText{unsigned axes ~-- номера осей} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция определяет, какие оси должны быть задействованы в расчёте подачи в основной декартовой системы координат (X/Y/Z). 
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам осей.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{frax2}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция frax2}
+\label{sec:frax2}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int frax2(unsigned axes);}\\
+    Аргумент(ы):    & \RightHandText{unsigned axes ~-- номера осей} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция определяет, какие оси должны быть задействованы в расчёте подачи в расширенной декартовой системы координат (XX/XY/XZ). 
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам осей.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{nofrax}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция nofrax}
+\label{sec:nofrax}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int nofrax();}\\
+    Аргумент(ы):    & \RightHandText{нет} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция отменяет выбор осей, задействованных в расчёте подачи в основной декартовой системы координат (X/Y/Z). \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{nofrax2}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция nofrax2}
+\label{sec:nofrax2}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int nofrax2();}\\
+    Аргумент(ы):    & \RightHandText{нет} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция отменяет выбор осей, задействованных в расчёте подачи в расширенной декартовой системы координат (XX/XY/XZ). \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{delay}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция delay}
+\label{sec:delay}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int delay(double time);}\\
+    Аргумент(ы):    & \RightHandText{double time ~-- время останова} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция останавливает движение всех осей в координатной системе, в которой выполняется УП, на заданное время (удержание программной позиции в течение заданного времени).\killoverfullbefore 
+
+Время останова, измеряемое в мс, включает в себя половину времени торможения и ускорения, не прерывает расчеты в буфере опережающего просмотра  и масштабируется в зависимости от временной развёртки (например при увеличении значения временной развертки на 50\% фактическое время останова в 2 раза превысит заданное). \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{dwell}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция dwell}
+\label{sec:dwell}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int dwell(double time);}\\
+    Аргумент(ы):    & \RightHandText{double time ~-- время задержки} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция останавливает движение всех осей в координатной системе, в которой выполняется УП, на заданное время (удержание программной позиции в течение заданного времени).\killoverfullbefore 
+
+%Функция устанавливает фиксированную временную задержку, которая автоматически вставляется между двумя последовательными программными перемещениями, если их сопряжение не производится.\killoverfullbefore
+
+Время задержки, измеряемое в мс, не учитывает время торможения и ускорения, прерывает расчеты в буфере опережающего просмотра и не зависит от временной развёртки. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{setF}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция setF}
+\label{sec:setF}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int setF(double feedrate);}\\
+    Аргумент(ы):    & \RightHandText{double feedrate ~-- величина скорости подачи} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает скорость подачи, величина которой является аргументом функции.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{setS}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция setS}
+\label{sec:setS}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int setS(double spindle);}\\
+    Аргумент(ы):    & \RightHandText{double spindle ~-- величина скорости шпинделя} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает скорость шпинделя, величина которой является аргументом функции.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ta}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция ta}
+\label{sec:ta}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int ta(double time);}\\
+    Аргумент(ы):    & \RightHandText{double time ~-- время ускорения} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает время заданного ускорения для программных линейных или круговых движений (время ускорения S-кривой), величина которого является аргументом функции. Оно используется как время начального ускорения после останова в начале последовательности сопряжённых перемещений и при переходах между последовательными перемещениями.\killoverfullbefore
+
+Если данное время больше, чем заданное функцией \texttt{int ts(double time)}, то общее время ускорения будет равно сумме этих времён.\killoverfullbefore
+
+Если данное время меньше, чем заданное функцией \texttt{int ts(double time)}, то общее время ускорения (торможения) будет равно удвоенному значению аргумента функции \texttt{int ts(double time)}.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{td}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция td}
+\label{sec:td}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int td(double time);}\\
+    Аргумент(ы):    & \RightHandText{double time ~-- время торможения} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает время заданного ускорения торможения для программных линейных или круговых движений (время торможения S-кривой), величина которого является аргументом функции. Оно используется как время конечного ускорения торможения до останова в конце последовательности сопряжённых перемещений.\killoverfullbefore
+
+Если данное время больше, чем заданное функцией \texttt{int ts(double time)}, то общее время ускорения будет равно сумме этих времён.\killoverfullbefore
+
+Если данное время меньше, чем заданное функцией \texttt{int ts(double time)}, то общее время ускорения (торможения) будет равно удвоенному значению аргумента функции \texttt{int ts(double time)}.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{tm}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция tm}
+\label{sec:tm}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int tm(double time);}\\
+    Аргумент(ы):    & \RightHandText{double time ~-- время или модуль вектора скорости подачи} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает время или модуль вектора скорости подачи для линейных или круговых движений. \killoverfullbefore
+
+Если значение аргумента больше нуля, то оно определяет время движения в мс. При этом скорость движения будет такой, чтобы перемещение было выполнено за указанное время.\killoverfullbefore
+
+Если значение аргумента меньше нуля, то оно определяет модуль вектора скорости. При этом время движения будет таким, чтобы перемещение было выполнено с указанной скоростью.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ts}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция ts}
+\label{sec:ts}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int ts(double time);}\\
+    Аргумент(ы):    & \RightHandText{double time ~-- время разгона/торможения S-кривой} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает для каждой половины заданной S-кривой время ускорения для программных линейных или круговых движений. Оно используется как время начального ускорения после останова в начале последовательности сопряжённых перемещений, при переходах между последовательными перемещениями и конечного ускорения торможения до останова в конце последовательности.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{abort}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция abort}
+\label{sec:abort}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int abort(int cs);}\\
+   Аргумент(ы):  & \RightHandText{int cs ~-- номер координатной системы} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{sys/sys.h} \\       
+\end{pHeader}
+
+%Функция выполняет управляемый аварийный останов координатной системы, номер которой определяется аргументом функции. 
+
+Функция выполняет прерывание программы движения для координатной системы, номер которой определяется аргументом функции, а также управляемый аварийный останов двигателей в заданной координатной системе. После останова двигатели либо выключаются (категория останова 1) либо остаются в слежении (категория останова 2).\killoverfullbefore\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{abortMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция abortMulti}
+\label{sec:abortMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int abortMulti(int cs);}\\
+   Аргумент(ы):  & \RightHandText{int cs ~-- номера координатных систем} \\ 
+%    Возвращаемое значение:       & \RightHandText{Нет} \\ 
+    Файл объявления:             & \RightHandText{sys/sys.h} \\       
+\end{pHeader}
+
+%Функция выполняет управляемый аварийный останов координатных систем. 
+Функция выполняет прерывание программ движения для заданных координатных систем, а также управляемый аварийный останов соответствующих двигателей. После останова двигатели либо выключаются (категория останова 1) либо остаются в слежении (категория останова 2). \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной.
+% *******end section*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{adisable}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция adisable}
+\label{sec:adisable}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int adisable(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет прерывание программы движения для координатной системы, номер которой определяется аргументом функции, а также управляемый аварийный останов  двигателей в заданной координатной системе с последующим их отключением с задержкой на включение тормоза (категория останова 1).\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{adisableMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция adisableMulti}
+\label{sec:adisableMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int adisableMulti(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет прерывание программ движения для заданных координатных систем, а также управляемый аварийный останов соответствующих двигателей с последующим их отключением с задержкой на включение тормоза (категория останова 1). \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{disable}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция disable}
+\label{sec:disable}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int disable(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет прерывание программы движения для координатной системы, номер которой определяется аргументом функции, а также снятие управления и полное отключение двигателей в заданной координатной системе с их последующим остановом в режиме свободного выбега (категория останова 0).\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{disableMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция disableMulti}
+\label{sec:disableMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int disableMulti(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет прерывание программ движения для заданных координатных систем, а также снятие управления и полное отключение соответствующих двигателей с их последующим остановом в режиме свободного выбега (категория останова 0). \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ddisable}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция ddisable}
+\label{sec:ddisable}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int ddisable(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет прерывание программы движения для координатной системы, номер которой определяется аргументом функции, а также снятие управления и полное отключение двигателей в заданной координатной системе с задержкой на включение тормоза (категория останова 0).\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ddisableMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция ddisableMulti}
+\label{sec:ddisableMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int ddisableMulti(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет прерывание программ движения для заданных координатных систем, а также снятие управления и полное отключение соответствующих двигателей с задержкой на включение тормоза (категория останова 0). \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{enable}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция enable}
+\label{sec:enable}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int enable(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет включение двигателей в слежение (включение и замыкание контура положения) в координатной системе, номер которой определяется аргументом функции. В слежение будут включены двигатели, которые находятся в отключенном состоянии или работающие в режиме контура тока/момента. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{enableMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция enableMulti}
+\label{sec:enableMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int enableMulti(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет включение двигателей в слежение (включение и замыкание контура положения) в заданных координатных системах. В слежение будут включены двигатели, которые находятся в отключенном состоянии или работающие в режиме контура тока/момента. \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{hold}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция hold}
+\label{sec:hold}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int hold(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция приостанавливает выполнение УП в координатной системе, номер которой определяется аргументом функции, уменьшая значение временной развертки координатной системы до 0.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{holdMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция holdMulti}
+\label{sec:holdMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int holdMulti(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция приостанавливает выполнение УП в заданных координатных системах, уменьшая значение их временной развертки до 0.\killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{pause}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция pause}
+\label{sec:pause}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int pause(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция временно останавливает выполнение УП в координатной системе, номер которой определяется аргументом функции, в конце последнего вычисленного перемещения.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{pauseMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция pauseMulti}
+\label{sec:pauseMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int pauseMulti(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция временно останавливает выполнение УП в заданных координатных системах в конце последнего рассчитанного перемещения. \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{resume}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция resume}
+\label{sec:resume}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int resume(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция возобновляет выполнение временно остановленных УП в координатной системе, номер которой определяется аргументом функции, начиная с точки останова. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{resumeMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция resumeMulti}
+\label{sec:resumeMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int resumeMulti(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция возобновляет выполнение временно остановленных УП в заданных координатных системах, начиная с точки останова. \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{run}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция run}
+\label{sec:run}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int resume(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает выполнение УП в координатной системе, номер которой определяется аргументом функции. Если выполнение УП было остановлено с помощью функций \myreftosec{hold}, \myreftosec{pause} или \myreftosec{step}, УП начнёт выполняться с той точки, где она была остановлена. Для перехода в начало УП следует предварительно вызвать функцию \myreftosec{begin}. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{runMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция runMulti}
+\label{sec:runMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int runMulti(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем} \\   
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает выполнение УП в заданных координатных системах. Если выполнение УП было остановлено с помощью функций \myreftosec{holdMulti}, \myreftosec{pauseMulti} или \myreftosec{stepMulti}, УП начнёт выполняться с той точки, где она была остановлена. Для перехода в начало УП следует предварительно вызвать функцию \myreftosec{beginMulti}. \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{begin}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция begin}
+\label{sec:begin}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int begin(int cs, double prog);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы,} \\   
+      & \RightHandText{double prog ~-- номер программы движения} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает программу движения для координатной системы, номер которой определяется аргументом функции, и вызывает переход в начало заданной программы. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{beginMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция beginMulti}
+\label{sec:beginMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int beginMulti(int cs, double prog);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем,} \\  
+      & \RightHandText{double prog ~--  номер программы движения} \\
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает программу движения для координатных систем, номера которых определяются аргументом функции, и вызывает переход в начало заданной программы. \killoverfullbefore
+
+Первый аргумент функции \texttt{cs} ~-- битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем. Второй аргумент \texttt{prog} ~-- номер программы движения. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{start}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция start}
+\label{sec:start}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int start(int cs, double prog);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы,} \\   
+      & \RightHandText{double prog ~-- номер программы движения } \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает программу движения для координатной системы, номер которой определяется аргументом функции, вызывает переход в начало заданной программы и последующее её выполнение. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{startMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция startMulti}
+\label{sec:startMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int startMulti(int cs, double prog);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем,} \\  
+      & \RightHandText{double prog ~-- номер программы движения} \\
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает программу движения для координатных систем, номера которых определяются аргументом функции, вызывает переход в начало заданной программы и последующее её выполнение. \killoverfullbefore
+
+Первый аргумент функции \texttt{cs} ~-- битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем. Второй аргумент \texttt{prog} ~-- номер программы движения. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{step}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция step}
+\label{sec:step}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int step(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает пошаговое выполнение УП в координатной системе, номер которой определяется аргументом функции. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{stepMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция stepMulti}
+\label{sec:stepMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int stepMulti(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция вызывает пошаговое выполнение УП в заданных координатных системах. \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{stop}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция stop}
+\label{sec:stop}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int stop(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает останов выполнения УП в координатной системе, номер которой определяется аргументом функции, позволяя завершить уже рассчитанные перемещения. После останова программы выполняется переход в её начало.  \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{stopMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция stopMulti}
+\label{sec:stopMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int stopMulti(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~-- номера координатных систем} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает останов выполнения УП в заданных координатных системах, позволяя завершить уже рассчитанные перемещения. После останова программы выполняется переход в её начало.  \killoverfullbefore
+
+Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам координатных систем.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{suspend}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция suspend}
+\label{sec:suspend}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int suspend(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция является аналогичной \myreftosec{pause}.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{suspendMulti}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция suspendMulti}
+\label{sec:suspendMulti}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int suspendMulti(int cs);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номера координатных систем} \\   
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция является аналогичной \myreftosec{pauseMulti}.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{bstart}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция bstart}
+\label{sec:bstart}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int bstart();}\\
+    Аргумент(ы):    & \RightHandText{нет} \\   
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция указывает начало части программы, которая должна быть выполнена за один «шаг». Выполнение будет продолжаться до вызова функции \myreftosec{bstop}. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{bstop}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция bstop}
+\label{sec:bstop}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int bstop();}\\
+    Аргумент(ы):    & \RightHandText{нет} \\   
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция указывает окончание части программы, которая должна быть выполнена за один «шаг». \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{dread}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция dread}
+\label{sec:dread}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int dread(int cs, double *p);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+     & \RightHandText {double *p ~-- указатель на массив} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет расчёт и запись в массив заданной позиции для активных (имеющих определение) осей в координатной системе, номер которой определяется аргументом функции. Заданная позиция оси рассчитывается на основе заданной позиции двигателя, выражения определения оси и действующей матрицы преобразований.\killoverfullbefore
+
+Первый аргумент функции \texttt{cs} – номер координатной системы. Второй
+аргумент \mbox{\texttt{*p} ~-–} указатель на массив типа \texttt{double}, который должен содержать не менее 32 значений.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{pread}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция pread}
+\label{sec:pread}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int pread(int cs, double *p);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+     & \RightHandText {double *p ~-- указатель на массив} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет расчёт и запись в массив текущей позиции для активных (имеющих определение) осей в координатной системе, номер которой определяется аргументом функции. Текущая позиция оси рассчитывается на основе текущей позиции двигателя, выражения определения оси и действующей матрицы преобразований.\killoverfullbefore
+
+Первый аргумент функции \texttt{cs} – номер координатной системы. Второй
+аргумент \mbox{\texttt{*p} ~-–} указатель на массив типа \texttt{double}, который должен содержать не менее 32 значений.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{tread}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция tread}
+\label{sec:tread}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int tread(int cs, double *p);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+     & \RightHandText {double *p ~-- указатель на массив} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет расчёт и запись в массив конечной позиции выполняемого перемещения (выполняемого кадра) для активных (имеющих определение) осей в координатной системе, номер которой определяется аргументом функции.  \killoverfullbefore
+
+Первый аргумент функции \texttt{cs} – номер координатной системы. Второй
+аргумент \mbox{\texttt{*p} ~-–} указатель на массив типа \texttt{double}, который должен содержать не менее 32 значений.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{dtogread}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция dtogread}
+\label{sec:dtogread}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int dtogread(int cs, double *p);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+     & \RightHandText {double *p ~-- указатель на массив} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет расчёт и запись в массив остатка пути выполняемого перемещения (выполняемого кадра) для активных (имеющих определение) осей в координатной системе, номер которой определяется аргументом функции. Остаток пути рассчитывается как разность конечной позиции выполняемого перемещения и текущего значения заданной позиции оси. Значение заданной позиции оси рассчитывается на основе заданной позиции двигателя, выражения определения оси и действующей матрицы преобразований. При активной коррекции инструмента значение конечной позиции выполняемого перемещения смещается на величину коррекции. \killoverfullbefore
+
+Первый аргумент функции \texttt{cs} – номер координатной системы. Второй
+аргумент \mbox{\texttt{*p} ~-–} указатель на массив типа \texttt{double}, который должен содержать не менее 32 значений.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{fread}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция fread}
+\label{sec:fread}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int fread(int cs, double *f);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+     & \RightHandText {double *f ~-- указатель на массив} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет расчёт и запись в массив ошибки слежения для активных (имеющих определение) осей в координатной системе, номер которой определяется аргументом функции. Ошибка слежения оси рассчитывается на основе ошибки слежения двигателя, выражения определения оси и действующей матрицы преобразований.\killoverfullbefore
+
+Первый аргумент функции \texttt{cs} – номер координатной системы. Второй
+аргумент \mbox{\texttt{*f} ~-–} указатель на массив типа \texttt{double}, который должен содержать не менее 32 значений.
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{vread}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция vread}
+\label{sec:vread}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int vread(int cs, double *v);}\\
+    Аргумент(ы):    & \RightHandText{int cs ~--  номер координатной системы} \\   
+     & \RightHandText {double *f ~-- указатель на массив} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет расчёт и запись в массив текущей скорости (усреднённой за 16 сервоциклов) для активных (имеющих определение) осей в координатной системе, номер которой определяется аргументом функции. Скорость измеряется в единицах измерения перемещения по оси за мс.\killoverfullbefore
+
+Первый аргумент функции \texttt{cs} – номер координатной системы. Второй
+аргумент \mbox{\texttt{*v} ~-–} указатель на массив типа \texttt{double}, который должен содержать не менее 32 значений.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{pset}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция pset}
+\label{sec:pset}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int pset(const Pos \&pos);}\\
+    Аргумент(ы):    & \RightHandText {const \myreftosec{Pos} \&pos ~-- данные позиций} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция переопределяет текущую позицию осей и связанных с ними двигателей. Значения текущих заданных позиций становятся равными указанным значениям, поэтому никакого движения не происходит. Функция изменяет позицию нулевой точки двигателей (вводит смещение) и, таким образом, программные пределы перемещения и таблицу компенсаций.  \killoverfullbefore
+
+Аргумент функции ~-- структура \myreftosec{Pos}, в которой номера ячеек массива со значениями, отличными от \texttt{NAN}, соответствуют номерам осей, а сами значения ячеек являются текущими позициями. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{pstore}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция pstore}
+\label{sec:pstore}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int pstore();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция сохраняет смещения, которые вызваны \myreftosec{pset}.  \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{pload}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция pload}
+\label{sec:pload}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int pload();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция загружает смещения, которые сохранены \myreftosec{pstore}. \killoverfullbefore
+
+Действие функции аналогично \myreftosec{pset}.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{pclear}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция pclear}
+\label{sec:pclear}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int pclear();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция устанавливает текущую позицию осей и связанных с ними двигателей, равной 0. Значения текущих заданных позиций становятся равными указанным значениям, поэтому никакого движения не происходит. Функция изменяет позицию нулевой точки двигателей (вводит смещение) и, таким образом, программные пределы перемещения и таблицу компенсаций.  \killoverfullbefore
+
+Действие функции аналогично \myreftosec{pset} с аргументами 0 или \myreftosec{homez} для двигателей.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{pmatch}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция pmatch}
+\label{sec:pmatch}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int pmatch();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция вызывает расчёт начальных позиций осей в координатной системе, чтобы они соответствовали текущим заданным позициям двигателей. Расчёт производится посредством выражений, обратных выражениям определений осей, или прямых кинематических преобразований. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{move}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция move}
+\label{sec:move}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int move(const Pos \&pos);}\\
+    Аргумент(ы):    & \RightHandText {const \myreftosec{Pos} \&pos ~-- данные перемещения} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет перемещение в указанное аргументом функции положение в установленном режиме движения.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{rapidmove}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция rapidmove}
+\label{sec:rapidmove}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int rapidmove(const Pos \&pos);}\\
+    Аргумент(ы):    & \RightHandText {const \myreftosec{Pos} \&pos ~-- данные перемещения} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет быстрое перемещение в указанное аргументом функции положение.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{rapid}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция rapid}
+\label{sec:rapid}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int rapid();}\\
+    Аргумент(ы):    & \RightHandText {Нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция возвращает 1, если активен режим быстрых перемещений, и 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{linearmove}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция linearmove}
+\label{sec:linearmove}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int linearmove(const Pos \&pos);}\\
+    Аргумент(ы):    & \RightHandText {const \myreftosec{Pos} \&pos ~-- данные перемещения} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет линейное перемещение в указанное аргументом функции положение.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{linear}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция linear}
+\label{sec:linear}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int linear();}\\
+    Аргумент(ы):    & \RightHandText {Нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция возвращает 1, если активен режим линейной интерполяции, и 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cir1move}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция cir1move}
+\label{sec:cir1move}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int cir1move(const Pos \&pos);}\\
+    Аргумент(ы):    & \RightHandText {const \myreftosec{Pos} \&pos ~-- данные перемещения} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет круговое перемещение по часовой стрелке в указанное аргументом функции положение. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае.\killoverfullbefore
+
+Является системной. 
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{cir2move}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция cir2move}
+\label{sec:cir2move}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int cir2move(const Pos \&pos);}\\
+    Аргумент(ы):    & \RightHandText {const \myreftosec{Pos} \&pos ~-- данные перемещения} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет круговое перемещение против часовой стрелки в указанное аргументом функции положение. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{circle1}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция circle1}
+\label{sec:circle1}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int circle1();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает режим круговой интерполяции по часовой стрелке для основной декартовой системы координат (X/Y/Z). \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{circle2}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция circle2}
+\label{sec:circle2}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int circle2();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает режим круговой интерполяции против часовой стрелки для основной декартовой системы координат (X/Y/Z). \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{circle3}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция circle3}
+\label{sec:circle3}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int circle3();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает режим круговой интерполяции по часовой стрелке для расширенной декартовой системы координат (XX/XY/XZ). \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{circle4}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция circle4}
+\label{sec:circle4}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int circle4();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает режим круговой интерполяции против часовой стрелки для расширенной декартовой системы координат (XX/XY/XZ). \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{pvt}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция pvt}
+\label{sec:pvt}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int pvt(double time);}\\
+    Аргумент(ы):    & \RightHandText {double time ~-- время перемещения} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает режим движения с заданными положением, скоростью и временем (pvt-движение). Если данный режим уже установлен, то изменяется время перемещения. Если установлен другой режим движения (линейная или круговая интерполяция, быстрые перемещения, сплайновая интерполяция), то будет выполнен выход из него. Время перемещения измеряется в мс. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{spline}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция spline}
+\label{sec:spline}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int spline(double time);}\\
+    Аргумент(ы):    & \RightHandText {double time ~-- время сегмента перемещения} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция устанавливает режим сплайновой интерполяции. Если данный режим уже установлен, то изменяется время сегмента перемещения. Если установлен другой режим движения (линейная или круговая интерполяция, быстрые перемещения, pvt-движение), то будет выполнен выход из него. Время сегмента перемещения измеряется в мс. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ccmode1}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция ccmode1}
+\label{sec:ccmode1}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int ccmode1();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция отменяет двухмерную и трёхмерную коррекцию радиуса инструмента, уменьшая её постепенно на последующем линейном перемещении. Является эквивалентом G40. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ccmode2}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция ccmode2}
+\label{sec:ccmode2}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int ccmode2();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция включает двухмерную коррекцию радиуса инструмента влево, вводя её постепенно на последующем линейном перемещении. Является эквивалентом G41. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ccmode3}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция ccmode3}
+\label{sec:ccmode3}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int ccmode3();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция включает двухмерную коррекцию радиуса инструмента вправо, вводя её постепенно на последующем линейном перемещении. Является эквивалентом G42. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ccmode4}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция ccmode4}
+\label{sec:ccmode4}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int ccmode4();}\\
+    Аргумент(ы):    & \RightHandText {нет} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция включает трёхмерную коррекцию радиуса инструмента, вводя её постепенно на последующем линейном перемещении. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+
+%The tool-orientation vector can subsequently be specified by the txyz program command, and the surface-normal vector can subsequently be specified by the nxyz program command.
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{ccr}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция ccr}
+\label{sec:ccr}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int ccr(double r);}\\
+    Аргумент(ы):    & \RightHandText {double r ~-- радиус инструмента} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция задаёт величину радиуса инструмента для двухмерной коррекции. Траектория центра инструмента будет смещена на данное расстояние перпендикулярно  запрограммированной траектории в заданной плоскости коррекции. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{txyz}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция txyz}
+\label{sec:txyz}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int txyz(Vec v);}\\
+    Аргумент(ы):    & \RightHandText {\myreftosec{Vec} v ~-- вектор ориентации инструмента} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция задаёт вектор ориентации инструмента для трёхмерной коррекции. Компоненты вектора I, J, K параллельны осям X, Y, Z соответственно. Геометрическая сумма компонент определяет направление вектора (от основания к концу или от конца к основанию), длина вектора не имеет значения. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{txyzScale}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция txyzScale}
+\label{sec:txyzScale}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int txyzScale(double s);}\\
+    Аргумент(ы):    & \RightHandText {double s ~-- масштабный коэффициент} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция задаёт масштабный коэффициент для вектора подачи и радиуса инструмента при двухмерной коррекции, отличный от коэффициентов масштабирования матрицы преобразования.  Предназначен для сохранения подачи и радиуса в непреобразованных единицах измерения перемещения по осям. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{nxyz}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция nxyz}
+\label{sec:nxyz}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int nxyz(const Vec \&v);}\\
+    Аргумент(ы):    & \RightHandText {const \myreftosec{Vec} v ~-- вектор нормали к поверхности} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция задаёт вектор нормали к поверхности для трёхмерной коррекции. Компоненты вектора I, J, K параллельны осям X, Y, Z соответственно. Геометрическая сумма компонент определяет направление вектора от поверхности детали к инструменту, длина вектора не имеет значения. Вектор должен быть определен в базовых машинных координатах. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{normal}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция normal}
+\label{sec:normal}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int normal(const Vec \&v);}\\
+    Аргумент(ы):    & \RightHandText {const \myreftosec{Vec} v ~-- вектор нормали к рабочей плоскости} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция задаёт вектор нормали к рабочей плоскости (перпендикулярный рабочей плоскости) для круговой интерполяции, двухмерной коррекции. Компоненты вектора I, J, K параллельны осям X, Y, Z соответственно. Геометрическая сумма компонент определяет направление вектора и, следовательно, положение рабочей плоскости. От ориентации вектора зависит направление перемещения по дуге окружности и коррекции инструмента (используется правосторонняя система координат). Длина вектора не имеет значения.  \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{tsel}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция tsel}
+\label{sec:tsel}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int tsel(int id);}\\
+    Аргумент(ы):    & \RightHandText {int id ~-- номер матрицы преобразования} \\  
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция задаёт номер активной матрицы преобразования для координатной системы УП. Диапазон действительных номеров ~-- 0$\div$255. Значение номера, равное -1, отменяет выбор всех матриц преобразования.\killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{enablePLC}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция enablePLC}
+\label{sec:enablePLC}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int enablePLC(int plc);}\\
+    Аргумент(ы):    & \RightHandText {int plc ~-- номер программы ПЛК} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает выполнение программы ПЛК, номер которой (от 0 до 31) определяется аргументом функции. Выполнение стартует с начала программы. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{enablePLCs}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция enablePLCs}
+\label{sec:enablePLCs}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int enablePLCs(int plc);}\\
+    Аргумент(ы):    & \RightHandText {int plc ~-- номера программ ПЛК} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает выполнение программ ПЛК, номера которых (от 0 до 31) определяются аргументом функции. Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам программ ПЛК. Выполнение стартует с начала программы. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{pausePLC}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция pausePLC}
+\label{sec:pausePLC}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int pausePLC(int plc);}\\
+    Аргумент(ы):    & \RightHandText {int plc ~-- номер программы ПЛК} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает временный останов программы ПЛК, номер которой (от 0 до 31) определяется аргументом функции. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{pausePLCs}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция pausePLCs}
+\label{sec:pausePLCs}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int pausePLCs(int plc);}\\
+    Аргумент(ы):    & \RightHandText {int plc ~-- номера программ ПЛК} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает временный останов программ ПЛК, номера которых (от 0 до 31) определяются аргументом функции. Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам программ ПЛК.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{resumePLC}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция resumePLC}
+\label{sec:resumePLC}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int resumePLC(int plc);}\\
+    Аргумент(ы):    & \RightHandText {int plc ~-- номер программы ПЛК} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает возобновление выполнения программы ПЛК, номер которой (от 0 до 31) определяется аргументом функции. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{resumePLCs}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция resumePLCs}
+\label{sec:resumePLCs}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int resumePLCs(int plc);}\\
+    Аргумент(ы):    & \RightHandText {int plc ~-- номера программ ПЛК} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает возобновление выполнения программ ПЛК, номера которых (от 0 до 31) определяются аргументом функции. Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам программ ПЛК.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{disablePLC}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция disablePLC}
+\label{sec:disablePLC}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int disablePLC(int plc);}\\
+    Аргумент(ы):    & \RightHandText {int plc ~-- номер программы ПЛК} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает отмену выполнения программы ПЛК, номер которой (от 0 до 31) определяется аргументом функции. Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{disablePLCs}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция disablePLCs}
+\label{sec:disablePLCs}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int disablePLCs(int plc);}\\
+    Аргумент(ы):    & \RightHandText {int plc ~-- номера программ ПЛК} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает отмену выполнения программ ПЛК, номера которых (от 0 до 31) определяются аргументом функции. Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам программ ПЛК.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{stepPLC}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция stepPLC}
+\label{sec:stepPLC}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int stepPLC(int plc);}\\
+    Аргумент(ы):    & \RightHandText {int plc ~-- номер программы ПЛК} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает пошаговое выполнение программы ПЛК, номер которой (от 0 до 31) определяется аргументом функции. \killoverfullbefore
+
+Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{stepPLCs}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция stepPLCs}
+\label{sec:stepPLCs}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int stepPLCs(int plc);}\\
+    Аргумент(ы):    & \RightHandText {int plc ~-- номера программ ПЛК} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает пошаговое выполнение программ ПЛК, номера которых (от 0 до 31) определяются аргументом функции. Аргумент функции – битовое поле, в котором номера установленных битов (значения которых равны 1) соответствуют номерам программ ПЛК.\killoverfullbefore
+
+ Возвращаемое значение равно 0 при отсутствии ошибок и отлично от 0 в противном случае. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{timerStart}}
+\index{Программный интерфейс ПЛК!Управление движением!Макрос timerStart}
+\label{sec:timerStart}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{timerStart(timer, timeoutVal);}\\
+   Аргумент(ы):    & \RightHandText {timer ~-- переменная типа \myreftosec{Timer}} \\  
+    & \RightHandText{timeoutVal ~-- интервал срабатывания} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Макрос запускает таймер, инициализируя переменную \texttt{timer}: полю timer.start присваивается текущее значение системного счётчика, полю timer.timeout ~-- значение интервала срабатывания.\killoverfullbefore
+
+Интервал срабатывания таймера задаётся в периодах сервоцикла (1 период сервоцикла равен 400 мс). Так, например, 1 c соответствует значению интервала равному 2500. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{timerTimeout}}
+\index{Программный интерфейс ПЛК!Управление движением!Макрос timerTimeout}
+\label{sec:timerTimeout}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{timerTimeout(timer);}\\
+   Аргумент(ы):    & \RightHandText {timer ~-- переменная типа \myreftosec{Timer}} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Макрос возвращает 0, если не истёк заданный интервал срабатывания, и значение, отличное от 0, в противном случае.\killoverfullbefore
+
+Является системной.
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{timerLeft}}
+\index{Программный интерфейс ПЛК!Управление движением!Макрос timerLeft}
+\label{sec:timerLeft}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{timerLeft(timer);}\\
+   Аргумент(ы):    & \RightHandText {timer ~-- переменная типа \myreftosec{Timer}} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Макрос возвращает число периодов сервоцикла, оставшихся до срабатывания таймера.\killoverfullbefore
+
+Является системной.
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{timerPassed}}
+\index{Программный интерфейс ПЛК!Управление движением!Макрос timerPassed}
+\label{sec:timerPassed}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{timerPassed(timer);}\\
+   Аргумент(ы):    & \RightHandText {timer ~-- переменная типа \myreftosec{Timer}} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Макрос возвращает число периодов сервоцикла, прошедших с момента запуска таймера.\killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{clearGather}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция clearGather}
+\label{sec:clearGather}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int clearGather();}\\
+   Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция очищает буфер данных сервопрерываний. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{clearPhaseGather}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция clearPhaseGather}
+\label{sec:clearPhaseGather}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int clearPhaseGather();}\\
+   Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция очищает буфер данных фазных прерываний. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{shutdown}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция shutdown}
+\label{sec:shutdown}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void shutdown();}\\
+   Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает выключение УЧПУ. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{reset}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция reset}
+\label{sec:reset}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void reset();}\\
+   Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает перезагрузку УЧПУ, которая эквивалентна выключению и последующему включению питания. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{reinitialize}}
+\index{Программный интерфейс ПЛК!Управление движением!Функция reinitialize}
+\label{sec:reinitialize}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void reinitialize();}\\
+   Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает сброс параметров УЧПУ до заводских. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------

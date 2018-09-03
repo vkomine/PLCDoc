@@ -1,0 +1,88 @@
+% !TeX document-id = {2a4736f1-9131-4047-9e92-6f2668d80547}
+%%%%%**********************************Настройки*************************************** %%%%% 
+% Inkscape, Ghostscript, GSView должны быть установлены 
+% Установить biber.exe, если не установлен или устарел
+% Также нужно установить SED и ICONV (из пакета GNUWIN32), брать тут: 
+% http://sourceforge.net/projects/gnuwin32/files/sed/
+% http://sourceforge.net/projects/gnuwin32/files/libiconv/
+% В переменую среды PATH должен быть прописан путь к папке,
+% в которой находится inkscape.exe, biber.exe, 
+% и sed.exe с iconv.exe (..GnuWin32\bin)   
+% Также нужно добавить в PATH ..miktex\bin\  
+%_______________________________________________________________________________________________________
+% Команды:                       latex.exe -shell-escape -src -synctex=1 -interaction=nonstopmode %.tex
+% Построение и просмотр:        DVI->PS->PDF постобработка
+% Библиография по умолчанию:    biber
+% Makeindex:                    good_index.bat %
+% 
+%%%%%********************************************************************************** %%%%% 
+
+
+% Спец-комментарии - для жесткой настройки
+% !TeX spellcheck = ru_RU
+% !TeX encoding = utf8
+% !BIB program = biber
+    
+                % draft - для коррекции
+                % openany     - чтобы новые главы начинались с любой страницы
+                % openright - чтобы новые главы начинались только с нечетной страницы (по умолчанию)
+%\documentclass[dvips, 11pt,fleqn, draft, openany]{book}    
+%\documentclass[dvips, 11pt,fleqn, openany]{book}    
+
+%\documentclass[dvips, 12pt, twocolumn, openany]{book}    
+%\documentclass[dvips, 12pt, a4paper, pagesize, BCOR=5mm, openany]{book}    
+%\documentclass[dvips, 12pt, draft, openany]{book}    
+\documentclass[dvips, 12pt, openany]{book}    
+                                                % Тип документа - книга 
+                                                % шрифт по умолчанию; выравнивание слева
+        
+\input{Input_files/packages}                    % Используемые пакеты
+\input{Input_files/styles}                      % Применяемые стили
+
+
+%%%*****************************************%%%
+%%%***           Гиперссылки                  ***%%%
+%%%***  обязательно должен быть           ***%%%    
+%%%***  последним подключаемым пакетом     ***%%%
+%%%*****************************************%%%
+% В списке загружаемых пакетов hyperref, должен стоять последним, так как он модифицирует работу других пакетов. 
+
+
+\usepackage[    %dvips, 
+                %linktocpage=true,  - ссылки только номера страниц
+            linktoc=all,        %ссылки и текст и номера страниц!!!
+            colorlinks=true, linkcolor=my_color, citecolor = my_color, urlcolor=urlcolor,
+               breaklinks=true,
+               plainpages=false,pdfpagelabels=false,
+               pdfauthor={inelsy},
+            pdftitle={user manual},
+            pdfsubject={IntAMP},
+            pdfkeywords={inelsy IntAMP},
+            pdfproducer={inelsy},
+            pdfcreator={inelsy}]{hyperref}
+%%%*** -------------------------------- ***%%%
+
+\begin{document}
+    \input{Input_files/title_page}              % Титульный лист
+
+    \input{Input_files/table_of_contents}       % Оглавление
+    \input{Input_files/abbreviations}           % Список сокращений
+    \input{Input_files/intro}                   % Введение
+    \input{Input_files/PLC}                     % Обосбенности программ ПЛК
+    \input{Input_files/intLang}   			    % Язык и среда 
+    \input{Input_files/API_CNC}                 % API: управление УЧПУ
+	\input{Input_files/API_MT}                  % API: управление станком
+	\input{Input_files/API_Errors}              % API: обработка ошибок
+    \input{Input_files/API_axis}                % API: управление осями
+    \input{Input_files/API_spindel}             % API: управление шпинделями
+    \input{Input_files/API_enc}                 % API: ДОС
+    \input{Input_files/API_home}                % API: выезд в 0
+    \input{Input_files/API_CS}                  % API: координатные системы
+    \input{Input_files/API_commands}            % API: команды
+    \input{Input_files/API_misc}                % API: вспомогательные функции    
+    \input{Input_files/API_motion_base}         % API: управление движением - базовые функции
+%    \input{Input_files/API_motion_mill}         % API: управление движением - фрезерная обработка
+	\input{Input_files/PLCs}                    % Примеры ПЛК программ
+    \input{Input_files/index}                   % Предметный указатель
+
+\end{document}
