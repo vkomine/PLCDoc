@@ -876,12 +876,12 @@ topline=false,%
 bottomline=false,%
 linecolor=title_color,
 backgroundcolor=bk,%
-innerleftmargin=3pt,%
-innerrightmargin=5pt,%
+innerleftmargin=5pt,%
+innerrightmargin=4pt,%
 innertopmargin=0pt,%
 leftmargin=0cm,%
 rightmargin=0cm,%
-linewidth=9pt,%
+linewidth=12pt,%
 innerbottommargin=0pt]{listingBox}
           
 % Definition box
@@ -1647,6 +1647,12 @@ innerbottommargin=0pt]{SeeAlsoBox}
 \end{listingExample}
 
 %\end{snugshade}%
+}
+
+\newcommand{\IncludeLstWithoutCaption}[1]{
+\begin{listingExample}
+\lstinputlisting{#1}%
+\end{listingExample}
 }
 
 \newcommand{\IncludeLstWithoutBorder}[3]{%

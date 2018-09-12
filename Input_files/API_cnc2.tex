@@ -1,0 +1,79 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Управление УЧПУ}}
+%--------------------------------------------------------
+
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{shutdown}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функция shutdown}
+\label{sec:shutdown}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void shutdown();}\\
+   Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает выключение УЧПУ. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{reset}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функция reset}
+\label{sec:reset}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void reset();}\\
+   Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает перезагрузку УЧПУ, которая эквивалентна выключению и последующему включению питания. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{reinitialize}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функция reinitialize}
+\label{sec:reinitialize}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void reinitialize();}\\
+   Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает сброс параметров УЧПУ до заводских. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+\begin{comment}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{read}}
+\index{Программный интерфейс ПЛК!Управление УЧПУ!Функция read}
+\label{sec:read}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int read();}\\
+   Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция вызывает сброс параметров УЧПУ до заводских. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+\end{comment}
+%--------------------------------------------------------

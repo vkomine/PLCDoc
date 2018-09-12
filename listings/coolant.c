@@ -3,24 +3,27 @@
 #include "include/platform/stanok/coolant.h"
 
 void checkCoolant() {
-    // контроль двигателя насоса А
-    if (mt.OUT.pumpA == 1 && mt.IN.overloadPumpA == 1) {
-        coolantOff();
+    // Контроль двигателя насоса А
+	// Насоса А включен и перегружен?
+    if (mt.OUT.pumpA == 1 && mt.IN.overloadPumpA == 1) { 
+        coolantOff(); // выключение подачи СОЖ
+        // Ошибка: перегрузка насоса А СОЖ 
         errorSet(systemErrors.machine.overloadPumpA);
     }
 
-    // контроль уровня СОЖ
-    if (mt.IN.coolantLevelHigh == 1) {
-        if (mt.State == mtReady) {
-            coolantOff();
+    // Контроль уровня СОЖ
+    if (mt.IN.coolantLevelHigh == 1) { // Высокий уровень СОЖ?
+        if (mt.State == mtReady) { // Станок включен?
+            coolantOff(); // Выключение подачи СОЖ
         }
+        // Ошибка: высокий уровень СОЖ  
         errorSet(systemErrors.machine.coolantLevelHigh);
     }
 }
 
-// выключение подачи СОЖ
+// Выключение подачи СОЖ
 void coolantOff() {
-    mt.OUT.pumpA = 0;
-    mt.OUT.pumpB = 0;
-    mt.OUT.pumpC = 0;
+    mt.OUT.pumpA = 0; // Отключение насоса А
+    mt.OUT.pumpB = 0; // Отключение насоса B
+    mt.OUT.pumpC = 0; // Отключение насоса C
 }

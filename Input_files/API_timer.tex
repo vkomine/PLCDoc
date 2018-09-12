@@ -1,0 +1,136 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Таймеры}}
+%--------------------------------------------------------
+\subsection{\DbgSecSt{\StPart}{Типы данных}}
+%--------------------------------------------------------
+
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{Timer}}
+\index{Программный интерфейс ПЛК!Таймеры!Структура Timer}
+\label{sec:Timer}
+
+\begin{fHeader}
+    Тип данных:            & \RightHandText{Структура Timer}\\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{fHeader}
+
+Структура определяет параметры таймера.
+
+\begin{MyTableThreeColAllCntr}{Структура Timer}{tbl:Timer}{|m{0.41\linewidth}|m{0.24\linewidth}|m{0.35\linewidth}|}{Элемент}{Тип}{Описание}
+\hline start & \centering{int} & Начальное значение счётчика таймера \\
+\hline timeout & \centering{int} & Интервал \\
+\end{MyTableThreeColAllCntr}
+% *******end subsection***************
+
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции и макросы}}
+
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{timerStart}}
+\index{Программный интерфейс ПЛК!Таймеры!Макрос timerStart}
+\label{sec:timerStart}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{timerStart(timer, timeoutVal);}\\
+   Аргумент(ы):    & \RightHandText {timer ~-- переменная типа \myreftosec{Timer}} \\  
+    & \RightHandText{timeoutVal ~-- интервал срабатывания} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Макрос запускает таймер, инициализируя переменную \texttt{timer}: полю timer.start присваивается текущее значение системного счётчика, полю timer.timeout ~-- значение интервала срабатывания.\killoverfullbefore
+
+Интервал срабатывания таймера задаётся в периодах сервоцикла (1 период сервоцикла равен 400 мс). Так, например, 1 c соответствует значению интервала равному 2500. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{timerTimeout}}
+\index{Программный интерфейс ПЛК!Таймеры!Макрос timerTimeout}
+\label{sec:timerTimeout}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{timerTimeout(timer);}\\
+   Аргумент(ы):    & \RightHandText {timer ~-- переменная типа \myreftosec{Timer}} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Макрос возвращает 0, если не истёк заданный интервал срабатывания, и значение, отличное от 0, в противном случае.\killoverfullbefore
+
+Является системной.
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{timerLeft}}
+\index{Программный интерфейс ПЛК!Таймеры!Макрос timerLeft}
+\label{sec:timerLeft}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{timerLeft(timer);}\\
+   Аргумент(ы):    & \RightHandText {timer ~-- переменная типа \myreftosec{Timer}} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Макрос возвращает число периодов сервоцикла, оставшихся до срабатывания таймера.\killoverfullbefore
+
+Является системной.
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{timerPassed}}
+\index{Программный интерфейс ПЛК!Таймеры!Макрос timerPassed}
+\label{sec:timerPassed}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{timerPassed(timer);}\\
+   Аргумент(ы):    & \RightHandText {timer ~-- переменная типа \myreftosec{Timer}} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Макрос возвращает число периодов сервоцикла, прошедших с момента запуска таймера.\killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{initPulsedTimer}}
+\index{Программный интерфейс ПЛК!Таймеры!Функция initPulsedTimer}
+\label{sec:initPulsedTimer}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void initPulsedTimer();}\\
+    Аргумент(ы):    & \RightHandText{Нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/misc.h} \\       
+\end{pHeader}
+
+Функция инициализации периодического (импульсного) таймера. \killoverfullbefore
+%который срабатывает (возвращает 1) через заданный интервал. 
+
+Является системной.
+% *******end subsection*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{timerSc}}
+\index{Программный интерфейс ПЛК!Таймеры!Функция timerSc}
+\label{sec:timerSc}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int timerSc(int period);}\\
+    Аргумент(ы):    & \RightHandText{int period ~-- период таймера} \\  
+%    Возвращаемое значение:       & \RightHandText{Целое знаковое число} \\ 
+    Файл объявления:             & \RightHandText{include/func/misc.h} \\
+\end{pHeader}
+
+Функция периодического (импульсного) таймера ~-- таймера, выходное значение которого периодически переключается с 0 на 1 и обратно через интервал, равный половине периода таймера. Период таймера задаётся в периодах сервоцикла (1 период сервоцикла равен 400 мс). Так, например, интервал 1 c соответствует значению периода таймера равному 2500. \killoverfullbefore
+%сброса таймера (установки 0)
+
+Функция возвращает 1, если с момента переключения таймера с 1 на 0 истёк интервал, больший или равный половине периода, и 0 в противном случае. \killoverfullbefore 
+
+Является системной.
+% *******end subsection*****************
+%-------------------------------------------------------------------

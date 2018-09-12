@@ -15,8 +15,6 @@
 
 Объединение определяет ошибки и режим работы сервоусилителя. \killoverfullbefore 
 
-\clearpage
-
 \begin{MyTableThreeColAllCntr}{Объединение DriveErrors}{tbl:DriveErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
 \hline struct \{ 
 \newline
@@ -67,6 +65,8 @@ protocol & \newline \centering{unsigned:1} & \newline Ошибка проток�
 \item 11 ~-- период сигнала ШИМ меньше 50 мкс;
 \item 12 ~-- Период сигнала ШИМ больше 400 мкс.\BL
 \end{itemize} 
+
+\clearpage
 %--------------------------------------------------------
 % *******begin subsection***************
 \subsubsection{\DbgSecSt{\StPart}{EncoderErrors}}
@@ -111,6 +111,8 @@ encFault & \newline \centering{unsigned:1} & \newline Комбинированн
 \end{fHeader}
 
 Объединение определяет ошибки последовательного интерфейса плат входов/выходов.
+
+\clearpage
 
 \begin{MyTableThreeColAllCntr}{Объединение IOErrors}{tbl:IOErrors}{|m{0.33\linewidth}|m{0.22\linewidth}|m{0.45\linewidth}|}{Элемент}{Тип}{Описание}
 \hline struct \{ 

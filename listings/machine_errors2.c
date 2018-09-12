@@ -3,8 +3,8 @@
 #include "include/platform/stanok/coolant.h"
 #include "include/platform/stanok/lube.h"
 
+// Создания списка ошибок
 DEFINE_ERROR(MachineEmergencyStop, 0, reactNCNotReady | reactStartDisable | reactShowAlarm | reactStop, clearNCReset);
-
 DEFINE_ERROR(MachineLubeError, 1, reactStartDisable | reactStopAtEnd | reactShowAlarm, clearSelf);
 DEFINE_ERROR(MachineSpinChillerError, 1, reactStartDisable | reactStopAtEnd | reactShowAlarm, clearSelf);
 DEFINE_ERROR(MachineToolNotFound, 1, reactStartDisable | reactStop | reactShowAlarm, clearNCStart);
@@ -13,7 +13,8 @@ DEFINE_ERROR(MachineCoolantLevelHigh, 1, reactStartDisable | reactStop | reactSh
 DEFINE_ERROR(MachineOverloadChipConv, 1, reactStartDisable | reactStop | reactShowAlarm, clearNCReset);
 DEFINE_ERROR(MachineLinkOperatorPult, 1, reactNCNotReady | reactStartDisable | reactShowAlarm | reactStop, clearNCReset);
 
-void errorsMachineScan(int request)
+// Функция обновления флагов ошибок 
+void errorsMachineScan(int request) 
 {
     // аварийный останов
     errorScanSet(systemErrors.machine.emergencyStop, hasEmergencyStopRequest(), descErrorMachineEmergencyStop, request);
@@ -33,7 +34,8 @@ void errorsMachineScan(int request)
     errorScanSet(systemErrors.machine.linkOperatorPult, 0, descErrorMachineLinkOperatorPult, request);
 }
 
-void errorsMachineReaction()
+// Функция установки флагов действий системы согласно реакциям на ошибки
+void errorsMachineReaction() 
 {
 	// аварийное выключение
 	errorReaction(systemErrors.machine.emergencyStop, descErrorMachineEmergencyStop);

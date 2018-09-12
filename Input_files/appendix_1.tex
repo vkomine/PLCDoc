@@ -1,0 +1,75 @@
+\renewcommand\thefigure{\arabic{figure}} 
+
+\fancyfoot[CE,CO]{\normalsize\thepage}
+\fancyhead[RO]{\normalsize ПРИЛОЖЕНИЕ 1. Примеры программ ПЛК}% odd page header and number to right top
+\fancyhead[RE]{\normalsize ПРИЛОЖЕНИЕ 1. Примеры программ ПЛК}%Even page header and%number at left top
+%\fancyfoot[L,R,C]{}
+\renewcommand{\headrulewidth}{0.4pt}% disable the underline of the header part
+
+\phantomsection
+
+\lstset{basicstyle=\footnotesize, keywordstyle=\color{indigo_dye}\bfseries, stringstyle=\ttfamily, language=C, numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt, firstnumber=1}
+
+\etocsettocdepth.toc {chapter}
+
+\chapterimage{chapter_head_0} % Chapter heading image
+\chapter*{ПРИЛОЖЕНИЕ 1}
+\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЕ 1. Примеры программ ПЛК}
+\label{sec:appendix1}
+
+\begin{center}
+ \textcolor{blue}{\textbf{\LARGE{Примеры программ ПЛК}}}
+\end{center}
+\BL
+\begin{center}
+\textbf{\large{Управление толчковыми перемещениям }}
+\end{center}
+\BL
+
+\label{MotionJog}
+
+%Листинг ~\ref{lst:stanok} показывает пример программы управления станком. \killoverfullbefore \BL
+
+%\IncludeListing{./listings/stanok4.c}{Программа управления станком \newline}{lst:stanok}
+
+\IncludeLstWithoutCaption{./listings/jog.c}
+
+\clearpage
+
+\begin{center}
+\textbf{\large{Задание программы движения}}
+\end{center}
+\BL
+
+\label{MotionNC}
+
+\IncludeLstWithoutCaption{./listings/stanok11.c}
+
+\lstset{basicstyle=\footnotesize, keywordstyle=\color{indigo_dye}\bfseries, stringstyle=\ttfamily, language=C, numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt, firstnumber=168}
+
+\IncludeLstWithoutCaption{./listings/stanok12.c}
+%\IncludeLstWithoutCaption{./listings/stend_1.c}
+%\IncludeLstWithoutCaption{./listings/stend_2.c}
+\BL
+
+\clearpage 
+
+\begin{center}
+\textbf{\large{Программа включения/выключения станка}}
+\end{center}
+\BL
+
+\label{MtOnOff}
+
+\lstset{basicstyle=\footnotesize, keywordstyle=\color{indigo_dye}\bfseries, stringstyle=\ttfamily, language=C, numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt, firstnumber=1}
+
+\IncludeLstWithoutCaption{./listings/stanok41.c}
+
+\lstset{basicstyle=\footnotesize, keywordstyle=\color{indigo_dye}\bfseries, stringstyle=\ttfamily, language=C, numbers=left, numberstyle=\tiny, stepnumber=1, numbersep=5pt, firstnumber=126}
+
+\IncludeLstWithoutCaption{./listings/stanok42.c}
+%\IncludeLstWithoutCaption{./listings/stanok4_1.c}
+
+%\IncludeLstWithoutCaption{./listings/stanok4_2.c}
+
+\newpage

@@ -1,0 +1,153 @@
+%--------------------------------------------------------
+% *******begin section***************
+\section{\DbgSecSt{\StPart}{Переменные и буфера}}
+
+% *******begin subsection***************
+\subsection{\DbgSecSt{\StPart}{Функции}}
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{detectEdgeRise}}
+\index{Программный интерфейс ПЛК!Переменные и буфера!Функция detectEdgeRise}
+\label{sec:detectEdgeRise}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int detectEdgeRise(int \&detector, int input);}\\
+    Аргумент(ы):    & \RightHandText{int \&detector ~-- сохранённое входное значение} \\    
+    & \RightHandText{int input ~--  текущее входное значение} \\ 
+    Файл объявления:             & \RightHandText{include/func/misc.h} \\       
+\end{pHeader}
+
+Функция служит для детектирования изменения с 0 на 1 (детектирования фронта) входной величины. \killoverfullbefore
+
+Функция возвращает 0, если входное значение не изменилось и осталось равным 0, и 1, если входное значение стало отличным от 0. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%-------------------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{detectEdgeFall}}
+\index{Программный интерфейс ПЛК!Переменные и буфера!Функция detectEdgeFall}
+\label{sec:detectEdgeFall}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int detectEdgeFall(int \&detector, int input);}\\
+    Аргумент(ы):    & \RightHandText{int \&detector ~-- сохранённое входное значение} \\    
+    & \RightHandText{int input ~--  текущее входное значение} \\ 
+    Файл объявления:             & \RightHandText{include/func/misc.h} \\       
+\end{pHeader}
+
+Функция служит для детектирования изменения с 1 на 0 (детектирования спада) входной величины. \killoverfullbefore
+
+Функция возвращает 0, если входное значение не изменилось и осталось равным 1, и 1, если входное значение стало равным 0. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{syncset}}
+\index{Программный интерфейс ПЛК!Переменные и буфера!Функция syncset}
+\label{sec:syncset}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void syncset(void *ptr, int value);}\\
+   Аргумент(ы):    & \RightHandText {void *ptr ~-- указатель на переменную} \\  
+  & \RightHandText{int value ~-- присваиваемое значение} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет синхронное присваивание значения типа \texttt{int}, адресуемой указателем переменной. Синхронное присваивание осуществляется в момент начала следующего перемещения.
+
+Первый аргумент функции \texttt{*ptr} ~-- указатель, ссылающийся на переменную. Второй аргумент \texttt{value} ~-– присваиваемое значение.\killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{syncsetf}}
+\index{Программный интерфейс ПЛК!Переменные и буфера!Функция syncsetf}
+\label{sec:syncsetf}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void syncsetf(void *ptr, float value);}\\
+   Аргумент(ы):    & \RightHandText {void *ptr ~-- указатель на переменную} \\  
+  & \RightHandText{float value ~-- присваиваемое значение} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Синхронное присваивание значения типа \texttt{float}, адресуемой указателем переменной. Синхронное присваивание осуществляется в момент начала следующего перемещения.
+
+Первый аргумент функции \texttt{*ptr} ~-- указатель, ссылающийся на переменную. Второй аргумент \texttt{value} ~-– присваиваемое значение.\killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{syncsetd}}
+\index{Программный интерфейс ПЛК!Переменные и буфера!Функция syncsetd}
+\label{sec:syncsetd}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void syncsetd(void *ptr, double value);}\\
+   Аргумент(ы):    & \RightHandText {void *ptr ~-- указатель на переменную} \\  
+  & \RightHandText{double value ~-- присваиваемое значение} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Синхронное присваивание значения типа \texttt{double}, адресуемой указателем переменной. Синхронное присваивание осуществляется в момент начала следующего перемещения.
+
+Первый аргумент функции \texttt{*ptr} ~-- указатель, ссылающийся на переменную. Второй аргумент \texttt{value} ~-– присваиваемое значение.\killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{usave}}
+\index{Программный интерфейс ПЛК!Переменные и буфера!Функция usave}
+\label{sec:usave}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{void usave(void *ptr);}\\
+   Аргумент(ы):    & \RightHandText {void *ptr ~-- указатель на переменную} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\      
+\end{pHeader}
+
+Функция выполняет сохранение пользовательской переменной, на которую ссылается указатель. Пользовательская переменная должна быть объявлена посредством макроса \texttt{\#define USER\_SAVE(name)}. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{clearGather}}
+\index{Программный интерфейс ПЛК!Переменные и буфера!Функция clearGather}
+\label{sec:clearGather}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int clearGather();}\\
+   Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция очищает буфер данных сервопрерываний. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------
+% *******begin subsection***************
+\subsubsection{\DbgSecSt{\StPart}{clearPhaseGather}}
+\index{Программный интерфейс ПЛК!Переменные и буфера!Функция clearPhaseGather}
+\label{sec:clearPhaseGather}
+
+\begin{pHeader}
+    Синтаксис:      & \RightHandText{int clearPhaseGather();}\\
+   Аргумент(ы):    & \RightHandText {нет} \\  
+%    Возвращаемое значение:       & \RightHandText{Нет} \\
+    Файл объявления:             & \RightHandText{sys/sys.h} \\
+\end{pHeader}
+
+Функция очищает буфер данных фазных прерываний. \killoverfullbefore
+
+Является системной.
+% *******end subsection*****************
+%--------------------------------------------------------

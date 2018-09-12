@@ -45,7 +45,7 @@ showstringspaces=false} % no special string spaces
 
 \DrawPictEpsFromSvg[0.75\textwidth]{./Pictures/svg/Timer_1}{Таймер однократного запуска}{Timer_1}
 
-Листинг ~\ref{lst:automat_mt} иллюстрирует использование таймера однократного запуска.
+Листинг ~\ref{lst:automat_mt} на стр. \pageref{lst:automat_mt} иллюстрирует использование таймера однократного запуска.
 
 % *******end subsection***************
 
@@ -67,7 +67,7 @@ showstringspaces=false} % no special string spaces
 
 Переменная \texttt{homeLed} (строка 5) определяет состояние индикатора реферирования осей. Если не выполнен выезд в 0 или не выполнено позиционирование всех осей при включении станка, то переменной \texttt{homeLed} будет присваиваться периодически 0 или 1. Значение \texttt{homeLed} записывается в \texttt{mt.PultOut.modeHome} (строка 19) и индикатор реферирования осей пульта оператора будет мигать. \killoverfullbefore \BL
 
-\IncludeListing{./listings/p_timer.c}{Применение периодического таймера \newline}{lst:p_timer}
+\IncludeListing{./listings/p_timer2.c}{Применение периодического таймера \newline}{lst:p_timer}
 
 % *******end subsection***************
 
@@ -104,7 +104,7 @@ showstringspaces=false} % no special string spaces
 
 Листинг ~\ref{lst:IO_unions} показывает пример определения имён идентификаторов в объявлении объединений \texttt{MTInputs} и \texttt{MTOutputs}. \killoverfullbefore \BL
 
-\IncludeListing{./listings/IO_unions.c}{Пример определения имён идентификаторов \newline}{lst:IO_unions}
+\IncludeListing{./listings/IO_unions2.c}{Пример определения имён идентификаторов \newline}{lst:IO_unions}
 
 \begin{comment}
 \begin{pExample}
@@ -154,7 +154,6 @@ union MTOutputs \{ &  \\
 
 \end{comment}
 
-\BL
 
 Плата входов имеет возможность подключения 32 входных сигналов, плата выходов имеет возможность вывода до 24 выходных сигналов.
 
@@ -169,7 +168,7 @@ union MTOutputs \{ &  \\
 
 Листинг ~\ref{lst:IO} показывает обращение ко входам и выходам. В данном примере пульт оператора подключён к порту №0, плата входов/выходов для управления электроавтоматикой станка ~-- к порту №1. \killoverfullbefore \BL
 
-\IncludeListing{./listings/IO.c}{Обращение ко входам и выходам \newline}{lst:IO}
+\IncludeListing{./listings/IO2.c}{Обращение ко входам и выходам \newline}{lst:IO}
 
 \begin{comment}
 \begin{pExample}
@@ -244,7 +243,7 @@ void writeOutputs() \{ & \textcolor{exComm}{// Запись выходов} \\
 
 Конечные автоматы ~-- конструкции, которые описываются ограниченным набором возможных состояний, набором сигналов (событий) и условиями переходов из одного состояния в другое. Последующее состояние автомата определяется текущим состоянием и входными сигналами.
 
-Листинг ~\ref{lst:automat_mt} показывает фрагмент реализации конечного автомата управления станком с помощью оператора множественного выбора \texttt{switch-case}. \killoverfullbefore \BL
+Листинг ~\ref{lst:automat_mt} показывает фрагмент реализации конечного автомата включения/выключения станка с помощью оператора множественного выбора \texttt{switch-case}. Полностью автомат приведён в \textbf{ПРИЛОЖЕНИИ 1} в листинге <<Программа включения/выключения станка>> на стр. \pageref{MtOnOff}.\killoverfullbefore \BL
 
 
 \IncludeListing{./listings/automat_mt.c}{Фрагмент реализации конечного автомата управления станком \newline}{lst:automat_mt}
